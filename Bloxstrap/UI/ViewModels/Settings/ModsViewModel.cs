@@ -104,6 +104,13 @@ namespace Bloxstrap.UI.ViewModels.Settings
         public EnumModPresetTask<Enums.CursorType> CursorTypeTask { get; } = new("CursorType", new()
         {
             {
+                Enums.CursorType.Sonaria, new()
+                {
+                    { @"content\textures\Cursors\KeyboardMouse\ArrowCursor.png",    "Cursor.Sonaria.ArrowCursor.png"    },
+                    { @"content\textures\Cursors\KeyboardMouse\ArrowFarCursor.png", "Cursor.Sonaria.ArrowFarCursor.png" }
+                }
+            },
+            {
                 Enums.CursorType.From2006, new()
                 {
                     { @"content\textures\Cursors\KeyboardMouse\ArrowCursor.png",    "Cursor.From2006.ArrowCursor.png"    },

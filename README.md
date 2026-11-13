@@ -67,6 +67,8 @@ Turning on "Extract Roblox icons to folder" under Settings > Shortcuts saves the
 
 The mods folder mirrors Roblox's own folder layout. Any file you put there replaces the matching Roblox file each time Roblox starts, and survives Roblox updates. Use "Open mods folder" in Settings > Mods to get to it. Stick to cosmetic changes such as cursors, sounds and fonts.
 
+Roblox's pointer is the Sonaria cursor by default; set "Mouse cursor" under Settings > Mods to Default to get Roblox's own back. A game that sets its own pointer still shows its own.
+
 Roblox's text uses the Creatures of Sonaria font (Fredoka One) by default. "Remove custom font" under Settings > Mods puts Roblox's own fonts back, and "Use the Creatures of Sonaria font" brings it back.
 
 ### Notices and off switches
