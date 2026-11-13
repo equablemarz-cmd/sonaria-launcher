@@ -1,0 +1,29 @@
+name: Publish module
+
+on:
+  push:
+    branches: [modules]
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+    - uses: actions/checkout@v6
+
+    - name: Check the package against its recorded SHA-256
+      run: sha256sum -c checksums.txt
+
+    # Published as a pre-release so it never counts as the launcher's "latest release"
+    - name: Publish release asset
+      uses: softprops/action-gh-release@v2
+      with:
+        tag_name: ticktracker-4.0.0
+        target_commitish: ${{ github.sha }}
+        name: TickTracker module 4.0.0
+        body_path: RELEASE-NOTES.md
+        prerelease: true
+        files: TickTracker-4.0.0.zip
