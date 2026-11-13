@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<title>Join a Creatures of Sonaria server</title>
+<meta name="description" content="Click to join this Creatures of Sonaria server in Roblox.">
+<meta property="og:site_name" content="Sonaria Software">
+<meta property="og:title" content="Join my Creatures of Sonaria server">
+<meta property="og:description" content="Click to join this server in Roblox. It has to still be running and have space.">
+<meta property="og:image" content="https://equablemarz-cmd.github.io/sonaria-launcher/icon.png">
+<meta name="theme-color" content="#1e8bff">
+<link rel="icon" type="image/png" href="../favicon.png">
+<style>
+  :root { color-scheme: dark; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; min-height: 100vh; display: flex; align-items: center; justify-content: center;
+    background: #0d1117; color: #e6edf3;
+    font-family: "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
+  }
+  main { width: 100%; max-width: 380px; padding: 32px 24px; text-align: center; }
+  img { width: 72px; height: 72px; }
+  h1 { font-size: 20px; font-weight: 600; margin: 16px 0 6px; }
+  p { font-size: 14px; line-height: 1.5; color: #9da7b3; margin: 0 0 20px; }
+  .join {
+    display: block; padding: 12px 16px; border-radius: 8px; border: 0;
+    background: linear-gradient(90deg, #1e6bff, #00c8e8); color: #fff;
+    font-size: 15px; font-weight: 600; text-decoration: none;
+  }
+  .join:focus-visible { outline: 2px solid #7fd8ff; outline-offset: 2px; }
+  .small { font-size: 12px; color: #6e7781; margin: 20px 0 0; }
+  .small a { color: #58a6ff; }
+  [hidden] { display: none; }
+</style>
+</head>
+<body>
+<main>
+  <img src="../icon.png" alt="">
+
+  <div id="valid" hidden>
+    <h1>Join this Creatures of Sonaria server</h1>
+    <p>Roblox should open and put you in the same server. If nothing happens, press the button.</p>
+    <a class="join" id="join-button" href="#">Join server</a>
+    <p class="small">The server has to still be running and have space, otherwise Roblox puts you in a different one.</p>
+  </div>
+
+  <div id="invalid" hidden>
+    <h1>This server link isn't valid</h1>
+    <p>Ask for a fresh link, or join any Creatures of Sonaria server instead.</p>
+    <a class="join" href="roblox://experiences/start?placeId=5233782396">Play Creatures of Sonaria</a>
+  </div>
+
+  <p class="small">Links made by the <a href="https://github.com/equablemarz-cmd/sonaria-launcher/releases/latest">Sonaria Software Launcher</a>. Find fights in <a href="https://discord.gg/koser">Kosers of Sonaria</a>.</p>
+</main>
+<script>
+(function () {
+  // This page only ever opens Creatures of Sonaria. The link carries just the server ID.
+  var COS_PLACE_ID = "5233782396";
+  var id = new URLSearchParams(window.location.search).get("s") || "";
+  var isServerId = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(id);
+
+  if (!isServerId) {
+    document.getElementById("invalid").hidden = false;
+    return;
+  }
+
+  var link = "roblox://experiences/start?placeId=" + COS_PLACE_ID + "&gameInstanceId=" + id.toLowerCase();
+
+  document.getElementById("join-button").href = link;
+  document.getElementById("valid").hidden = false;
+
+  window.location.href = link;
+})();
+</script>
+</body>
+</html>
