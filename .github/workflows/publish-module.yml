@@ -1,8 +1,10 @@
 name: Publish module
 
+# A release is created by hand on GitHub with a tag like ticktracker-4.0.1 pointing at this branch.
+# This then checks the package and attaches it to that release.
 on:
   push:
-    branches: [modules]
+    tags: ['ticktracker-*']
 
 jobs:
   publish:
@@ -14,16 +16,18 @@ jobs:
     steps:
     - uses: actions/checkout@v6
 
-    - name: Check the package against its recorded SHA-256
-      run: sha256sum -c checksums.txt
+    - name: Work out the package name from the tag
+      run: echo "PACKAGE=TickTracker-${GITHUB_REF_NAME#ticktracker-}.zip" >> "$GITHUB_ENV"
 
-    # Published as a pre-release so it never counts as the launcher's "latest release"
-    - name: Publish release asset
+    - name: Check the package against its recorded SHA-256
+      run: |
+        grep -q "  ${PACKAGE}\$" checksums.txt
+        sha256sum -c checksums.txt
+
+    # Kept as a pre-release so it never counts as the launcher's "latest release"
+    - name: Attach the package to the release
       uses: softprops/action-gh-release@v2
       with:
-        tag_name: ticktracker-4.0.0
-        target_commitish: ${{ github.sha }}
-        name: TickTracker module 4.0.0
-        body_path: RELEASE-NOTES.md
+        files: ${{ env.PACKAGE }}
         prerelease: true
-        files: TickTracker-4.0.0.zip
+        fail_on_unmatched_files: true

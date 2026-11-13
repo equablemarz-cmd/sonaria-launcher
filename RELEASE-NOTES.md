@@ -1,5 +1,5 @@
-TickTracker 4.0, packaged as a module for the Sonaria Software Launcher. The launcher downloads this file by itself and checks it before running it; you don't need to download it by hand.
+TickTracker 4.0.1, packaged as a module for Sonaria Software Launcher. The launcher downloads this file itself and checks it against a SHA-256 built into the launcher, so there is nothing to install by hand.
 
-It is the same TickTracker 4.0 folder that was shared as a standalone zip: the official signed Python program (renamed TickTracker.exe), numpy, Pillow and mss from their official builds, and TickTracker's own readable code in `app\ticktracker.py` and `app\ttcore.py`.
+Changed since 4.0.0: the badge's numbers are drawn in Source Sans Bold, the font Creatures of Sonaria's own interface uses. Nothing else is different.
 
-SHA-256 of `TickTracker-4.0.0.zip`: `408aa52fb491357e250a1e84b6e75af29d33996fc46f6f60c6cdb9365f3b4b2b`
+SHA-256 of `TickTracker-4.0.1.zip`: `95cd322f93b81ce74f70b7858b37f0695700a95a36f3e519d50e6f93768cd027`
