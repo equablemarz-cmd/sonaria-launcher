@@ -1,3 +1,5 @@
+using System.Security.Cryptography;
+
 namespace Bloxstrap.Sonaria
 {
     public static class CosMods
@@ -44,6 +46,59 @@ namespace Bloxstrap.Sonaria
             catch (Exception ex)
             {
                 App.Logger.WriteLine(LOG_IDENT, "Could not set the cursor, leaving Roblox's own in place");
+                App.Logger.WriteException(LOG_IDENT, ex);
+            }
+        }
+
+        // SHA-256 of the cursor picture earlier versions put in place (3.1.0 to 3.1.2: the first, smaller Sonaria cursor)
+        private static readonly string[] OldCursorSha256 =
+        {
+            "73ad1b92845255003ce43d1ec5c26ade29b3979fefd1a182762509bba1c23b26"
+        };
+
+        /// <summary>
+        /// Swaps a Sonaria cursor that an earlier version installed for the current one. A cursor the user
+        /// picked themselves, or Roblox's own, is left exactly as it is.
+        /// </summary>
+        public static void ReplaceOldDefaultCursor()
+        {
+            const string LOG_IDENT = "CosMods::ReplaceOldDefaultCursor";
+
+            try
+            {
+                bool replaced = false;
+
+                foreach (var entry in CursorFiles)
+                {
+                    string location = Path.Combine(Paths.Modifications, entry.Key);
+
+                    if (!File.Exists(location))
+                        continue;
+
+                    string hash;
+
+                    using (var stream = File.OpenRead(location))
+                    using (var sha256 = SHA256.Create())
+                        hash = Convert.ToHexString(sha256.ComputeHash(stream));
+
+                    if (!OldCursorSha256.Any(x => String.Equals(hash, x, StringComparison.OrdinalIgnoreCase)))
+                        continue;
+
+                    Filesystem.AssertReadOnly(location);
+
+                    using var resourceStream = Resource.GetStream(entry.Value);
+                    using var fileStream = File.Create(location);
+                    resourceStream.CopyTo(fileStream);
+
+                    replaced = true;
+                }
+
+                if (replaced)
+                    App.Logger.WriteLine(LOG_IDENT, "Replaced an earlier version's Sonaria cursor with the current one");
+            }
+            catch (Exception ex)
+            {
+                App.Logger.WriteLine(LOG_IDENT, "Could not replace the cursor, leaving it as it is");
                 App.Logger.WriteException(LOG_IDENT, ex);
             }
         }

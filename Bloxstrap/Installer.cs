@@ -623,12 +623,14 @@ namespace Bloxstrap
                     App.Settings.Prop.UseDiscordRichPresence = true;
                 }
 
-                if (Utilities.CompareVersions(existingVer, "3.1.3") == VersionComparison.LessThan)
+                if (Utilities.CompareVersions(existingVer, "3.1.4") == VersionComparison.LessThan)
                 {
                     // 3.1.0 used a look-alike font, and 3.1.1 and 3.1.2 replaced every font in every game.
-                    // 3.1.3 only changes Roblox's own menus and chat, and draws them a little larger.
-                    // only a font an earlier version installed is swapped: a font picked by hand, or none, is left alone
+                    // 3.1.4 only changes Roblox's own menus and chat, and draws them a little larger.
+                    // it also has a slightly larger Sonaria cursor.
+                    // only a font or cursor an earlier version installed is swapped: one picked by hand, or none, is left alone
                     Sonaria.CosFont.ReplaceOldDefault();
+                    Sonaria.CosMods.ReplaceOldDefaultCursor();
                 }
 
                 App.Settings.Save();
