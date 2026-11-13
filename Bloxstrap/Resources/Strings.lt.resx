@@ -309,10 +309,10 @@ Jei ne, praneškite apie šią išimtį per [„GitHub“ problemą]({1}) kartu 
     <value>Netikras „Byfron“ (2023 m.)</value>
   </data>
   <data name="Enums.BootstrapperStyle.ClassicFluentDialog" xml:space="preserve">
-    <value>„Bloxstrap“ (klasikinis)</value>
+    <value>„Sonaria“ (klasikinis)</value>
   </data>
   <data name="Enums.BootstrapperStyle.FluentAeroDialog" xml:space="preserve">
-    <value>„Bloxstrap“ (stiklinis)</value>
+    <value>„Sonaria“ (stiklinis)</value>
   </data>
   <data name="Enums.BootstrapperStyle.LegacyDialog2008" xml:space="preserve">
     <value>„Legacy“ (2008-2011 m.)</value>
@@ -946,12 +946,6 @@ Išdiegimo procesas gali palikti kai kuriuos dalykus, todėl gali tekti rankiniu
   <data name="Dialog.CannotCreateShortcuts" xml:space="preserve">
     <value>„Sonaria Software Launcher“ nepavyko sukurti darbalaukio ir pradžios meniu nuorodų. Bandykite juos sukurti vėliau per nustatymus.</value>
   </data>
-  <data name="Dialog.Exception.Info.2.Alt" xml:space="preserve">
-    <value>Pirmiausia patikrinkite [„Bloxstrap“ vikį]({0}), kad pamatytumėte, ar ši problema jau išspręsta su sprendimu.
-
-Jei ne, praneškite apie šią išimtį šio atšakos prižiūrėtojams. Nepraneškite apie tai į „Bloxstrap“ „GitHub“ problemas, nes čia yra neoficiali versija.</value>
-    <comment>"fork" in general means "a variation of" or "a different version of". You can alternatively write the first sentence as "...to the maintainers of this version."</comment>
-  </data>
   <data name="Installer.Install.Shortcuts.Description" xml:space="preserve">
     <value>Tai – bendrosios nuorodos, kurios iškelia daugiapasirinkimų paleidimo meniu. Konkrečių funkcijų nuorodas galima sukurti vėliau nustatymuose.</value>
   </data>
@@ -1084,7 +1078,7 @@ Rankiniu būdu ištrinkite Sonaria Software Launcher.exe iš diegimo vietos arba
     <value>Išskleisti „Roblox“ piktogramas į aplanką</value>
   </data>
   <data name="Menu.Shortcuts.ExtractIcons.Description" xml:space="preserve">
-    <value>Leidžia naudoti „Bloxstrap“ „Roblox“ piktogramų asortimentą savo nuorodoms. [Žiūrėti, kaip.]({0})</value>
+    <value>Leidžia naudoti „Sonaria Software Launcher“ „Roblox“ piktogramų asortimentą savo nuorodoms. [Žiūrėti, kaip.]({0})</value>
   </data>
   <data name="Dialog.RegistryWriteError" xml:space="preserve">
     <value>„Sonaria Software Launcher“ negali įrašyti į „Windows“ registrą. Greičiausiai trukdo antivirusinė programa ir sukelia problemų. Patikrinkite, ar nėra nieko, kas ribotų „Sonaria Software Launcher“ veikimą.</value>

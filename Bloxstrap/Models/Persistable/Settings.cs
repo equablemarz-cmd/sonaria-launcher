@@ -13,6 +13,11 @@ namespace Bloxstrap.Models.Persistable
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public bool DeveloperMode { get; set; } = false;
         public bool CheckForUpdates { get; set; } = true;
+
+        /// <summary>
+        /// The release tag the user last said no to, so they aren't asked about the same update on every launch
+        /// </summary>
+        public string DeclinedUpdateVersion { get; set; } = "";
         public bool ConfirmLaunches { get; set; } = false;
         public string Locale { get; set; } = "nil";
         public bool UseFastFlagManager { get; set; } = true;

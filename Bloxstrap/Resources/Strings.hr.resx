@@ -309,10 +309,10 @@ Ako ne postoji, molimo da prijavite ovu iznimku preko [GitHub problema]({1}) zaj
     <value>Lažni Byfron (2023)</value>
   </data>
   <data name="Enums.BootstrapperStyle.ClassicFluentDialog" xml:space="preserve">
-    <value>Bloxstrap (Klasično)</value>
+    <value>Sonaria (Klasično)</value>
   </data>
   <data name="Enums.BootstrapperStyle.FluentAeroDialog" xml:space="preserve">
-    <value>Bloxstrap (Stakleno)</value>
+    <value>Sonaria (Stakleno)</value>
   </data>
   <data name="Enums.BootstrapperStyle.LegacyDialog2008" xml:space="preserve">
     <value>Nasledje (2008-2011)</value>
@@ -944,12 +944,6 @@ Sonaria Software Launcher je bio instaliran kod "{1}".</value>
   <data name="Dialog.CannotCreateShortcuts" xml:space="preserve">
     <value>Sonaria Software Launcher nije mogao kreirati prečace za Desktop i Start Meni. Pokušajte ih kreirati kasnije preko postavki.</value>
   </data>
-  <data name="Dialog.Exception.Info.2.Alt" xml:space="preserve">
-    <value>Prvo provjerite [Bloxstrap Wiki]({0}) kako biste vidjeli je li ovaj problem već bio rješen.
-
-Ako nije, onda molimo da prijavite ovu iznimku održavateljima ovog fork-a. Nemojte ovo prijaviti na Bloxstrapove GitHub probleme, jer ovo nije službena inačica.</value>
-    <comment>"fork" in general means "a variation of" or "a different version of". You can alternatively write the first sentence as "...to the maintainers of this version."</comment>
-  </data>
   <data name="Installer.Install.Shortcuts.Description" xml:space="preserve">
     <value>Ovo su opći prečaci koji pokažu izbornik za pokretanje s više izbora. Prečaci za specifične funkcije mogu biti kreirane kasnije u postavkama.</value>
   </data>
@@ -1082,7 +1076,7 @@ Molimo ručno izbrišite Sonaria Software Launcher.exe iz lokacije instalacije i
     <value>Izdvojite Roblox ikone u mapu</value>
   </data>
   <data name="Menu.Shortcuts.ExtractIcons.Description" xml:space="preserve">
-    <value>Dopušta Vam da koristite Bloxstrapov raspon Roblox ikona za Vaše prečace. [Pogledajte kako.]({0})</value>
+    <value>Dopušta Vam da koristite Sonaria Software Launcherov raspon Roblox ikona za Vaše prečace. [Pogledajte kako.]({0})</value>
   </data>
   <data name="Dialog.RegistryWriteError" xml:space="preserve">
     <value>Sonaria Software Launcher ne može pisati u Windows Registar. Antivirus se vjerojatno miješa i proizvodi poteškoće. Molimo provjerite postoji li išta što bi moglo ograničiti Sonaria Software Launcherove operacije.</value>

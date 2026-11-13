@@ -310,10 +310,10 @@ Pokud ne, nahlaste prosím tuto výjimku přes [GitHub issue]({1}) spolu s logov
     <value>Falešný Byfron (2023)</value>
   </data>
   <data name="Enums.BootstrapperStyle.ClassicFluentDialog" xml:space="preserve">
-    <value>Bloxstrap (Klasický)</value>
+    <value>Sonaria (Klasický)</value>
   </data>
   <data name="Enums.BootstrapperStyle.FluentAeroDialog" xml:space="preserve">
-    <value>Bloxstrap (Sklo)</value>
+    <value>Sonaria (Sklo)</value>
   </data>
   <data name="Enums.BootstrapperStyle.LegacyDialog2008" xml:space="preserve">
     <value>Legacy (2008 - 2011)</value>
@@ -946,12 +946,6 @@ Sonaria Software Launcher byl nainstalován v umístění "{1}".</value>
   <data name="Dialog.CannotCreateShortcuts" xml:space="preserve">
     <value>Sonaria Software Launcher nebyl schopen vytvořit zkratky na ploše a v menu Start. Zkuste je vytvořit později v nastavení.</value>
   </data>
-  <data name="Dialog.Exception.Info.2.Alt" xml:space="preserve">
-    <value>Nejprve zkontrolujte [Bloxstrap wiki]({0}), zda už byl tento problém vyřešen dostupnou opravou.
-
-Pokud ne, prosím nahlaste tuto vyjímku správcům tohoto forku. Nenahlašujte ji do GitHub problémů Bloxstrapu, protože se jedná o neoficiální sestavení.</value>
-    <comment>"fork" in general means "a variation of" or "a different version of". You can alternatively write the first sentence as "...to the maintainers of this version."</comment>
-  </data>
   <data name="Installer.Install.Shortcuts.Description" xml:space="preserve">
     <value>Tohle jsou obecné zkratky, které zobrazí spouštěcí nabídku s více možnostmi. Zkratky pro konkrétní funkce mohou být vytvořeny později v nastavení.</value>
   </data>
@@ -1084,7 +1078,7 @@ Prosím manuálně smažte Sonaria Software Launcher.exe z instalačního místa
     <value>Extrahovat ikony Robloxu do složky</value>
   </data>
   <data name="Menu.Shortcuts.ExtractIcons.Description" xml:space="preserve">
-    <value>Umožňuje používat rozsah Roblox ikon Bloxstrapu pro zástupce. [Podívej se jak na to.]({0})</value>
+    <value>Umožňuje používat rozsah Roblox ikon Sonaria Software Launcheru pro zástupce. [Podívej se jak na to.]({0})</value>
   </data>
   <data name="Dialog.RegistryWriteError" xml:space="preserve">
     <value>Sonaria Software Launcher není schopen zapisovat do registru Windows. Antivirus pravděpodobně zasahuje a způsobuje problémy. Prosím zkontrolujte, zda nemáte nic, co by omezilo funkci Sonaria Software Launcheru.</value>

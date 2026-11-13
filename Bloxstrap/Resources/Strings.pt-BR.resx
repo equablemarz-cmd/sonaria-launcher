@@ -309,10 +309,10 @@ Caso contrário, por favor reporte esta exceção através de uma [issue no GitH
     <value>Byfron Falso (2023)</value>
   </data>
   <data name="Enums.BootstrapperStyle.ClassicFluentDialog" xml:space="preserve">
-    <value>Bloxstrap (Clássico)</value>
+    <value>Sonaria (Clássico)</value>
   </data>
   <data name="Enums.BootstrapperStyle.FluentAeroDialog" xml:space="preserve">
-    <value>Bloxstrap (Transparente)</value>
+    <value>Sonaria (Transparente)</value>
   </data>
   <data name="Enums.BootstrapperStyle.LegacyDialog2008" xml:space="preserve">
     <value>Antigo (2008-2011)</value>
@@ -946,12 +946,6 @@ O Sonaria Software Launcher foi instalado em "{1}".</value>
   <data name="Dialog.CannotCreateShortcuts" xml:space="preserve">
     <value>O Sonaria Software Launcher não conseguiu criar atalhos para a área de trabalho e o menu Iniciar. Tente criá-los mais tarde através das configurações.</value>
   </data>
-  <data name="Dialog.Exception.Info.2.Alt" xml:space="preserve">
-    <value>Verifique a [Wiki do Bloxstrap]({0}) primeiro para ver se esse problema já foi resolvido com uma correção.
-
-Caso contrário, por favor reporte esta exceção aos mantenedores desta fork. Não reporte isso para o Github issues do Bloxstrap, pois não é uma compilação oficial.</value>
-    <comment>"fork" in general means "a variation of" or "a different version of". You can alternatively write the first sentence as "...to the maintainers of this version."</comment>
-  </data>
   <data name="Installer.Install.Shortcuts.Description" xml:space="preserve">
     <value>Esses são atalhos gerais que abrem um menu de inicialização de múltipla escolha. Atalhos para funções específicas podem ser criados mais tarde nas configurações.</value>
   </data>
@@ -1084,7 +1078,7 @@ Por favor, exclua manualmente o arquivo Sonaria Software Launcher.exe do local d
     <value>Extrair ícones do Roblox para a pasta</value>
   </data>
   <data name="Menu.Shortcuts.ExtractIcons.Description" xml:space="preserve">
-    <value>Permite que você use a variação de ícones Roblox do Bloxstrap para seus atalhos. [Veja como.]({0})</value>
+    <value>Permite que você use a variação de ícones Roblox do Sonaria Software Launcher para seus atalhos. [Veja como.]({0})</value>
   </data>
   <data name="Dialog.RegistryWriteError" xml:space="preserve">
     <value>Sonaria Software Launcher não conseguiu escrever no registro do Windows. Um antivírus provavelmente está interferindo e causando problemas. Por favor, verifique se não há nada que restrinja a operação do Sonaria Software Launcher.</value>

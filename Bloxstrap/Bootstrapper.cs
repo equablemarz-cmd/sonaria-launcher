@@ -794,6 +794,35 @@ namespace Bloxstrap
                 return false;
             }
 
+            // updates are never installed without asking first
+            if (App.LaunchSettings.QuietFlag.Active)
+            {
+                App.Logger.WriteLine(LOG_IDENT, "Running quietly, so not offering the update this time");
+                return false;
+            }
+
+            if (App.Settings.Prop.DeclinedUpdateVersion == releaseInfo.TagName)
+            {
+                App.Logger.WriteLine(LOG_IDENT, $"{releaseInfo.TagName} was already declined, not asking again");
+                return false;
+            }
+
+            var answer = Frontend.ShowMessageBox(
+                $"{App.ProjectName} {releaseInfo.TagName} is available. You have v{App.Version}.\n\nUpdate now? Roblox will start as normal either way. If you choose No, you won't be asked again until the next version.",
+                MessageBoxImage.Question,
+                MessageBoxButton.YesNo
+            );
+
+            if (answer != MessageBoxResult.Yes)
+            {
+                App.Logger.WriteLine(LOG_IDENT, "Update was declined");
+
+                App.Settings.Prop.DeclinedUpdateVersion = releaseInfo.TagName;
+                App.Settings.Save();
+
+                return false;
+            }
+
             if (Dialog is not null)
                 Dialog.CancelEnabled = false;
 
@@ -822,6 +851,15 @@ namespace Bloxstrap
                     return false;
                 }
 
+                // every release publishes the executable's SHA-256 next to it. an update is only run if it matches
+                var hashAsset = releaseInfo.Assets!.FirstOrDefault(x => x.Name.Equals(asset.Name + ".sha256", StringComparison.OrdinalIgnoreCase));
+
+                if (hashAsset is null)
+                {
+                    App.Logger.WriteLine(LOG_IDENT, "Latest release has no SHA-256 file for the launcher, skipping update");
+                    return false;
+                }
+
                 string downloadLocation = Path.Combine(Paths.TempUpdates, asset.Name);
 
                 Directory.CreateDirectory(Paths.TempUpdates);
@@ -835,6 +873,25 @@ namespace Bloxstrap
                     await using var fileStream = new FileStream(downloadLocation, FileMode.OpenOrCreate, FileAccess.Write);
                     await response.Content.CopyToAsync(fileStream);
                 }
+
+                string expectedHash = (await App.HttpClient.GetStringAsync(hashAsset.BrowserDownloadUrl)).Trim().Split(' ', '\t', '\r', '\n')[0];
+                string actualHash;
+
+                await using (var downloadedStream = File.OpenRead(downloadLocation))
+                {
+                    using var sha256 = System.Security.Cryptography.SHA256.Create();
+                    actualHash = Convert.ToHexString(await sha256.ComputeHashAsync(downloadedStream));
+                }
+
+                if (!String.Equals(expectedHash, actualHash, StringComparison.OrdinalIgnoreCase))
+                {
+                    App.Logger.WriteLine(LOG_IDENT, $"Update failed verification (expected {expectedHash}, got {actualHash}), discarding it");
+                    File.Delete(downloadLocation);
+
+                    throw new ChecksumFailedException("The downloaded update did not match its published SHA-256.");
+                }
+
+                App.Logger.WriteLine(LOG_IDENT, "Update verified");
 #endif
 
                 App.Logger.WriteLine(LOG_IDENT, $"Starting {version}...");
@@ -1572,7 +1629,7 @@ namespace Bloxstrap
 
                         Frontend.ShowConnectivityDialog(
                             Strings.Dialog_Connectivity_UnableToDownload,
-                            String.Format(Strings.Dialog_Connectivity_UnableToDownloadReason, "[https://bloxstraplabs.com/wiki/help/bloxstrap-cannot-download-roblox/](https://bloxstraplabs.com/wiki/help/bloxstrap-cannot-download-roblox/)"),
+                            String.Format(Strings.Dialog_Connectivity_UnableToDownloadReason, $"[{App.ProjectHelpLink}]({App.ProjectHelpLink})"),
                             MessageBoxImage.Error,
                             ex
                         );

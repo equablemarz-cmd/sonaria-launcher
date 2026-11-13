@@ -309,10 +309,10 @@ Venligst rapporter denne undtagelse gennem en [GitHub issue]({1}) sammen med log
     <value>Falsk Byfron (2023)</value>
   </data>
   <data name="Enums.BootstrapperStyle.ClassicFluentDialog" xml:space="preserve">
-    <value>Bloxstrap (Klassisk)</value>
+    <value>Sonaria (Klassisk)</value>
   </data>
   <data name="Enums.BootstrapperStyle.FluentAeroDialog" xml:space="preserve">
-    <value>Bloxstrap (Glas)</value>
+    <value>Sonaria (Glas)</value>
   </data>
   <data name="Enums.BootstrapperStyle.LegacyDialog2008" xml:space="preserve">
     <value>Arv (2008 - 2011)</value>
@@ -946,12 +946,6 @@ Sonaria Software Launcher var installeret ved "{1}".</value>
   <data name="Dialog.CannotCreateShortcuts" xml:space="preserve">
     <value>Sonaria Software Launcher kunne ikke oprette genveje til Desktop og Start menuen. Prøv at oprette dem senere gennem indstillingerne.</value>
   </data>
-  <data name="Dialog.Exception.Info.2.Alt" xml:space="preserve">
-    <value>Tjek [Bloxstrap Wikien]({0}) først for at se om dette problem allerede er løst med en rettelse.
-
-Hvis ikke, så venligst rapporter denne undtagelse til vedligeholderne af denne fork. Rapporter det ikke til Bloxstrap's GitHub issues, da dette er et uofficielt build.</value>
-    <comment>"fork" in general means "a variation of" or "a different version of". You can alternatively write the first sentence as "...to the maintainers of this version."</comment>
-  </data>
   <data name="Installer.Install.Shortcuts.Description" xml:space="preserve">
     <value>Disse er generelle genveje, der viser en multi-valgs startmenu. Genveje for specifikke funktioner kan oprettes senere i indstillingerne.</value>
   </data>
@@ -1084,7 +1078,7 @@ Slet venligst Sonaria Software Launcher.exe manuelt fra installationsplaceringen
     <value>Udpak Roblox ikoner til mappe</value>
   </data>
   <data name="Menu.Shortcuts.ExtractIcons.Description" xml:space="preserve">
-    <value>Tillader dig at bruge Bloxstraps sortiment af Roblox-ikoner til dine genveje. [Se hvordan.]({0})</value>
+    <value>Tillader dig at bruge Sonaria Software Launchers sortiment af Roblox-ikoner til dine genveje. [Se hvordan.]({0})</value>
   </data>
   <data name="Dialog.RegistryWriteError" xml:space="preserve">
     <value>Sonaria Software Launcher er ude af stand til at skrive til registreringsdatabasen i Windows. En antivirus vil sandsynligvis forstyrre og forårsage problemer. Tjek venligst for at sikre, at der ikke er noget, der vil begrænse Sonaria Software Launcher's operation.</value>

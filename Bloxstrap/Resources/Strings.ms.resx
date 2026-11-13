@@ -301,10 +301,10 @@ Klik untuk maklumat lanjut</value>
     <value>Byfron palsu (2023)</value>
   </data>
   <data name="Enums.BootstrapperStyle.ClassicFluentDialog" xml:space="preserve">
-    <value>Bloxstrap (Klasik)</value>
+    <value>Sonaria (Klasik)</value>
   </data>
   <data name="Enums.BootstrapperStyle.FluentAeroDialog" xml:space="preserve">
-    <value>Bloxstrap (Kaca)</value>
+    <value>Sonaria (Kaca)</value>
   </data>
   <data name="Enums.BootstrapperStyle.LegacyDialog2008" xml:space="preserve">
     <value>Legasi (2008 - 2011)</value>
@@ -1048,7 +1048,7 @@ Sila buang fail Sonaria Software Launcher.exe secara manual dari lokasi pemasang
     <value>Ekstrak ikon Roblox ke fail</value>
   </data>
   <data name="Menu.Shortcuts.ExtractIcons.Description" xml:space="preserve">
-    <value>Membenarkan anda menggunakan pelbagai ikon Roblox Bloxstrap untuk pintasan anda. [Lihat bagaimana ia berfungsi.]({0})</value>
+    <value>Membenarkan anda menggunakan pelbagai ikon Roblox Sonaria Software Launcher untuk pintasan anda. [Lihat bagaimana ia berfungsi.]({0})</value>
   </data>
   <data name="Dialog.RegistryWriteError" xml:space="preserve">
     <value>Sonaria Software Launcher tidak dapat menulis ke Windows Registry, berkemungkinan antivirus sedang mengganggu dan menyebabkan masalah. Sila semak dan pastikan tiada apa-apa yang menghalang operasi Sonaria Software Launcher.</value>

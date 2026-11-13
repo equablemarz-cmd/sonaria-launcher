@@ -309,10 +309,10 @@
     <value>ﾆｾByfron (2023)</value>
   </data>
   <data name="Enums.BootstrapperStyle.ClassicFluentDialog" xml:space="preserve">
-    <value>Bloxstrap (クラシック)</value>
+    <value>Sonaria (クラシック)</value>
   </data>
   <data name="Enums.BootstrapperStyle.FluentAeroDialog" xml:space="preserve">
-    <value>Bloxstrap (透明)</value>
+    <value>Sonaria (透明)</value>
   </data>
   <data name="Enums.BootstrapperStyle.LegacyDialog2008" xml:space="preserve">
     <value>レガシー (2008 ~ 2011)</value>
@@ -952,13 +952,6 @@ Sonaria Software Launcherのインストール場所: {1}</value>
   <data name="Dialog.CannotCreateShortcuts" xml:space="preserve">
     <value>デスクトップまたはスタートメニューにショートカットを作ることができませんでした。しばらくしてから再度お試しください。</value>
   </data>
-  <data name="Dialog.Exception.Info.2.Alt" xml:space="preserve">
-    <value>最初に[Bloxstrap Wiki]({0})で解決策がないか確認してください。
-
-解決策が見つからない場合は、エラーをこのフォークのメンテナーに報告してください。絶対に公式版BloxstrapのGitHub issuesに投稿しないでください。
-このBloxstrapは非公式版です。</value>
-    <comment>"fork" in general means "a variation of" or "a different version of". You can alternatively write the first sentence as "...to the maintainers of this version."</comment>
-  </data>
   <data name="Installer.Install.Shortcuts.Description" xml:space="preserve">
     <value>操作を選択する画面を表示するショートカットです。
 特定の操作のショートカットは、のちほど設定から作成することができます。</value>
@@ -1091,7 +1084,7 @@ Sonaria Software Launcherが原因である可能性があります。詳細は[
     <value>Robloxアイコンをフォルダに抽出する</value>
   </data>
   <data name="Menu.Shortcuts.ExtractIcons.Description" xml:space="preserve">
-    <value>Bloxstrapのショートカットアイコンとして使用できるようにします。[詳細はこちら]({0})</value>
+    <value>Sonaria Software Launcherのショートカットアイコンとして使用できるようにします。[詳細はこちら]({0})</value>
   </data>
   <data name="Dialog.RegistryWriteError" xml:space="preserve">
     <value>Windowsレジストリに書き込むことができません。ウイルス対策ソフトが干渉している可能性があります。 Sonaria Software Launcherの動作を制限するものがないか確認してください。</value>

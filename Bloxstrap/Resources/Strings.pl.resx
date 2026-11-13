@@ -309,10 +309,10 @@ Jeżeli nie, zgłoś ten błąd poprzez [GitHub]({1}) wraz z zawartym plikiem dz
     <value>Fake Byfron (2023)</value>
   </data>
   <data name="Enums.BootstrapperStyle.ClassicFluentDialog" xml:space="preserve">
-    <value>Bloxstrap (Classic)</value>
+    <value>Sonaria (Classic)</value>
   </data>
   <data name="Enums.BootstrapperStyle.FluentAeroDialog" xml:space="preserve">
-    <value>Bloxstrap (Glass)</value>
+    <value>Sonaria (Glass)</value>
   </data>
   <data name="Enums.BootstrapperStyle.LegacyDialog2008" xml:space="preserve">
     <value>Legacy (2008 - 2011)</value>
@@ -945,12 +945,6 @@ Sonaria Software Launcher został zainstalowany na "{1}".</value>
   </data>
   <data name="Dialog.CannotCreateShortcuts" xml:space="preserve">
     <value>Sonaria Software Launcher nie mógł utworzyć skrótów na pulpicie i w Menu Start. Spróbuj utworzyć je później w ustawieniach.</value>
-  </data>
-  <data name="Dialog.Exception.Info.2.Alt" xml:space="preserve">
-    <value>Sprawdź najpierw [Bloxstrap Wiki]({0}), aby się dowiedzieć, czy ten problem nie był już poprzednio rozwiązany.
-
-Jeżeli nie, wtedy zgłoś ten błąd to twórców tego forka. Podkreślamy, aby nie zgłaszać tego błędu na oficjalnego GitHuba Bloxstrapa, ponieważ jest to jego nieoficjalna wersja.</value>
-    <comment>"fork" in general means "a variation of" or "a different version of". You can alternatively write the first sentence as "...to the maintainers of this version."</comment>
   </data>
   <data name="Installer.Install.Shortcuts.Description" xml:space="preserve">
     <value>To są ogólne skróty, które otwierają menu uruchamiania z wieloma opcjami. Skróty do konkretnych funkcji można utworzyć później w ustawieniach.</value>

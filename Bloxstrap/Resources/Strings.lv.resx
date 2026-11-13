@@ -309,10 +309,10 @@ Ja tā nav, tad lūdzu ziņojiet par šo izņēmumu caur [GitHub issue]({1}) kop
     <value>Viltots Byfron (2023)</value>
   </data>
   <data name="Enums.BootstrapperStyle.ClassicFluentDialog" xml:space="preserve">
-    <value>Bloxstrap (Klasiskais)</value>
+    <value>Sonaria (Klasiskais)</value>
   </data>
   <data name="Enums.BootstrapperStyle.FluentAeroDialog" xml:space="preserve">
-    <value>Bloxstrap (Stikls)</value>
+    <value>Sonaria (Stikls)</value>
   </data>
   <data name="Enums.BootstrapperStyle.LegacyDialog2008" xml:space="preserve">
     <value>Vēsturisks (2008 - 2011)</value>
@@ -947,13 +947,6 @@ Sonaria Software Launcher bija instalēts "{1}".</value>
   <data name="Dialog.CannotCreateShortcuts" xml:space="preserve">
     <value>Sonaria Software Launcher nespēja izveidot īsceļu priekš Darbavirsmas un Sākuma izvēlnes. Pamēģiniet tos uztaisīt caur iestatījumiem.</value>
   </data>
-  <data name="Dialog.Exception.Info.2.Alt" xml:space="preserve">
-    <value>Vispirms pārbaudiet [Bloxstrap Wiki]({0}), lai redzētu vai šī problēma jau ir atrisināta.
-
-
-Ja nav, tad lūdzu ziņojiet par šo izņēmumu šī fork uzturētājiem. Neziņojiet par šo Bloxstrap's GitHub issues, jo šī ir neoficiāla versija.</value>
-    <comment>"fork" in general means "a variation of" or "a different version of". You can alternatively write the first sentence as "...to the maintainers of this version."</comment>
-  </data>
   <data name="Installer.Install.Shortcuts.Description" xml:space="preserve">
     <value>Šie ir vispārēji īsceļi, kas atver multi-izvēļu izvēlni. Īsceļi priekš specifiskām funkcijām var tikt izveidoti vēlāk iestatījumos.</value>
   </data>
@@ -1085,7 +1078,7 @@ Lūdzu manuāli dzēsiet Sonaria Software Launcher.exe no instalēšanas vietas,
     <value>Izvilkt Roblox ikonas uz mapi</value>
   </data>
   <data name="Menu.Shortcuts.ExtractIcons.Description" xml:space="preserve">
-    <value>Ļauj jums izmantot Bloxstrap Roblox ikonas priekš jūsu īsceļiem. [Redzēt kā.]({0})</value>
+    <value>Ļauj jums izmantot Sonaria Software Launcher Roblox ikonas priekš jūsu īsceļiem. [Redzēt kā.]({0})</value>
   </data>
   <data name="Dialog.RegistryWriteError" xml:space="preserve">
     <value>Sonaria Software Launcher nespēj rakstīt iekš Windows Registry. Visticamāk, antivīruss iejaucas un rada problēmas. Lūdzu pārbaudiet, vai nav nekas, kas varētu traucēt Sonaria Software Launcher darbībām.</value>

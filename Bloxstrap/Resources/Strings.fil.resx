@@ -309,10 +309,10 @@ Kapag hindi, paki-report itong exception sa pamamagitan ng [GitHub issue]({1}) k
     <value>Fake Byfron (2023)</value>
   </data>
   <data name="Enums.BootstrapperStyle.ClassicFluentDialog" xml:space="preserve">
-    <value>Bloxstrap (Classic)</value>
+    <value>Sonaria (Classic)</value>
   </data>
   <data name="Enums.BootstrapperStyle.FluentAeroDialog" xml:space="preserve">
-    <value>Bloxstrap (Glass)</value>
+    <value>Sonaria (Glass)</value>
   </data>
   <data name="Enums.BootstrapperStyle.LegacyDialog2008" xml:space="preserve">
     <value>Legacy (2008 - 2011)</value>
@@ -944,12 +944,6 @@ Sonaria Software Launcher was installed at "{1}".</value>
   <data name="Dialog.CannotCreateShortcuts" xml:space="preserve">
     <value>Hindi kaya ng Sonaria Software Launcher na gumawa ng shortcuts para sa Desktop at Start Menu. Subukan mong gawin ito sa ibang pagkakataon sa mga settings.</value>
   </data>
-  <data name="Dialog.Exception.Info.2.Alt" xml:space="preserve">
-    <value>Tingnan muna ang [Bloxstrap Wiki]({0}) upang makita kung ang problemang ito ay na-address na at kung may fix.
-
-Kapag hindi, paki-report ng exception na ito sa mga nag-ma-maintain ng fork na ito. Huwag mo i-re-report ito sa Bloxstraps's GitHub issues, dahil ito ay isang unofficial build.</value>
-    <comment>"fork" in general means "a variation of" or "a different version of". You can alternatively write the first sentence as "...to the maintainers of this version."</comment>
-  </data>
   <data name="Installer.Install.Shortcuts.Description" xml:space="preserve">
     <value>Ito ang mga pangkalahatang mga shortcuts na ilabas ang multi-choice launch menu. Ang mga shortcuts para sa mga tiyak na functions ay magagawa din sa susunod sa loob ng settings.</value>
   </data>
@@ -1081,7 +1075,7 @@ Pakialisin mismo ang Sonaria Software Launcher.exe sa install location o subukan
     <value>I-extract ang mga icon ng Roblox sa folder</value>
   </data>
   <data name="Menu.Shortcuts.ExtractIcons.Description" xml:space="preserve">
-    <value>Binibigyang-daan kang gamitin yung Bloxstrap ang mga Roblox icons para sa iyong shortcuts. [Pakita kung paano.]({0})</value>
+    <value>Binibigyang-daan kang gamitin yung Sonaria Software Launcher ang mga Roblox icons para sa iyong shortcuts. [Pakita kung paano.]({0})</value>
   </data>
   <data name="Dialog.RegistryWriteError" xml:space="preserve">
     <value>Hindi makapagsulat sa Windows Registry ang Sonaria Software Launcher. Malamang ang antivirus ay nakialam at nagdudulot ng mga isyu. Pakitignan para sigurado na walang anumang bagay na pumipigil sa operasyon ng Sonaria Software Launcher.</value>

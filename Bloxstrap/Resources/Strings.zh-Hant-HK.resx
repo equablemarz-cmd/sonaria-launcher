@@ -309,10 +309,10 @@
     <value>假 Byfron (2023年)</value>
   </data>
   <data name="Enums.BootstrapperStyle.ClassicFluentDialog" xml:space="preserve">
-    <value>Bloxstrap (經典)</value>
+    <value>Sonaria (經典)</value>
   </data>
   <data name="Enums.BootstrapperStyle.FluentAeroDialog" xml:space="preserve">
-    <value>Bloxstrap (透明)</value>
+    <value>Sonaria (透明)</value>
   </data>
   <data name="Enums.BootstrapperStyle.LegacyDialog2008" xml:space="preserve">
     <value>經典 (2008年 - 2011年)</value>
@@ -946,12 +946,6 @@ Sonaria Software Launcher 的安裝位置為「{1}」。</value>
   <data name="Dialog.CannotCreateShortcuts" xml:space="preserve">
     <value>Sonaria Software Launcher 無法建立桌面和開始選單的捷徑。請你稍後嘗試透過設定來建立它們。</value>
   </data>
-  <data name="Dialog.Exception.Info.2.Alt" xml:space="preserve">
-    <value>請先查看 [Bloxstrap 維基]({0})，確認此問題是否已修復。
-
-如果沒有，請將此異常回報給此分支的維護者。請勿向 Bloxstrap 的 GitHub issues 回報此問題，因為這是非官方版本。</value>
-    <comment>"fork" in general means "a variation of" or "a different version of". You can alternatively write the first sentence as "...to the maintainers of this version."</comment>
-  </data>
   <data name="Installer.Install.Shortcuts.Description" xml:space="preserve">
     <value>這些是開啟多選啓動選單的通用快捷方式。稍後可以在設定中建立特定功能的捷徑。</value>
   </data>
@@ -1084,7 +1078,7 @@ Sonaria Software Launcher 的安裝位置為「{1}」。</value>
     <value>提取 Roblox 圖示到資料夾</value>
   </data>
   <data name="Menu.Shortcuts.ExtractIcons.Description" xml:space="preserve">
-    <value>允許您使用 Bloxstrap 提供的 Roblox 圖示作為捷徑。 [看看如何。]({0})</value>
+    <value>允許您使用 Sonaria Software Launcher 提供的 Roblox 圖示作為捷徑。 [看看如何。]({0})</value>
   </data>
   <data name="Dialog.RegistryWriteError" xml:space="preserve">
     <value>Sonaria Software Launcher 無法寫入 Windows 註冊表 (regedit)。防毒軟體可能會干擾並導致問題。請檢查以確保沒有任何東西會限制 Sonaria Software Launcher 的操作。</value>

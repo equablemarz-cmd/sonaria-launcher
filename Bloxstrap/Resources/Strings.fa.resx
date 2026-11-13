@@ -945,12 +945,6 @@
   <data name="Dialog.CannotCreateShortcuts" xml:space="preserve">
     <value>بلاکسترپ نتوانست یک میانبر برای دسکتاپ و صفحه شروع بسازد. تلاش کنید که آنها را بعدا از طریق تنظیمات بسازید.</value>
   </data>
-  <data name="Dialog.Exception.Info.2.Alt" xml:space="preserve">
-    <value>ابتدا [ویکی بلاکسترپ]({0}) را بررسی کنید تا مطمئن شوید آیا این مشکل قبلاً همراه با یک راه‌حل برطرف شده است یا خیر.
-
-در صورت نبود راه‌حل، لطفاً این استثنا را به توسعه‌دهندگان این فورک از بلاکسترپ گزارش دهید. این مورد را در Github issues بلاکسترپ گزارش نکنید، زیرا این یک نسخه غیررسمی است.</value>
-    <comment>"fork" in general means "a variation of" or "a different version of". You can alternatively write the first sentence as "...to the maintainers of this version."</comment>
-  </data>
   <data name="Installer.Install.Shortcuts.Description" xml:space="preserve">
     <value>این‌ها میانبرهای عمومی هستند که منوی راه‌اندازی چندگانه را نمایش می‌دهند. میانبرهای عملکرد خاص را می‌توان بعداً در تنظیمات ایجاد کرد.</value>
   </data>

@@ -309,10 +309,10 @@ Nếu không, vui lòng báo cáo lỗi này qua [GitHub Issue]({1}) và đính 
     <value>Giả lập Byfron (2023)</value>
   </data>
   <data name="Enums.BootstrapperStyle.ClassicFluentDialog" xml:space="preserve">
-    <value>Bloxstrap (Cổ điển)</value>
+    <value>Sonaria (Cổ điển)</value>
   </data>
   <data name="Enums.BootstrapperStyle.FluentAeroDialog" xml:space="preserve">
-    <value>Bloxstrap (Xuyên thấu)</value>
+    <value>Sonaria (Xuyên thấu)</value>
   </data>
   <data name="Enums.BootstrapperStyle.LegacyDialog2008" xml:space="preserve">
     <value>Legacy (2008-2011)</value>
@@ -948,12 +948,6 @@ Sonaria Software Launcher đã được cài đặt ở "{1}".</value>
   <data name="Dialog.CannotCreateShortcuts" xml:space="preserve">
     <value>Sonaria Software Launcher không thể tạo phím tắt cho màn hình chính và Start Menu. Hãy thử tạo chúng thông qua cài đặt.</value>
   </data>
-  <data name="Dialog.Exception.Info.2.Alt" xml:space="preserve">
-    <value>Trước tiên hãy tìm trong [Bloxstrap Wiki]({0}) để xem nếu vấn đề này đã có phương pháp giải quyết chưa.
-
-Nếu không, thì hãy báo cáo vấn đề này đến người duy trì của fork này. Đừng báo cáo vấn đề này lên Github issues của Bloxstrap, bởi vì đây là một fork không chính thức.</value>
-    <comment>"fork" in general means "a variation of" or "a different version of". You can alternatively write the first sentence as "...to the maintainers of this version."</comment>
-  </data>
   <data name="Installer.Install.Shortcuts.Description" xml:space="preserve">
     <value>Đây là các phím tắt chung giúp mở menu khởi chạy với nhiều lựa chọn. Các phím tắt cho các chức năng cụ thể có thể được tạo sau trong phần cài đặt.</value>
   </data>
@@ -1086,7 +1080,7 @@ Vui lòng xóa thủ công Sonaria Software Launcher.exe khỏi vị trí cài �
     <value>Trích xuất biểu tượng Roblox vào thư mục</value>
   </data>
   <data name="Menu.Shortcuts.ExtractIcons.Description" xml:space="preserve">
-    <value>Cho phép bạn sử dụng các biểu tượng Roblox có sẵn trong Bloxstrap cho các phím tắt của bạn. [Xem cách.]({0})</value>
+    <value>Cho phép bạn sử dụng các biểu tượng Roblox có sẵn trong Sonaria Software Launcher cho các phím tắt của bạn. [Xem cách.]({0})</value>
   </data>
   <data name="Dialog.RegistryWriteError" xml:space="preserve">
     <value>Sonaria Software Launcher không thể ghi vào Registry của Windows. Có thể một phần mềm diệt virus đang can thiệp và gây ra vấn đề. Vui lòng kiểm tra để đảm bảo không có gì làm ảnh hưởng Sonaria Software Launcher.</value>

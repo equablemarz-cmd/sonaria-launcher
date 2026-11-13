@@ -309,10 +309,10 @@
     <value>Byfron مزيفة (2023)</value>
   </data>
   <data name="Enums.BootstrapperStyle.ClassicFluentDialog" xml:space="preserve">
-    <value>Bloxstrap (كلاسيكية)</value>
+    <value>Sonaria (كلاسيكية)</value>
   </data>
   <data name="Enums.BootstrapperStyle.FluentAeroDialog" xml:space="preserve">
-    <value>Bloxstrap (زجاج)</value>
+    <value>Sonaria (زجاج)</value>
   </data>
   <data name="Enums.BootstrapperStyle.LegacyDialog2008" xml:space="preserve">
     <value>تراثي (2008 - 2011)</value>
@@ -944,12 +944,6 @@
   <data name="Dialog.CannotCreateShortcuts" xml:space="preserve">
     <value>لم يتمكن Sonaria Software Launcher من إنشاء اختصارات لقائمة سطح المكتب وبدء التشغيل. حاول إنشاءها لاحقاً من خلال الإعدادات.</value>
   </data>
-  <data name="Dialog.Exception.Info.2.Alt" xml:space="preserve">
-    <value>تحقق من [Bloxstrap Wiki]({0}) أولاً لمعرفة ما إذا كانت هذه المشكلة قد عولجت بالفعل مع إصلاح.
-
-​في حال استمرار المشكلة، أبلغ مطوري هذه النسخة المعدلة عن هذا الخطأ. تنبيه: لا ترفع بلاغاً في صفحة Bloxstrap الأساسية على GitHub لأن هذا الإصدار غير رسمي.</value>
-    <comment>"fork" in general means "a variation of" or "a different version of". You can alternatively write the first sentence as "...to the maintainers of this version."</comment>
-  </data>
   <data name="Installer.Install.Shortcuts.Description" xml:space="preserve">
     <value>هذه اختصارات عامة تثير قائمة إطلاق متعددة الخيارات. يمكن إنشاء اختصارات لوظائف محددة في وقت لاحق في الإعدادات.</value>
   </data>
@@ -1082,7 +1076,7 @@
     <value>استخراج أيقونات Roblox للمجلد</value>
   </data>
   <data name="Menu.Shortcuts.ExtractIcons.Description" xml:space="preserve">
-    <value>يسمح لك باستخدام مجموعة أيقونات Bloxstrap من Roblox للاختصارات الخاصة بك. [انظر كيف.]({0})</value>
+    <value>يسمح لك باستخدام مجموعة أيقونات Sonaria Software Launcher من Roblox للاختصارات الخاصة بك. [انظر كيف.]({0})</value>
   </data>
   <data name="Dialog.RegistryWriteError" xml:space="preserve">
     <value>Sonaria Software Launcher غير قادر على الكتابة إلى سجل ويندوز. من المحتمل أن تتدخل مكافحة الفيروسات وتسبب مشكلات. الرجاء التحقق للتأكد من عدم وجود أي شيء من شأنه أن يقيد عملية Sonaria Software Launcher.</value>

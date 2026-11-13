@@ -2,6 +2,8 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
+    <AssemblyName>SonariaSoftwareLauncher</AssemblyName>
+    <RootNamespace>Bloxstrap</RootNamespace>
     <TargetFramework>net6.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
@@ -13,7 +15,7 @@
     <AssemblyTitle>Sonaria Software Launcher</AssemblyTitle>
     <Company>Sonaria Software</Company>
     <Description>Sonaria Software Launcher</Description>
-    <Copyright>Sonaria Software Launcher is built on Bloxstrap (c) pizzaboxer and contributors, MIT licence</Copyright>
+    <Copyright>Copyright (c) Sonaria Software. Portions copyright (c) 2022 pizzaboxer, MIT licence.</Copyright>
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <IncludeSourceRevisionInInformationalVersion>false</IncludeSourceRevisionInInformationalVersion>

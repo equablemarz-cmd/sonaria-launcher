@@ -24,7 +24,7 @@ namespace Bloxstrap.UI
 
             string info = String.Format(
                 Strings.Dialog_PlayerError_FailedLaunch,
-                $"https://bloxstraplabs.com/wiki/help/roblox-crashes-or-does-not-launch/"
+                App.ProjectHelpLink
             );
 
             ShowMessageBox(info, MessageBoxImage.Error);
@@ -72,7 +72,7 @@ namespace Bloxstrap.UI
                 App.Logger.WriteException(LOG_IDENT, ex);
 
                 if (!App.LaunchSettings.QuietFlag.Active)
-                    ShowMessageBox(string.Format(Strings.CustomTheme_Errors_SetupFailed, ex.Message, "Bloxstrap"), MessageBoxImage.Error); // NOTE: Bloxstrap is the theme name
+                    ShowMessageBox(string.Format(Strings.CustomTheme_Errors_SetupFailed, ex.Message, "Sonaria"), MessageBoxImage.Error); // NOTE: Sonaria is the name of the style it falls back to
 
                 return GetBootstrapperDialog(BootstrapperStyle.FluentDialog);
             }

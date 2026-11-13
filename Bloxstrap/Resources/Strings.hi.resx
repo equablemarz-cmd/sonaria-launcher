@@ -309,10 +309,10 @@ Agar aisa nahi hai, toh please is exception ko log file ke saath [GitHub issue](
     <value>Fake Byfron (2023)</value>
   </data>
   <data name="Enums.BootstrapperStyle.ClassicFluentDialog" xml:space="preserve">
-    <value>Bloxstrap (Classic)</value>
+    <value>Sonaria (Classic)</value>
   </data>
   <data name="Enums.BootstrapperStyle.FluentAeroDialog" xml:space="preserve">
-    <value>Bloxstrap (Glass)</value>
+    <value>Sonaria (Glass)</value>
   </data>
   <data name="Enums.BootstrapperStyle.LegacyDialog2008" xml:space="preserve">
     <value>Legacy (2008 - 2011)</value>
@@ -947,12 +947,6 @@ Sonaria Software Launcher "{1}" par install tha.</value>
   <data name="Dialog.CannotCreateShortcuts" xml:space="preserve">
     <value>Sonaria Software Launcher Desktop aur Start menu ke liye shortcuts create nahi kar paaya. Baad mein settings ke through unhe create karne ki koshish karein.</value>
   </data>
-  <data name="Dialog.Exception.Info.2.Alt" xml:space="preserve">
-    <value>Pehle [Bloxstrap Wiki]({0}) check karein taaki yeh dekha ja sake ki is samasya ko pehle hi fix ke saath address kiya gaya hai.
-
-Agar nahi, to kripya is exception ko is fork ke maintainers ko report karein. Ise Bloxstrap ke GitHub issues par report na karein, kyunki yeh ek unofficial build hai.</value>
-    <comment>"fork" in general means "a variation of" or "a different version of". You can alternatively write the first sentence as "...to the maintainers of this version."</comment>
-  </data>
   <data name="Installer.Install.Shortcuts.Description" xml:space="preserve">
     <value>Yeh general shortcuts hain jo multi-choice launch menu dikhate hain. Specific functions ke liye shortcuts baad mein settings mein banaye ja sakte hain.</value>
   </data>
@@ -1085,7 +1079,7 @@ Kripya Sonaria Software Launcher.exe ko manually install location se delete kare
     <value>Roblox icons ko folder mein extract karein</value>
   </data>
   <data name="Menu.Shortcuts.ExtractIcons.Description" xml:space="preserve">
-    <value>Yeh aapko Bloxstrap ke Roblox icons ka istemal karne ki suvidha deta hai apne shortcuts ke liye. [Kaise karein dekhein.]({0})</value>
+    <value>Yeh aapko Sonaria Software Launcher ke Roblox icons ka istemal karne ki suvidha deta hai apne shortcuts ke liye. [Kaise karein dekhein.]({0})</value>
   </data>
   <data name="Dialog.RegistryWriteError" xml:space="preserve">
     <value>Sonaria Software Launcher Windows Registry ko edit nahi kar pa raha hai. Ek antivirus shayad interfere kar raha hai aur issues create kar raha hai. Kripya check karein ki koi aisi cheez na ho jo Sonaria Software Launcher ke use ko restrict kar rahi ho.</value>

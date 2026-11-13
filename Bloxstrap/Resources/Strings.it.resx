@@ -309,10 +309,10 @@ Se non lo è, si prega di segnalare questa eccezione attraverso un [problema Git
     <value>Finto Byfron (2023)</value>
   </data>
   <data name="Enums.BootstrapperStyle.ClassicFluentDialog" xml:space="preserve">
-    <value>Bloxstrap (Classico)</value>
+    <value>Sonaria (Classico)</value>
   </data>
   <data name="Enums.BootstrapperStyle.FluentAeroDialog" xml:space="preserve">
-    <value>Bloxstrap (Vetro)</value>
+    <value>Sonaria (Vetro)</value>
   </data>
   <data name="Enums.BootstrapperStyle.LegacyDialog2008" xml:space="preserve">
     <value>Legacy (2008 - 2011)</value>
@@ -946,12 +946,6 @@ Sonaria Software Launcher è stato installato a "{1}".</value>
   <data name="Dialog.CannotCreateShortcuts" xml:space="preserve">
     <value>Sonaria Software Launcher non è stato in grado di creare scorciatoie per il Desktop e il menu Start. Prova a crearle più tardi tramite le impostazioni.</value>
   </data>
-  <data name="Dialog.Exception.Info.2.Alt" xml:space="preserve">
-    <value>Controllare prima il [Bloxstrap Wiki]({0}) per vedere se questo problema è già stato risolto con una correzione.
-
-In caso contrario, si prega di segnalare questa eccezione ai manutentori di questo fork. Non segnalare questo ai problemi di Bloxstrap's GitHub, in quanto questa è una build non ufficale.</value>
-    <comment>"fork" in general means "a variation of" or "a different version of". You can alternatively write the first sentence as "...to the maintainers of this version."</comment>
-  </data>
   <data name="Installer.Install.Shortcuts.Description" xml:space="preserve">
     <value>Si trattano di scorciatoie generiche che consentono di visualizzare un menu di avvio a scelta multipla. I collegamenti per funzioni specifiche possono essere creati successivamente nelle impostazioni.</value>
   </data>
@@ -1084,7 +1078,7 @@ Per favore elimina manualmente Sonaria Software Launcher.exe dalla posizione d'i
     <value>Estrai le icone di Roblox nella cartella</value>
   </data>
   <data name="Menu.Shortcuts.ExtractIcons.Description" xml:space="preserve">
-    <value>Permette di utilizzare la lista delle icone di Roblox di Bloxstrap per i collegamenti. [Vedi come]({0})</value>
+    <value>Permette di utilizzare la lista delle icone di Roblox di Sonaria Software Launcher per i collegamenti. [Vedi come]({0})</value>
   </data>
   <data name="Dialog.RegistryWriteError" xml:space="preserve">
     <value>Sonaria Software Launcher non è in grado di scrivere nel Registro di Windows. Probabilmente un antivirus sta interferendo e causando problemi.

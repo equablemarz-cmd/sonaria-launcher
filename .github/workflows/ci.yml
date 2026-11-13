@@ -43,15 +43,19 @@ jobs:
       shell: pwsh
       run: |
         $exe = "SonariaSoftwareLauncher-${{ github.ref_name }}.exe"
-        Copy-Item .\Bloxstrap\bin\Release\net6.0-windows\win-x64\publish\Bloxstrap.exe $exe
+        Copy-Item .\Bloxstrap\bin\Release\net6.0-windows\win-x64\publish\SonariaSoftwareLauncher.exe $exe
         $hash = (Get-FileHash $exe -Algorithm SHA256).Hash.ToLower()
+        # the launcher's updater downloads this file and refuses an update that doesn't match it
+        "$hash  $exe" | Out-File "$exe.sha256" -Encoding ascii
         "SHA-256 of ``$exe``: ``$hash``" | Out-File release-notes.md -Encoding utf8
 
     - name: Create release
       if: startsWith(github.ref, 'refs/tags/v')
       uses: softprops/action-gh-release@v2
       with:
-        files: SonariaSoftwareLauncher-${{ github.ref_name }}.exe
+        files: |
+          SonariaSoftwareLauncher-${{ github.ref_name }}.exe
+          SonariaSoftwareLauncher-${{ github.ref_name }}.exe.sha256
         name: Sonaria Software Launcher ${{ github.ref_name }}
         body_path: release-notes.md
         append_body: true

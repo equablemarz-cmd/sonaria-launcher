@@ -26,7 +26,7 @@ namespace Bloxstrap.UI.Elements.Dialogs
             if (!App.Logger.Initialized)
                 LocateLogFileButton.Content = Strings.Dialog_Exception_CopyLogContents;
 
-            string wikiUrl = $"https://bloxstraplabs.com/wiki/help/";
+            string wikiUrl = App.ProjectHelpLink;
 
             // this is a fork, so nothing should ever be reported to Bloxstrap's issue tracker.
             // reports go to the Sonaria Software bug-reports channel with the log file instead.

@@ -22,8 +22,7 @@ namespace Bloxstrap
         public const string ProjectRepository = "equablemarz-cmd/sonaria-launcher";
         public const string ProjectDownloadLink = "https://github.com/equablemarz-cmd/sonaria-launcher/releases";
 
-        // the launcher is built on Bloxstrap, so Bloxstrap's wiki still documents the features inherited from it
-        public const string ProjectHelpLink = "https://bloxstraplabs.com/wiki/help/";
+        public const string ProjectHelpLink = "https://github.com/equablemarz-cmd/sonaria-launcher#troubleshooting";
         public const string ProjectSupportLink = "https://github.com/equablemarz-cmd/sonaria-launcher";
 
         // Creatures of Sonaria

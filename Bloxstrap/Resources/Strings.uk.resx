@@ -301,10 +301,10 @@
     <value>Fake Byfron (2023)</value>
   </data>
   <data name="Enums.BootstrapperStyle.ClassicFluentDialog" xml:space="preserve">
-    <value>Bloxstrap (Класичний)</value>
+    <value>Sonaria (Класичний)</value>
   </data>
   <data name="Enums.BootstrapperStyle.FluentAeroDialog" xml:space="preserve">
-    <value>Bloxstrap (Скляний)</value>
+    <value>Sonaria (Скляний)</value>
   </data>
   <data name="Enums.BootstrapperStyle.LegacyDialog2008" xml:space="preserve">
     <value>Старий (2008 - 2011)</value>
@@ -1052,7 +1052,7 @@ Roblox ще не встановлено; це станеться, коли ви 
     <value>Видобути значки Roblox до папки</value>
   </data>
   <data name="Menu.Shortcuts.ExtractIcons.Description" xml:space="preserve">
-    <value>Дозволяє використовувати асортимент іконок Roblox від Bloxstrap для ваших ярликів. [Дізнайтеся як.]({0})</value>
+    <value>Дозволяє використовувати асортимент іконок Roblox від Sonaria Software Launcher для ваших ярликів. [Дізнайтеся як.]({0})</value>
   </data>
   <data name="Dialog.RegistryWriteError" xml:space="preserve">
     <value>Sonaria Software Launcher не може записати до реєстру Windows. Ймовірно, антивірус заважає і викликає проблеми. Будь ласка, перевірте, щоб переконатися, що немає нічого, що обмежує роботу Sonaria Software Launcher.</value>

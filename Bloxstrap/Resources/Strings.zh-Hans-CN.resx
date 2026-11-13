@@ -313,10 +313,10 @@
     <value>仿 Byfron (2023)</value>
   </data>
   <data name="Enums.BootstrapperStyle.ClassicFluentDialog" xml:space="preserve">
-    <value>Bloxstrap (经典)</value>
+    <value>Sonaria (经典)</value>
   </data>
   <data name="Enums.BootstrapperStyle.FluentAeroDialog" xml:space="preserve">
-    <value>Bloxstrap (透明)</value>
+    <value>Sonaria (透明)</value>
   </data>
   <data name="Enums.BootstrapperStyle.LegacyDialog2008" xml:space="preserve">
     <value>经典 (2008 - 2011)</value>
@@ -959,12 +959,6 @@ Sonaria Software Launcher 的安装根目录为「{1}」。</value>
   <data name="Dialog.CannotCreateShortcuts" xml:space="preserve">
     <value>Sonaria Software Launcher 目前无法在 桌面 和 “开始”菜单 创建快捷方式；请尝试稍后通过设置手动创建快捷方式。</value>
   </data>
-  <data name="Dialog.Exception.Info.2.Alt" xml:space="preserve">
-    <value>请先在 [Bloxstrap Wiki]({0}) 检索这个问题是否已被修复。
-
-如果没有，请向此 社区分支 的维护者报告这个问题。切勿将此异常向 Bloxstrap 官方 GitHub Issues 报告；因为这是一个非官方版本。</value>
-    <comment>"fork" in general means "a variation of" or "a different version of". You can alternatively write the first sentence as "...to the maintainers of this version."</comment>
-  </data>
   <data name="Installer.Install.Shortcuts.Description" xml:space="preserve">
     <value>这些是调出 “多选启动菜单” 的通用快捷方式；稍后可以在设置中创建特定功能的快捷方式。</value>
   </data>
@@ -1097,7 +1091,7 @@ Sonaria Software Launcher 的安装根目录为「{1}」。</value>
     <value>提取 Roblox 图标至 Sonaria Software Launcher 安装目录</value>
   </data>
   <data name="Menu.Shortcuts.ExtractIcons.Description" xml:space="preserve">
-    <value>启用此选项后将会在 Bloxstrap 安装根目录上创建一个名为 “已提取的图标” 的文件夹。
+    <value>启用此选项后将会在 Sonaria Software Launcher 安装根目录上创建一个名为 “已提取的图标” 的文件夹。
 （此选项允许您获取 Roblox 图标文件以便快捷应用于快捷方式）[如何应用？]({0})</value>
   </data>
   <data name="Dialog.RegistryWriteError" xml:space="preserve">

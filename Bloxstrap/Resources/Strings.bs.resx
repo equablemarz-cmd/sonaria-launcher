@@ -300,10 +300,10 @@
     <value>Lažni Byfron (2023)</value>
   </data>
   <data name="Enums.BootstrapperStyle.ClassicFluentDialog" xml:space="preserve">
-    <value>Bloxstrap (Klasično)</value>
+    <value>Sonaria (Klasično)</value>
   </data>
   <data name="Enums.BootstrapperStyle.FluentAeroDialog" xml:space="preserve">
-    <value>Bloxstrap (Staklo)</value>
+    <value>Sonaria (Staklo)</value>
   </data>
   <data name="Enums.BootstrapperStyle.LegacyDialog2008" xml:space="preserve">
     <value>Naslijeđe (2008 - 2011)</value>
@@ -1052,7 +1052,7 @@ Molimo ručno izbrišite Sonaria Software Launcher.exe sa lokacije za instalacij
     <value>Izvucite Roblox ikone u fascikl</value>
   </data>
   <data name="Menu.Shortcuts.ExtractIcons.Description" xml:space="preserve">
-    <value>Omogućava vam da koristite Bloxstrap asortiman Roblox ikona za svoje prečice. [Pogledajte kako.]({0})</value>
+    <value>Omogućava vam da koristite Sonaria Software Launcher asortiman Roblox ikona za svoje prečice. [Pogledajte kako.]({0})</value>
   </data>
   <data name="Dialog.RegistryWriteError" xml:space="preserve">
     <value>Sonaria Software Launcher ne može pisati u Windows Registry. Antivirus vjerovatno ometa i uzrokuje probleme. Molimo provjerite da ne postoji ništa što bi ograničilo rad Sonaria Software Launchera.</value>

@@ -309,10 +309,10 @@
     <value>Byfron ปลอม (2023)</value>
   </data>
   <data name="Enums.BootstrapperStyle.ClassicFluentDialog" xml:space="preserve">
-    <value>Bloxstrap (ดั้งเดิม)</value>
+    <value>Sonaria (ดั้งเดิม)</value>
   </data>
   <data name="Enums.BootstrapperStyle.FluentAeroDialog" xml:space="preserve">
-    <value>Bloxstrap (Glass)</value>
+    <value>Sonaria (Glass)</value>
   </data>
   <data name="Enums.BootstrapperStyle.LegacyDialog2008" xml:space="preserve">
     <value>Legacy (2008 - 2011)</value>
@@ -943,12 +943,6 @@ Sonaria Software Launcher ถูกติดตั้งที่ "{1}"</value>
   <data name="Dialog.CannotCreateShortcuts" xml:space="preserve">
     <value>Sonaria Software Launcher ไม่สามารถสร้างทางลัดสำหรับเดสก์ท็อปและเมนูเริ่มต้นได้ ลองสร้างทางลัดเหล่านั้นในภายหลังผ่านการตั้งค่า</value>
   </data>
-  <data name="Dialog.Exception.Info.2.Alt" xml:space="preserve">
-    <value>ตรวจสอบ [วิกิ Bloxstrap]({0}) ก่อนเพื่อดูว่าปัญหานี้มีวิธีการแก้ไขแล้วหรือไม่
-
-ถ้ายังไม่มีวิธีการแก้ไข กรุณาแจ้งปัญหานี้ไปยังผู้ดูแลของ Fork นี้ อย่าแจ้งปัญหานี้ไปที่ GitHub ของ Bloxstrap เพราะนี่เป็นเวอร์ชันที่ไม่เป็นทางการ</value>
-    <comment>"fork" in general means "a variation of" or "a different version of". You can alternatively write the first sentence as "...to the maintainers of this version."</comment>
-  </data>
   <data name="Installer.Install.Shortcuts.Description" xml:space="preserve">
     <value>นี่คือตัวลัดทั่วไปที่นำไปสู่เมนูการเปิดใช้งานหลายตัวเลือก ตัวลัดสำหรับฟังก์ชันเฉพาะสามารถสร้างได้ในภายหลังในส่วนการตั้งค่า</value>
   </data>
@@ -1078,7 +1072,7 @@ Sonaria Software Launcher ถูกติดตั้งที่ "{1}"</value>
     <value>แตกไฟล์ไอคอน Roblox ไปยังโฟลเดอร์</value>
   </data>
   <data name="Menu.Shortcuts.ExtractIcons.Description" xml:space="preserve">
-    <value>อนุญาตให้คุณใช้ไอคอน Roblox จาก Bloxstrap สำหรับการสร้างทางลัดของคุณ [ดูวิธีการ] ({0})</value>
+    <value>อนุญาตให้คุณใช้ไอคอน Roblox จาก Sonaria Software Launcher สำหรับการสร้างทางลัดของคุณ [ดูวิธีการ] ({0})</value>
   </data>
   <data name="Dialog.RegistryWriteError" xml:space="preserve">
     <value>Sonaria Software Launcher ไม่สามารถเขียนลงใน Windows Registry ได้ อาจมีซอฟต์เเวร์ป้องกันไวรัสที่เข้ามาขัดขวางเเละทำให้เกิดปัญหา กรุณาตรวจสอบเพื่อให้เเน่ใจว่าไม่มีอะไรที่จำกัดการทำงานของ Sonaria Software Launcher</value>

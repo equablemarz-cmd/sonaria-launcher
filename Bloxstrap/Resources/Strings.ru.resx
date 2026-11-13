@@ -309,10 +309,10 @@
     <value>Fake Byfron (2023)</value>
   </data>
   <data name="Enums.BootstrapperStyle.ClassicFluentDialog" xml:space="preserve">
-    <value>Bloxstrap (Классический)</value>
+    <value>Sonaria (Классический)</value>
   </data>
   <data name="Enums.BootstrapperStyle.FluentAeroDialog" xml:space="preserve">
-    <value>Bloxstrap (Прозрачный)</value>
+    <value>Sonaria (Прозрачный)</value>
   </data>
   <data name="Enums.BootstrapperStyle.LegacyDialog2008" xml:space="preserve">
     <value>Legacy (2008 - 2011)</value>
@@ -946,12 +946,6 @@ Sonaria Software Launcher был установлен в "{1}".</value>
   <data name="Dialog.CannotCreateShortcuts" xml:space="preserve">
     <value>Sonaria Software Launcher не смог создать ярлыки для Рабочего стола и меню Пуск. Попробуйте создать их позже через настройки.</value>
   </data>
-  <data name="Dialog.Exception.Info.2.Alt" xml:space="preserve">
-    <value>Сначала проверьте [Вики Bloxstrap]({0}), чтобы узнать, была ли эта проблема уже решена с исправлением.
-
-Если нет, то, пожалуйста сообщите об этой ошибке разработчикам этой сборки. Не сообщайте об этом в GitHub ошибках Bloxstrap'а, так как это не официальная сборка.</value>
-    <comment>"fork" in general means "a variation of" or "a different version of". You can alternatively write the first sentence as "...to the maintainers of this version."</comment>
-  </data>
   <data name="Installer.Install.Shortcuts.Description" xml:space="preserve">
     <value>Это общие ярлыки, которые вызывают меню запуска с несколькими вариантами выбора. Ярлыки для конкретных функций можно создать позже в настройках.</value>
   </data>
@@ -1082,7 +1076,7 @@ Sonaria Software Launcher был установлен в "{1}".</value>
     <value>Извлечь значки Roblox в папку</value>
   </data>
   <data name="Menu.Shortcuts.ExtractIcons.Description" xml:space="preserve">
-    <value>Позволяет использовать ряд иконок Roblox от Bloxstrap для ваших ярлыков. [Смотрите как.]({0})</value>
+    <value>Позволяет использовать ряд иконок Roblox от Sonaria Software Launcher для ваших ярлыков. [Смотрите как.]({0})</value>
   </data>
   <data name="Dialog.RegistryWriteError" xml:space="preserve">
     <value>Sonaria Software Launcher не может записать данные в реестр Windows. Вероятно, в работу программы вмешивается антивирус, и вызывает проблемы. Пожалуйста, убедитесь, что нет ничего, что могло бы ограничить работу Sonaria Software Launcher.</value>
