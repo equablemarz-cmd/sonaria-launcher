@@ -28,6 +28,11 @@
 
         public static string CustomFont => Path.Combine(Modifications, "content\\fonts\\CustomFont.ttf");
 
+        /// <summary>
+        /// Optional second file used for bold text. Without it, the custom font is used for every weight.
+        /// </summary>
+        public static string CustomFontBold => Path.Combine(Modifications, "content\\fonts\\CustomFontBold.ttf");
+
         public static bool Initialized => !String.IsNullOrEmpty(Base);
 
         public static void Initialize(string baseDirectory)

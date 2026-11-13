@@ -83,9 +83,9 @@
                 </StackPanel>
             </ui:CardAction>
 
-            <ui:CardAction Grid.Row="3" Grid.Column="0" Margin="0,8,8,0" Command="models:GlobalViewModel.OpenWebpageCommand" CommandParameter="https://github.com/equablemarz-cmd/sonaria-launcher/blob/main/Bloxstrap/Resources/Mods/Fonts/FredokaOne-LICENSE.txt">
+            <ui:CardAction Grid.Row="3" Grid.Column="0" Margin="0,8,8,0" Command="models:GlobalViewModel.OpenWebpageCommand" CommandParameter="https://github.com/equablemarz-cmd/sonaria-launcher/blob/main/Bloxstrap/Resources/Mods/Fonts/SourceSans-LICENSE.md">
                 <StackPanel>
-                    <TextBlock FontSize="14" Text="Fredoka One" />
+                    <TextBlock FontSize="14" Text="Source Sans 3" />
                     <TextBlock Margin="0,2,0,0" FontSize="12" Text="SIL Open Font Licence 1.1" Foreground="{DynamicResource TextFillColorTertiaryBrush}" />
                 </StackPanel>
             </ui:CardAction>

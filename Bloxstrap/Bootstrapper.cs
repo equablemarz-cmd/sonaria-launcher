@@ -1381,6 +1381,9 @@ namespace Bloxstrap
 
                 const string path = "rbxasset://fonts/CustomFont.ttf";
 
+                // a second file for bold text is optional. without it, every weight uses the one font
+                string boldPath = File.Exists(Paths.CustomFontBold) ? "rbxasset://fonts/CustomFontBold.ttf" : path;
+
                 // lets make sure the content/fonts/families path exists in the version directory
                 string contentFolder = Path.Combine(_latestVersionDirectory, "content");
                 Directory.CreateDirectory(contentFolder);
@@ -1396,29 +1399,36 @@ namespace Bloxstrap
                     string jsonFilename = Path.GetFileName(jsonFilePath);
                     string modFilepath = Path.Combine(modFontFamiliesFolder, jsonFilename);
 
-                    if (File.Exists(modFilepath))
+                    FontFamily? fontFamilyData;
+
+                    try
+                    {
+                        fontFamilyData = JsonSerializer.Deserialize<FontFamily>(File.ReadAllText(jsonFilePath));
+                    }
+                    catch (Exception ex)
+                    {
+                        App.Logger.WriteLine(LOG_IDENT, $"Could not read {jsonFilename}, leaving its font alone");
+                        App.Logger.WriteException(LOG_IDENT, ex);
+                        continue;
+                    }
+
+                    if (fontFamilyData is null || fontFamilyData.Faces is null)
+                        continue;
+
+                    // every face keeps its weight in the manifest, so this gives the same answer whether
+                    // the manifest in the version folder is Roblox's original or one already changed by this mod
+                    foreach (var fontFace in fontFamilyData.Faces)
+                        fontFace.AssetId = fontFace.Weight >= 600 ? boldPath : path;
+
+                    string json = JsonSerializer.Serialize(fontFamilyData, new JsonSerializerOptions { WriteIndented = true });
+
+                    if (File.Exists(modFilepath) && File.ReadAllText(modFilepath) == json)
                         continue;
 
                     App.Logger.WriteLine(LOG_IDENT, $"Setting font for {jsonFilename}");
 
-                    var fontFamilyData = JsonSerializer.Deserialize<FontFamily>(File.ReadAllText(jsonFilePath));
-
-                    if (fontFamilyData is null)
-                        continue;
-
-                    bool shouldWrite = false;
-
-                    foreach (var fontFace in fontFamilyData.Faces)
-                    {
-                        if (fontFace.AssetId != path)
-                        {
-                            fontFace.AssetId = path;
-                            shouldWrite = true;
-                        }
-                    }
-
-                    if (shouldWrite)
-                        File.WriteAllText(modFilepath, JsonSerializer.Serialize(fontFamilyData, new JsonSerializerOptions { WriteIndented = true }));
+                    Filesystem.AssertReadOnly(modFilepath);
+                    File.WriteAllText(modFilepath, json);
                 }
 
                 App.Logger.WriteLine(LOG_IDENT, "End font check");

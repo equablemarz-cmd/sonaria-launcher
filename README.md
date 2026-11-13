@@ -69,7 +69,7 @@ The mods folder mirrors Roblox's own folder layout. Any file you put there repla
 
 Roblox's pointer is the Sonaria cursor by default; set "Mouse cursor" under Settings > Mods to Default to get Roblox's own back. A game that sets its own pointer still shows its own.
 
-Roblox's text uses the Creatures of Sonaria font (Fredoka One) by default. "Remove custom font" under Settings > Mods puts Roblox's own fonts back, and "Use the Creatures of Sonaria font" brings it back.
+Roblox's text uses the Creatures of Sonaria font by default: Source Sans, the font the game's own interface uses, with its regular and bold weights. TickTracker's badge uses the same font. "Remove custom font" under Settings > Mods puts Roblox's own fonts back, and "Use the Creatures of Sonaria font" brings it back.
 
 ### Notices and off switches
 

@@ -19,9 +19,23 @@ namespace Bloxstrap.Models.SettingTasks
                 OriginalState = Paths.CustomFont;
         }
 
+        private static void DeleteBoldFont()
+        {
+            if (!File.Exists(Paths.CustomFontBold))
+                return;
+
+            Filesystem.AssertReadOnly(Paths.CustomFontBold);
+            File.Delete(Paths.CustomFontBold);
+        }
+
         public override void Execute()
         {
-            if (!String.IsNullOrEmpty(NewState))
+            if (NewState == Sonaria.CosFont.Marker)
+            {
+                // the Creatures of Sonaria font comes as two files, one for regular text and one for bold
+                Sonaria.CosFont.Install();
+            }
+            else if (!String.IsNullOrEmpty(NewState))
             {
                 if (String.Compare(NewState, Paths.CustomFont, StringComparison.InvariantCultureIgnoreCase) != 0 && File.Exists(NewState))
                 {
@@ -29,12 +43,20 @@ namespace Bloxstrap.Models.SettingTasks
 
                     Filesystem.AssertReadOnly(Paths.CustomFont);
                     File.Copy(NewState, Paths.CustomFont, true);
+
+                    // a font picked by hand is one file, used for every weight
+                    DeleteBoldFont();
                 }
             }
-            else if (File.Exists(Paths.CustomFont))
+            else
             {
-                Filesystem.AssertReadOnly(Paths.CustomFont);
-                File.Delete(Paths.CustomFont);
+                if (File.Exists(Paths.CustomFont))
+                {
+                    Filesystem.AssertReadOnly(Paths.CustomFont);
+                    File.Delete(Paths.CustomFont);
+                }
+
+                DeleteBoldFont();
             }
 
             OriginalState = NewState;

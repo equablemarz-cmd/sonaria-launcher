@@ -623,6 +623,13 @@ namespace Bloxstrap
                     App.Settings.Prop.UseDiscordRichPresence = true;
                 }
 
+                if (Utilities.CompareVersions(existingVer, "3.1.1") == VersionComparison.LessThan)
+                {
+                    // 3.1.0 used a look-alike font. 3.1.1 has the font Creatures of Sonaria really uses.
+                    // only the font 3.1.0 installed is swapped: a font picked by hand, or none, is left alone
+                    Sonaria.CosFont.ReplaceOldDefault();
+                }
+
                 App.Settings.Save();
                 App.FastFlags.Save();
                 App.State.Save();

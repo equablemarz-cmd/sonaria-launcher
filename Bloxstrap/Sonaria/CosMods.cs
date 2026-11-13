@@ -4,7 +4,7 @@ namespace Bloxstrap.Sonaria
     {
         private static readonly string[] FontAndCursorLocations =
         {
-            @"content\fonts\CustomFont.ttf",
+            @"content\fonts\CustomFont",
             @"content\fonts\families\",
             @"content\textures\Cursors\KeyboardMouse\ArrowCursor.png",
             @"content\textures\Cursors\KeyboardMouse\ArrowFarCursor.png"
