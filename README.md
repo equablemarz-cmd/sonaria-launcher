@@ -26,7 +26,7 @@ The launcher only starts Roblox and works with Roblox's own local files: its set
 
 - **TickTracker** only looks at the screen, like you do.
 - **Engine settings** can only be the ones on Roblox's official allowlist. Roblox ignores everything else.
-- **Nothing about you is collected.** There is no analytics or crash reporting. The only things that use the internet are downloading Roblox, checking this repository for updates, tools and notices, Discord status (which goes only to the Discord app on your own PC and can be switched off), and server details if you turn that on.
+- **Nothing about you is collected.** There is no analytics or crash reporting. The only things that use the internet are downloading Roblox, checking this repository for updates, tools and notices, Discord status once it is active (it goes only to the Discord app on your own PC and can be switched off), and server details if you turn that on.
 
 ## Updates
 
@@ -57,7 +57,7 @@ When a new version is released the launcher asks before installing it. If you sa
 - **TickTracker** can be switched off, or kept open whenever Roblox is running instead of only in Creatures of Sonaria.
 - **Activity tracking** lets the launcher know which game you are in by reading Roblox's log file. TickTracker's "only in CoS" option, Rejoin last server and Discord Rich Presence depend on it.
 - **Don't exit to desktop app** closes Roblox completely when you leave a game. Anything that relies on going back to the Roblox app, such as picking another game from inside Roblox, stops working while it is on.
-- **Discord status** is on by default: your Discord profile shows "Playing Sonaria Software" with the game you are in. Turn off "Show game activity" to stop it. Letting friends join you and showing your Roblox account stay off unless you turn them on.
+- **Discord status** is not active in this version. From the next update, your Discord profile will show "Playing Sonaria Software" with the game you are in, on by default; turning off "Show game activity" stops it. Letting friends join you and showing your Roblox account stay off unless you turn them on.
 
 ### Shortcut icons
 
