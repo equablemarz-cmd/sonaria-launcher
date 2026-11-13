@@ -1,0 +1,12 @@
+{
+  "notice": {
+    "text": "",
+    "link": ""
+  },
+  "disable": {
+    "tickTracker": false,
+    "fpsAbove240": false,
+    "engineSettings": false,
+    "mods": false
+  }
+}
