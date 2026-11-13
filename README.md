@@ -26,7 +26,7 @@ The launcher only starts Roblox and works with Roblox's own local files: its set
 
 - **TickTracker** only looks at the screen, like you do.
 - **Engine settings** can only be the ones on Roblox's official allowlist. Roblox ignores everything else.
-- **Nothing is sent anywhere.** There is no analytics or crash reporting. The only things that use the internet are downloading Roblox, checking this repository for updates and tools, and the features you turn on yourself (Discord Rich Presence, server details).
+- **Nothing about you is collected.** There is no analytics or crash reporting. The only things that use the internet are downloading Roblox, checking this repository for updates, tools and notices, Discord status (which goes only to the Discord app on your own PC and can be switched off), and server details if you turn that on.
 
 ## Updates
 
@@ -57,7 +57,7 @@ When a new version is released the launcher asks before installing it. If you sa
 - **TickTracker** can be switched off, or kept open whenever Roblox is running instead of only in Creatures of Sonaria.
 - **Activity tracking** lets the launcher know which game you are in by reading Roblox's log file. TickTracker's "only in CoS" option, Rejoin last server and Discord Rich Presence depend on it.
 - **Don't exit to desktop app** closes Roblox completely when you leave a game. Anything that relies on going back to the Roblox app, such as picking another game from inside Roblox, stops working while it is on.
-- **Discord Rich Presence** is off until you turn it on.
+- **Discord status** is on by default: your Discord profile shows "Playing Sonaria Software" with the game you are in. Turn off "Show game activity" to stop it. Letting friends join you and showing your Roblox account stay off unless you turn them on.
 
 ### Shortcut icons
 
@@ -66,6 +66,12 @@ Turning on "Extract Roblox icons to folder" under Settings > Shortcuts saves the
 ### Mods
 
 The mods folder mirrors Roblox's own folder layout. Any file you put there replaces the matching Roblox file each time Roblox starts, and survives Roblox updates. Use "Open mods folder" in Settings > Mods to get to it. Stick to cosmetic changes such as cursors, sounds and fonts.
+
+Roblox's text uses the Creatures of Sonaria font (Fredoka One) by default. "Remove custom font" under Settings > Mods puts Roblox's own fonts back, and "Use the Creatures of Sonaria font" brings it back.
+
+### Notices and off switches
+
+Each time it opens, the launcher reads one small file from the [`config` branch](https://github.com/equablemarz-cmd/sonaria-launcher/tree/config) of this repository. Sonaria Software can use it to show a notice on the launch menu, or to switch off TickTracker, frame rates above 240, engine settings, or the font and cursor mods for everyone, for example if a game update breaks one of them. It cannot turn anything on, and the launch menu always names what has been switched off.
 
 ## Building
 
