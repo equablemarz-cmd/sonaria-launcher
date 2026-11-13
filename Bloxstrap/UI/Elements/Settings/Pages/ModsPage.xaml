@@ -89,8 +89,10 @@
         <TextBlock Text="{x:Static resources:Strings.Common_Miscellaneous}" FontSize="20" FontWeight="Medium" Margin="0,16,0,0" />
 
         <controls:OptionControl 
-            Header="{x:Static resources:Strings.Menu_Mods_Misc_CustomFont_Title}">
+            Header="{x:Static resources:Strings.Menu_Mods_Misc_CustomFont_Title}"
+            Description="Changes the font of Roblox's text in every game. The Creatures of Sonaria font is Fredoka One, the rounded font the game's own interface uses.">
             <StackPanel>
+                <ui:Button Icon="PaintBrush24" Margin="0,0,0,8" Content="Use the Creatures of Sonaria font" Command="{Binding UseCosFontCommand}" Visibility="{Binding ChooseCustomFontVisibility, Mode=OneWay}" />
                 <ui:Button Icon="DocumentAdd16" Content="{x:Static resources:Strings.Menu_Mods_Misc_CustomFont_Choose}" Command="{Binding ManageCustomFontCommand}" Visibility="{Binding ChooseCustomFontVisibility, Mode=OneWay}" />
                 <ui:Button Icon="Delete16" Content="{x:Static resources:Strings.Menu_Mods_Misc_CustomFont_Remove}" Appearance="Danger" Command="{Binding ManageCustomFontCommand}" Visibility="{Binding DeleteCustomFontVisibility, Mode=OneWay}" />
             </StackPanel>

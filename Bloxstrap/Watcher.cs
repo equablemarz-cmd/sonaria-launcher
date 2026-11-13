@@ -53,12 +53,13 @@ namespace Bloxstrap
                 throw new Exception("Watcher data is invalid");
 
             // TickTracker needs to know when Creatures of Sonaria is joined or left, which comes from the activity watcher
-            bool tickTrackerNeedsActivity = App.Settings.Prop.TickTrackerEnabled && App.Settings.Prop.TickTrackerOnlyInCos;
+            bool tickTrackerOn = App.Settings.Prop.TickTrackerEnabled && Sonaria.RemoteConfig.TickTrackerAllowed;
+            bool tickTrackerNeedsActivity = tickTrackerOn && App.Settings.Prop.TickTrackerOnlyInCos;
 
             if (App.Settings.Prop.EnableActivityTracking || tickTrackerNeedsActivity)
                 ActivityWatcher = new(_watcherData.LogFile);
 
-            if (ActivityWatcher is not null || App.Settings.Prop.TickTrackerEnabled)
+            if (ActivityWatcher is not null || tickTrackerOn)
                 CosIntegration = new(ActivityWatcher);
 
             if (ActivityWatcher is not null && App.Settings.Prop.EnableActivityTracking)
@@ -73,7 +74,7 @@ namespace Bloxstrap
                     };
                 }
 
-                if (App.Settings.Prop.UseDiscordRichPresence)
+                if (App.Settings.Prop.UseDiscordRichPresence && App.DiscordApplicationId.Length > 0)
                     RichPresence = new(ActivityWatcher);
             }
 

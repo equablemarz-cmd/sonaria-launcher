@@ -57,6 +57,25 @@ namespace Bloxstrap.UI.ViewModels.Settings
             OnPropertyChanged(nameof(DeleteCustomFontVisibility));
         }
 
+        private void UseCosFont()
+        {
+            try
+            {
+                TextFontTask.NewState = Sonaria.CosFont.ExtractToTemp();
+            }
+            catch (Exception ex)
+            {
+                App.Logger.WriteException("ModsViewModel::UseCosFont", ex);
+                Frontend.ShowMessageBox("The Creatures of Sonaria font could not be set up. Nothing has been changed.", MessageBoxImage.Error);
+                return;
+            }
+
+            OnPropertyChanged(nameof(ChooseCustomFontVisibility));
+            OnPropertyChanged(nameof(DeleteCustomFontVisibility));
+        }
+
+        public ICommand UseCosFontCommand => new RelayCommand(UseCosFont);
+
         public ICommand OpenModsFolderCommand => new RelayCommand(OpenModsFolder);
 
         public Visibility ChooseCustomFontVisibility => !String.IsNullOrEmpty(TextFontTask.NewState) ? Visibility.Collapsed : Visibility.Visible;

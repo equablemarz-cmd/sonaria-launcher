@@ -6,7 +6,7 @@ namespace Bloxstrap.Integrations
 {
     public class DiscordRichPresence : IDisposable
     {
-        private readonly DiscordRpcClient _rpcClient = new("1005469189907173486");
+        private readonly DiscordRpcClient _rpcClient = new(App.DiscordApplicationId);
         private readonly ActivityWatcher _activityWatcher;
         private readonly Queue<Message> _messageQueue = new();
 
@@ -336,9 +336,10 @@ namespace Bloxstrap.Integrations
                 return true;
             }
 
-            string icon = "roblox";
-            string smallImageText = "Roblox";
-            string smallImage = "roblox";
+            // "sonaria" is the launcher's icon, uploaded to the Discord application as an art asset
+            string icon = "sonaria";
+            string smallImageText = App.ProjectName;
+            string smallImage = "sonaria";
             
 
             var activity = _activityWatcher.Data;

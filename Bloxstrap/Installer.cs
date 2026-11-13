@@ -111,6 +111,9 @@ namespace Bloxstrap
                 App.FastFlags.Save();
             }
 
+            // Roblox's text uses the Creatures of Sonaria font, unless a custom font is already in place
+            Sonaria.CosFont.InstallIfNoneChosen();
+
             App.Settings.Save();
 
             App.Logger.WriteLine(LOG_IDENT, "Installation finished");
@@ -607,6 +610,14 @@ namespace Bloxstrap
                         App.Settings.Prop.Theme = Theme.Dark;
 
                     Sonaria.FpsBoost.Set(true);
+                }
+
+                if (Utilities.CompareVersions(existingVer, "3.1.0") == VersionComparison.LessThan)
+                {
+                    // 3.1.0 added the Creatures of Sonaria font and turned the Discord status on.
+                    // both have switches in settings (Mods and Integrations)
+                    Sonaria.CosFont.InstallIfNoneChosen();
+                    App.Settings.Prop.UseDiscordRichPresence = true;
                 }
 
                 App.Settings.Save();

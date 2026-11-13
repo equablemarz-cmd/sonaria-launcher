@@ -48,6 +48,12 @@ namespace Bloxstrap.Sonaria
                 return;
             }
 
+            if (limit > HighestSupported && RemoteConfig.Disabled.FpsAbove240)
+            {
+                App.Logger.WriteLine(LOG_IDENT, $"Frame rates above {HighestSupported} are switched off by Sonaria Software for now, using {HighestSupported}");
+                limit = HighestSupported;
+            }
+
             try
             {
                 if (!File.Exists(FileLocation))

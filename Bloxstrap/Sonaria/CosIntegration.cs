@@ -29,8 +29,10 @@ namespace Bloxstrap.Sonaria
 
             _activityWatcher = activityWatcher;
 
-            if (App.Settings.Prop.TickTrackerEnabled)
+            if (App.Settings.Prop.TickTrackerEnabled && RemoteConfig.TickTrackerAllowed)
                 _tickTracker = new(ModuleCatalog.TickTracker);
+            else if (App.Settings.Prop.TickTrackerEnabled)
+                App.Logger.WriteLine(LOG_IDENT, "TickTracker is switched off by Sonaria Software for now");
 
             if (_activityWatcher is not null)
             {

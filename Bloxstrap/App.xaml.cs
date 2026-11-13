@@ -30,6 +30,11 @@ namespace Bloxstrap
         public const long CosUniverseId = 1831550657;
         public const string CosLaunchUri = "roblox://experiences/start?placeId=5233782396";
 
+        /// <summary>
+        /// The launcher's own application on Discord ("Sonaria Software"), which is what the Discord status appears under
+        /// </summary>
+        public const string DiscordApplicationId = "";
+
         public const string RobloxPlayerAppName = "RobloxPlayerBeta";
         public const string RobloxStudioAppName = "RobloxStudioBeta";
 
@@ -368,6 +373,9 @@ namespace Bloxstrap
                 Settings.Load();
                 State.Load();
                 FastFlags.Load();
+
+                // whatever Sonaria Software last switched off stays off until a newer copy is fetched
+                Sonaria.RemoteConfig.LoadCached();
 
                 if (!Locale.SupportedLocales.ContainsKey(Settings.Prop.Locale))
                 {

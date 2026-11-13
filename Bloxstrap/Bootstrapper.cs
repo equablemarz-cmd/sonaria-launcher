@@ -203,6 +203,10 @@ namespace Bloxstrap
 
             App.AssertWindowsOSVersion();
 
+            // pick up anything Sonaria Software has switched off since the last launch.
+            // this gives up after a few seconds and falls back to the last saved copy
+            await Sonaria.RemoteConfig.Refresh();
+
             // if we dont know our launch type, find out now!
             if (_launchMode == LaunchMode.Unknown)
             {
@@ -676,7 +680,7 @@ namespace Bloxstrap
                     autoclosePids.Add(pid);
             }
 
-            if (App.Settings.Prop.EnableActivityTracking || App.Settings.Prop.TickTrackerEnabled || App.LaunchSettings.TestModeFlag.Active || autoclosePids.Any())
+            if (App.Settings.Prop.EnableActivityTracking || (App.Settings.Prop.TickTrackerEnabled && Sonaria.RemoteConfig.TickTrackerAllowed) || App.LaunchSettings.TestModeFlag.Active || autoclosePids.Any())
             {
                 using var ipl = new InterProcessLock("Watcher", TimeSpan.FromSeconds(5));
 
@@ -1360,7 +1364,16 @@ namespace Bloxstrap
 
             string modFontFamiliesFolder = Path.Combine(Paths.Modifications, "content\\fonts\\families");
 
-            if (File.Exists(Paths.CustomFont))
+            bool modsSwitchedOff = Sonaria.RemoteConfig.Disabled.Mods;
+            bool engineSettingsSwitchedOff = Sonaria.RemoteConfig.Disabled.EngineSettings;
+
+            if (modsSwitchedOff)
+                App.Logger.WriteLine(LOG_IDENT, "Font and cursor mods are switched off by Sonaria Software for now");
+
+            if (engineSettingsSwitchedOff)
+                App.Logger.WriteLine(LOG_IDENT, "Engine settings are switched off by Sonaria Software for now");
+
+            if (File.Exists(Paths.CustomFont) && !modsSwitchedOff)
             {
                 App.Logger.WriteLine(LOG_IDENT, "Begin font check");
 
@@ -1410,7 +1423,7 @@ namespace Bloxstrap
 
                 App.Logger.WriteLine(LOG_IDENT, "End font check");
             }
-            else if (Directory.Exists(modFontFamiliesFolder))
+            else if (Directory.Exists(modFontFamiliesFolder) && !File.Exists(Paths.CustomFont))
             {
                 Directory.Delete(modFontFamiliesFolder, true);
             }
@@ -1431,6 +1444,13 @@ namespace Bloxstrap
                 }
 
                 if (!App.Settings.Prop.UseFastFlagManager && String.Equals(relativeFile, "ClientSettings\\ClientAppSettings.json", StringComparison.OrdinalIgnoreCase))
+                    continue;
+
+                // leaving a file out here means Roblox gets its own original back, the same as if the mod had been removed
+                if (engineSettingsSwitchedOff && String.Equals(relativeFile, "ClientSettings\\ClientAppSettings.json", StringComparison.OrdinalIgnoreCase))
+                    continue;
+
+                if (modsSwitchedOff && Sonaria.CosMods.IsFontOrCursorFile(relativeFile))
                     continue;
 
                 if (relativeFile.EndsWith(".lock"))
