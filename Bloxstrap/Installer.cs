@@ -299,6 +299,7 @@ namespace Bloxstrap
 
                 () => Directory.Delete(Paths.Versions, true),
                 () => Directory.Delete(Paths.Downloads, true),
+                () => Directory.Delete(Sonaria.ModuleManager.ModulesDirectory, true),
 
                 () => File.Delete(App.State.FileLocation)
             };

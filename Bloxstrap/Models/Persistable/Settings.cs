@@ -25,7 +25,7 @@ namespace Bloxstrap.Models.Persistable
 
         // integration configuration
         public bool EnableActivityTracking { get; set; } = true;
-        public bool UseDiscordRichPresence { get; set; } = true;
+        public bool UseDiscordRichPresence { get; set; } = false;
         public bool HideRPCButtons { get; set; } = true;
         public bool ShowAccountOnRichPresence { get; set; } = false;
         public bool ShowServerDetails { get; set; } = false;

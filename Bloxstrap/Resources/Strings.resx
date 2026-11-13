@@ -928,7 +928,7 @@ Sonaria Software Launcher was installed at "{1}".</value>
   <data name="Dialog.Exception.Info.2.Alt" xml:space="preserve">
     <value>Check the [Bloxstrap Wiki]({0}) first to see if this problem has already been addressed with a fix.
 
-If not, then please report this exception to the maintainers of this fork. Do not report this to Bloxstrap's GitHub issues, as this is an unoffical build.</value>
+If not, please send the log file to the bug-reports channel in the Kosers of Sonaria Discord. Do not report this to Bloxstrap's GitHub issues, as this is not a Bloxstrap build.</value>
     <comment>"fork" in general means "a variation of" or "a different version of". You can alternatively write the first sentence as "...to the maintainers of this version."</comment>
   </data>
   <data name="Installer.Install.Shortcuts.Description" xml:space="preserve">

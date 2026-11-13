@@ -26,32 +26,16 @@ namespace Bloxstrap.UI.Elements.Dialogs
             if (!App.Logger.Initialized)
                 LocateLogFileButton.Content = Strings.Dialog_Exception_CopyLogContents;
 
-            string repoUrl = $"https://github.com/{App.ProjectRepository}";
             string wikiUrl = $"https://bloxstraplabs.com/wiki/help/";
 
-            string title = HttpUtility.UrlEncode($"[BUG] {exception.GetType()}: {exception.Message}");
-            string log = HttpUtility.UrlEncode(App.Logger.AsDocument);
-
-            string issueUrl = $"{repoUrl}/issues/new?template=bug_report.yaml&title={title}&log={log}";
-
-            if (issueUrl.Length > MAX_GITHUB_URL_LENGTH)
-            {
-                // url is way too long for github. remove the log parameter.
-                issueUrl = $"{repoUrl}/issues/new?template=bug_report.yaml&title={title}";
-
-                if (issueUrl.Length > MAX_GITHUB_URL_LENGTH)
-                    issueUrl = $"{repoUrl}/issues/new?template=bug_report.yaml"; // bruh
-            }
-
-            string helpMessage = String.Format(Strings.Dialog_Exception_Info_2, wikiUrl, issueUrl);
-
-            //if (!App.IsActionBuild && !App.BuildMetadata.Machine.Contains("pizzaboxer", StringComparison.Ordinal))
-                //helpMessage = String.Format(Strings.Dialog_Exception_Info_2_Alt, wikiUrl);
+            // this is a fork, so nothing should ever be reported to Bloxstrap's issue tracker.
+            // reports go to the Sonaria Software bug-reports channel with the log file instead.
+            string helpMessage = String.Format(Strings.Dialog_Exception_Info_2_Alt, wikiUrl);
 
             HelpMessageMDTextBlock.MarkdownText = helpMessage;
             VersionText.Text = String.Format(Strings.Dialog_Exception_Version, App.Version);
 
-            ReportExceptionButton.Click += (_, _) => Utilities.ShellExecute(issueUrl);
+            ReportExceptionButton.Visibility = System.Windows.Visibility.Collapsed;
 
             LocateLogFileButton.Click += delegate
             {
