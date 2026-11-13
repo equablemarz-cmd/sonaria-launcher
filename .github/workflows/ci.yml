@@ -54,4 +54,5 @@ jobs:
         files: SonariaSoftwareLauncher-${{ github.ref_name }}.exe
         name: Sonaria Software Launcher ${{ github.ref_name }}
         body_path: release-notes.md
+        append_body: true
         prerelease: ${{ contains(github.ref_name, '-') }}
