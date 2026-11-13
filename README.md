@@ -58,7 +58,7 @@ When a new version is released the launcher asks before installing it. If you sa
 - **TickTracker** can be switched off, or kept open whenever Roblox is running instead of only in Creatures of Sonaria. Right-click its badge to switch the combat alert off or to test it. The alert only goes off for a fight that starts while another window is in front of Roblox, and it cannot see a minimised game.
 - **Activity tracking** lets the launcher know which game you are in by reading Roblox's log file. TickTracker's "only in CoS" option, Rejoin last server and Discord Rich Presence depend on it.
 - **Don't exit to desktop app** closes Roblox completely when you leave a game. Anything that relies on going back to the Roblox app, such as picking another game from inside Roblox, stops working while it is on.
-- **Discord status** is on by default: your Discord profile shows "Playing Sonaria Software" with the game you are in. Turning off "Show game activity" stops it. Letting friends join you and showing your Roblox account stay off unless you turn them on.
+- **Discord status** is on by default: your Discord profile shows "Playing Sonaria Software" with the game you are in. Turning off "Show game activity" stops it. It also carries a "Join Kosers of Sonaria" button that invites people to the community server, which you can switch off. Letting friends join you and showing your Roblox account stay off unless you turn them on.
 
 ### Shortcut icons
 

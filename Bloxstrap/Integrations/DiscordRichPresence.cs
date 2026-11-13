@@ -6,6 +6,8 @@ namespace Bloxstrap.Integrations
 {
     public class DiscordRichPresence : IDisposable
     {
+        private const int MaxButtons = 2;
+
         private readonly DiscordRpcClient _rpcClient = new(App.DiscordApplicationId);
         private readonly ActivityWatcher _activityWatcher;
         private readonly Queue<Message> _messageQueue = new();
@@ -453,11 +455,24 @@ namespace Bloxstrap.Integrations
                 }
             }
 
-            buttons.Add(new Button
+            if (App.Settings.Prop.ShowDiscordServerButton && !Sonaria.RemoteConfig.Disabled.DiscordServerButton)
             {
-                Label = "See game page",
-                Url = $"https://www.roblox.com/games/{data.PlaceId}"
-            });
+                buttons.Add(new Button
+                {
+                    Label = $"Join {App.DiscordServerName}",
+                    Url = App.DiscordServerInvite
+                });
+            }
+
+            // Discord shows two buttons at most, so the game page gives way when both of the others are showing
+            if (buttons.Count < MaxButtons)
+            {
+                buttons.Add(new Button
+                {
+                    Label = "See game page",
+                    Url = $"https://www.roblox.com/games/{data.PlaceId}"
+                });
+            }
 
             return buttons.ToArray();
         }

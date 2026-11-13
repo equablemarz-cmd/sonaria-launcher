@@ -34,6 +34,12 @@ namespace Bloxstrap.Sonaria
         /// </summary>
         [JsonPropertyName("mods")]
         public bool Mods { get; set; }
+
+        /// <summary>
+        /// Takes the community server button off the Discord status (for example if the invite link stops working)
+        /// </summary>
+        [JsonPropertyName("discordServerButton")]
+        public bool DiscordServerButton { get; set; }
     }
 
     public class RemoteConfigData
@@ -116,6 +122,9 @@ namespace Bloxstrap.Sonaria
 
                 if (_switches.Mods)
                     names.Add("font and cursor mods");
+
+                if (_switches.DiscordServerButton)
+                    names.Add("the Discord server button");
 
                 if (names.Count == 0)
                     return "";

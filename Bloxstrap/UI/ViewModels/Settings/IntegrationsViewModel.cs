@@ -131,6 +131,12 @@ namespace Bloxstrap.UI.ViewModels.Settings
             set => App.Settings.Prop.ShowAccountOnRichPresence = value;
         }
 
+        public bool DiscordServerButtonEnabled
+        {
+            get => App.Settings.Prop.ShowDiscordServerButton;
+            set => App.Settings.Prop.ShowDiscordServerButton = value;
+        }
+
         public bool DisableAppPatchEnabled
         {
             get => App.Settings.Prop.UseDisableAppPatch;

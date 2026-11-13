@@ -3046,6 +3046,24 @@ namespace Bloxstrap.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Adds a button to your Discord status that invites people to the Kosers of Sonaria server..
+        /// </summary>
+        public static string Menu_Integrations_ShowServerButton_Description {
+            get {
+                return ResourceManager.GetString("Menu.Integrations.ShowServerButton.Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show Kosers of Sonaria button.
+        /// </summary>
+        public static string Menu_Integrations_ShowServerButton_Title {
+            get {
+                return ResourceManager.GetString("Menu.Integrations.ShowServerButton.Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Application Location.
         /// </summary>
         public static string Menu_Integrations_Custom_AppLocation {

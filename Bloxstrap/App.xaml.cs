@@ -35,6 +35,12 @@ namespace Bloxstrap
         /// </summary>
         public const string DiscordApplicationId = "1570859886684803244";
 
+        /// <summary>
+        /// The Sonaria Software community server, linked from a button on the Discord status
+        /// </summary>
+        public const string DiscordServerName = "Kosers of Sonaria";
+        public const string DiscordServerInvite = "https://discord.gg/koser";
+
         public const string RobloxPlayerAppName = "RobloxPlayerBeta";
         public const string RobloxStudioAppName = "RobloxStudioBeta";
 
