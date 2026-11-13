@@ -33,7 +33,7 @@ namespace Bloxstrap
         /// <summary>
         /// The launcher's own application on Discord ("Sonaria Software"), which is what the Discord status appears under
         /// </summary>
-        public const string DiscordApplicationId = "";
+        public const string DiscordApplicationId = "1570859886684803244";
 
         public const string RobloxPlayerAppName = "RobloxPlayerBeta";
         public const string RobloxStudioAppName = "RobloxStudioBeta";

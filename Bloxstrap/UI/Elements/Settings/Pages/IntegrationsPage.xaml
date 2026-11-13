@@ -19,7 +19,7 @@
 
         <controls:OptionControl 
             Header="TickTracker" 
-            Description="Shows the natural heal tick countdown badge. It is downloaded once, checked against a known fingerprint, then started for you."
+            Description="Shows the natural heal tick countdown badge, and alerts you on the badge if a fight starts while you are tabbed out. It is downloaded once, checked against a known fingerprint, then started for you. Right-click the badge for its own options."
             x:Name="TickTrackerOption">
             <ui:ToggleSwitch IsChecked="{Binding TickTrackerEnabled, Mode=TwoWay}" />
         </controls:OptionControl>

@@ -4,6 +4,7 @@ A PvP-focused Roblox launcher for Creatures of Sonaria, by Sonaria Software.
 
 - **Launch Creatures of Sonaria** in one click, or rejoin the server you were last in.
 - **TickTracker built in.** The natural heal tick countdown starts when you join CoS and closes when you leave. Nothing extra to install.
+- **Combat alert.** If a fight starts while you are tabbed out, the TickTracker badge shows an alert icon with a pulsing glow until you click back into the game, and a connected controller buzzes.
 - **Frame rate limit.** Sets Roblox's maximum frame rate for you before it starts.
 - **FPS boost.** One switch for the speed-ups Roblox still allows launchers to set.
 - **The usual launcher extras:** mods (cursor, sounds, fonts), Discord Rich Presence, server details, custom loading styles.
@@ -24,9 +25,9 @@ Each release lists the SHA-256 of its executable, and includes it as a `.sha256`
 
 The launcher only starts Roblox and works with Roblox's own local files: its settings, its logs and its mod folder. It never reads, writes or injects into the Roblox game process.
 
-- **TickTracker** only looks at the screen, like you do.
+- **TickTracker** only looks. It reads your health bar off the screen, like you do. For the combat alert, while you are tabbed out it asks Windows for a picture of the Roblox window, the same way OBS window capture and Discord screen share do, and looks for the game's combat timer in it. It never reads the game's memory, never presses keys or clicks for you, and the pictures stay on your PC.
 - **Engine settings** can only be the ones on Roblox's official allowlist. Roblox ignores everything else.
-- **Nothing about you is collected.** There is no analytics or crash reporting. The only things that use the internet are downloading Roblox, checking this repository for updates, tools and notices, Discord status once it is active (it goes only to the Discord app on your own PC and can be switched off), and server details if you turn that on.
+- **Nothing about you is collected.** There is no analytics or crash reporting. The only things that use the internet are downloading Roblox, checking this repository for updates, tools and notices, Discord status (it goes only to the Discord app on your own PC and can be switched off), and server details if you turn that on.
 
 ## Updates
 
@@ -54,10 +55,10 @@ When a new version is released the launcher asks before installing it. If you sa
 
 ### Integrations
 
-- **TickTracker** can be switched off, or kept open whenever Roblox is running instead of only in Creatures of Sonaria.
+- **TickTracker** can be switched off, or kept open whenever Roblox is running instead of only in Creatures of Sonaria. Right-click its badge to switch the combat alert off or to test it. The alert only goes off for a fight that starts while another window is in front of Roblox, and it cannot see a minimised game.
 - **Activity tracking** lets the launcher know which game you are in by reading Roblox's log file. TickTracker's "only in CoS" option, Rejoin last server and Discord Rich Presence depend on it.
 - **Don't exit to desktop app** closes Roblox completely when you leave a game. Anything that relies on going back to the Roblox app, such as picking another game from inside Roblox, stops working while it is on.
-- **Discord status** is not active in this version. From the next update, your Discord profile will show "Playing Sonaria Software" with the game you are in, on by default; turning off "Show game activity" stops it. Letting friends join you and showing your Roblox account stay off unless you turn them on.
+- **Discord status** is on by default: your Discord profile shows "Playing Sonaria Software" with the game you are in. Turning off "Show game activity" stops it. Letting friends join you and showing your Roblox account stay off unless you turn them on.
 
 ### Shortcut icons
 
