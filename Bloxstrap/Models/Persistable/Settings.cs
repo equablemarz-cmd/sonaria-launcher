@@ -38,7 +38,7 @@ namespace Bloxstrap.Models.Persistable
         /// <summary>
         /// Roblox's own maximum frame rate, set before each launch. 0 leaves Roblox's setting alone.
         /// </summary>
-        public int FramerateLimit { get; set; } = 240;
+        public int FramerateLimit { get; set; } = 320;
 
         // mod preset configuration
         public bool UseDisableAppPatch { get; set; } = false;

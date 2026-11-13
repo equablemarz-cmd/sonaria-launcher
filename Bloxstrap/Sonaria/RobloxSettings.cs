@@ -2,15 +2,21 @@ namespace Bloxstrap.Sonaria
 {
     /// <summary>
     /// Sets Roblox's own "Maximum Frame Rate" setting before Roblox starts.
-    /// This is the same value Roblox writes to its settings file when you change it in the in-game menu,
-    /// and only the values that menu offers are ever written.
+    /// This is the same value Roblox writes to its settings file when you change it in the in-game menu.
+    /// Roblox's menu stops at 240 and Roblox does not officially support going higher; the option above
+    /// that is there because it was asked for, and is labelled as such.
     /// </summary>
     public static class RobloxSettings
     {
         /// <summary>
         /// 0 means "leave whatever is set in Roblox alone"
         /// </summary>
-        public static readonly IReadOnlyList<int> FramerateLimits = new[] { 0, 60, 120, 144, 240 };
+        public static readonly IReadOnlyList<int> FramerateLimits = new[] { 0, 60, 120, 144, 240, 320 };
+
+        /// <summary>
+        /// The highest frame rate Roblox's own settings menu offers
+        /// </summary>
+        public const int HighestSupported = 240;
 
         private static readonly Regex FramerateCapPattern = new(
             "(<int name=\"FramerateCap\">)(-?[0-9]+)(</int>)",
@@ -19,7 +25,13 @@ namespace Bloxstrap.Sonaria
 
         private static string FileLocation => Path.Combine(Paths.LocalAppData, "Roblox", "GlobalBasicSettings_13.xml");
 
-        public static string GetLabel(int limit) => limit <= 0 ? "Leave as set in Roblox" : $"{limit} FPS";
+        public static string GetLabel(int limit)
+        {
+            if (limit <= 0)
+                return "Leave as set in Roblox";
+
+            return limit > HighestSupported ? $"{limit} FPS (above Roblox's limit)" : $"{limit} FPS";
+        }
 
         public static void ApplyFramerateLimit()
         {
@@ -32,7 +44,7 @@ namespace Bloxstrap.Sonaria
 
             if (!FramerateLimits.Contains(limit))
             {
-                App.Logger.WriteLine(LOG_IDENT, $"{limit} is not a frame rate Roblox offers, ignoring it");
+                App.Logger.WriteLine(LOG_IDENT, $"{limit} is not one of the launcher's frame rate options, ignoring it");
                 return;
             }
 
