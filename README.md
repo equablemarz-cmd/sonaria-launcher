@@ -6,4 +6,5 @@ Every package is pinned in the launcher by its SHA-256 (see `Bloxstrap/Sonaria/M
 
 | Package | Version | SHA-256 |
 |---|---|---|
-| `TickTracker-4.0.0.zip` | 4.0.0 | `408aa52fb491357e250a1e84b6e75af29d33996fc46f6f60c6cdb9365f3b4b2b` |
+| `TickTracker-4.0.0.zip` (in this branch's history) | 4.0.0 | `408aa52fb491357e250a1e84b6e75af29d33996fc46f6f60c6cdb9365f3b4b2b` |
+| `TickTracker-4.0.1.zip` | 4.0.1 | `95cd322f93b81ce74f70b7858b37f0695700a95a36f3e519d50e6f93768cd027` |
