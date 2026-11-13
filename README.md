@@ -18,6 +18,7 @@ Set one of these to `true` to switch that feature off for everyone, and back to 
 | `fpsAbove240` | The frame rate limit is held at 240, Roblox's supported maximum |
 | `engineSettings` | Engine settings, FPS boost included, are not given to Roblox |
 | `mods` | The font and cursor mods are not given to Roblox |
+| `discordServerButton` | The "Join Kosers of Sonaria" button is taken off the Discord status (launcher 3.1.6 and later). Use it if the discord.gg/koser link ever stops working |
 
 The launch menu names anything that is switched off, so it is never done silently. The file can only switch features off or show text. It cannot turn anything on, and reading it sends nothing about the user.
 
