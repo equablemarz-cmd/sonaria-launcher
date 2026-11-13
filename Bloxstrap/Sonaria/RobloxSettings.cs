@@ -1,0 +1,80 @@
+namespace Bloxstrap.Sonaria
+{
+    /// <summary>
+    /// Sets Roblox's own "Maximum Frame Rate" setting before Roblox starts.
+    /// This is the same value Roblox writes to its settings file when you change it in the in-game menu,
+    /// and only the values that menu offers are ever written.
+    /// </summary>
+    public static class RobloxSettings
+    {
+        /// <summary>
+        /// 0 means "leave whatever is set in Roblox alone"
+        /// </summary>
+        public static readonly IReadOnlyList<int> FramerateLimits = new[] { 0, 60, 120, 144, 240 };
+
+        private static readonly Regex FramerateCapPattern = new(
+            "(<int name=\"FramerateCap\">)(-?[0-9]+)(</int>)",
+            RegexOptions.CultureInvariant
+        );
+
+        private static string FileLocation => Path.Combine(Paths.LocalAppData, "Roblox", "GlobalBasicSettings_13.xml");
+
+        public static string GetLabel(int limit) => limit <= 0 ? "Leave as set in Roblox" : $"{limit} FPS";
+
+        public static void ApplyFramerateLimit()
+        {
+            const string LOG_IDENT = "RobloxSettings::ApplyFramerateLimit";
+
+            int limit = App.Settings.Prop.FramerateLimit;
+
+            if (limit <= 0)
+                return;
+
+            if (!FramerateLimits.Contains(limit))
+            {
+                App.Logger.WriteLine(LOG_IDENT, $"{limit} is not a frame rate Roblox offers, ignoring it");
+                return;
+            }
+
+            try
+            {
+                if (!File.Exists(FileLocation))
+                {
+                    // Roblox creates this the first time it runs, so it'll be picked up on the next launch
+                    App.Logger.WriteLine(LOG_IDENT, "Roblox has not created its settings file yet");
+                    return;
+                }
+
+                byte[] bytes = File.ReadAllBytes(FileLocation);
+                bool hasBom = bytes.Length >= 3 && bytes[0] == 0xEF && bytes[1] == 0xBB && bytes[2] == 0xBF;
+                int offset = hasBom ? 3 : 0;
+
+                string text = new UTF8Encoding(false).GetString(bytes, offset, bytes.Length - offset);
+
+                Match match = FramerateCapPattern.Match(text);
+
+                if (!match.Success)
+                {
+                    App.Logger.WriteLine(LOG_IDENT, "Roblox's settings file has no frame rate entry yet");
+                    return;
+                }
+
+                string value = limit.ToString(CultureInfo.InvariantCulture);
+
+                if (match.Groups[2].Value == value)
+                    return;
+
+                string updated = FramerateCapPattern.Replace(text, m => m.Groups[1].Value + value + m.Groups[3].Value, 1);
+
+                File.WriteAllText(FileLocation, updated, new UTF8Encoding(hasBom));
+
+                App.Logger.WriteLine(LOG_IDENT, $"Set Roblox's maximum frame rate to {value} (was {match.Groups[2].Value})");
+            }
+            catch (Exception ex)
+            {
+                App.Logger.WriteLine(LOG_IDENT, "Could not set Roblox's maximum frame rate");
+                App.Logger.WriteException(LOG_IDENT, ex);
+            }
+        }
+    }
+}

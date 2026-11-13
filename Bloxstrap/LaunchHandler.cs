@@ -33,6 +33,13 @@ namespace Bloxstrap
                     LaunchRoblox(LaunchMode.Player);
                     break;
 
+                case NextAction.RejoinLastServer:
+                    App.Logger.WriteLine(LOG_IDENT, "Rejoining the last Creatures of Sonaria server");
+                    App.LaunchSettings.RobloxLaunchMode = LaunchMode.Player;
+                    App.LaunchSettings.RobloxLaunchArgs = Sonaria.LastServer.Load()?.Deeplink ?? App.CosLaunchUri;
+                    LaunchRoblox(LaunchMode.Player);
+                    break;
+
                 case NextAction.LaunchRobloxStudio:
                     App.Logger.WriteLine(LOG_IDENT, "Opening Roblox Studio");
                     LaunchRoblox(LaunchMode.Studio);

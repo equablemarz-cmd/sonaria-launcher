@@ -21,6 +21,20 @@
             <ui:ToggleSwitch IsChecked="{Binding UseFastFlagManager, Mode=TwoWay}" />
         </controls:OptionControl>
 
+        <TextBlock Text="Performance" FontSize="20" FontWeight="Medium" Margin="0,16,0,0" />
+
+        <controls:OptionControl 
+            Header="FPS boost" 
+            Description="Turns anti-aliasing off and sets textures to their lowest quality, the speed-ups Roblox still allows. It changes the two matching presets below.">
+            <ui:ToggleSwitch IsChecked="{Binding FpsBoost, Mode=TwoWay}" />
+        </controls:OptionControl>
+
+        <controls:OptionControl 
+            Header="Frame rate limit" 
+            Description="Sets Roblox's own maximum frame rate every time it starts. 240 is the highest Roblox supports.">
+            <ComboBox Margin="5,0,0,0" Padding="10,5,10,5" Width="200" ItemsSource="{Binding FramerateLimits, Mode=OneTime}" SelectedItem="{Binding SelectedFramerateLimit, Mode=TwoWay}" />
+        </controls:OptionControl>
+
         <TextBlock Text="{x:Static resources:Strings.Common_Presets}" FontSize="20" FontWeight="Medium" Margin="0,16,0,0" />
 
         <TextBlock Text="{x:Static resources:Strings.Menu_FastFlags_Presets_Categories_Rendering}" FontSize="16" FontWeight="Medium" Margin="0,16,0,0" />

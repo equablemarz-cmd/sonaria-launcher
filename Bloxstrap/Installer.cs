@@ -27,7 +27,7 @@ namespace Bloxstrap
 
         public bool CreateStartMenuShortcuts = true;
 
-        public bool EnableAnalytics = true;
+        public bool EnableAnalytics = false;
 
         public bool IsImplicitInstall = false;
 
@@ -103,6 +103,13 @@ namespace Bloxstrap
             App.FastFlags.Load(false);
 
             App.Settings.Prop.EnableAnalytics = EnableAnalytics;
+
+            // a brand new install starts with FPS boost on. an existing engine configuration is left as it is
+            if (!File.Exists(App.FastFlags.FileLocation))
+            {
+                Sonaria.FpsBoost.Set(true);
+                App.FastFlags.Save();
+            }
 
             App.Settings.Save();
 
@@ -590,6 +597,15 @@ namespace Bloxstrap
                 {
                     App.FastFlags.SetValue("FFlagDebugGraphicsPreferD3D11", null);
                     App.FastFlags.SetValue("FFlagDebugGraphicsPreferD3D11FL10", null);
+                }
+
+                if (Utilities.CompareVersions(existingVer, "3.0.1") == VersionComparison.LessThan)
+                {
+                    // 3.0.1 made the launcher dark by default and added FPS boost
+                    if (App.Settings.Prop.Theme == Theme.Default)
+                        App.Settings.Prop.Theme = Theme.Dark;
+
+                    Sonaria.FpsBoost.Set(true);
                 }
 
                 App.Settings.Save();

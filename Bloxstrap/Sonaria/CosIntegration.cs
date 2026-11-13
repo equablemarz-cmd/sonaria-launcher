@@ -15,7 +15,7 @@ namespace Bloxstrap.Sonaria
 
         private readonly ActivityWatcher? _activityWatcher;
 
-        private readonly ModuleRunner _tickTracker = new(ModuleCatalog.TickTracker);
+        private readonly ModuleRunner? _tickTracker;
 
         private readonly object _lock = new();
 
@@ -29,19 +29,26 @@ namespace Bloxstrap.Sonaria
 
             _activityWatcher = activityWatcher;
 
+            if (App.Settings.Prop.TickTrackerEnabled)
+                _tickTracker = new(ModuleCatalog.TickTracker);
+
+            if (_activityWatcher is not null)
+            {
+                _activityWatcher.OnGameJoin += OnGameJoin;
+                _activityWatcher.OnGameLeave += OnGameLeave;
+            }
+
+            if (_tickTracker is null)
+                return;
+
             if (App.Settings.Prop.TickTrackerOnlyInCos && _activityWatcher is not null)
             {
                 App.Logger.WriteLine(LOG_IDENT, "TickTracker will start when Creatures of Sonaria is joined");
-
-                _activityWatcher.OnGameJoin += OnGameJoin;
-                _activityWatcher.OnGameLeave += OnGameLeave;
-
                 _tickTracker.Prepare();
             }
             else
             {
                 App.Logger.WriteLine(LOG_IDENT, "TickTracker will stay open while Roblox is running");
-
                 _tickTracker.Start();
             }
         }
@@ -62,13 +69,22 @@ namespace Bloxstrap.Sonaria
             if (_inCos)
             {
                 App.Logger.WriteLine(LOG_IDENT, "Joined Creatures of Sonaria");
-                _tickTracker.Start();
+
+                // remembered so the launcher can offer to rejoin it later
+                LastServer.Save(_activityWatcher.Data);
             }
             else
             {
                 App.Logger.WriteLine(LOG_IDENT, "Joined a different experience");
-                _tickTracker.Stop();
             }
+
+            if (_tickTracker is null || !App.Settings.Prop.TickTrackerOnlyInCos)
+                return;
+
+            if (_inCos)
+                _tickTracker.Start();
+            else
+                _tickTracker.Stop();
         }
 
         private void OnGameLeave(object? sender, EventArgs e)
@@ -78,6 +94,10 @@ namespace Bloxstrap.Sonaria
 
             _inCos = false;
 
+            if (_tickTracker is null || !App.Settings.Prop.TickTrackerOnlyInCos)
+                return;
+
+            ModuleRunner tickTracker = _tickTracker;
             CancellationTokenSource cts = new();
 
             lock (_lock)
@@ -92,7 +112,7 @@ namespace Bloxstrap.Sonaria
                     return;
 
                 App.Logger.WriteLine("CosIntegration::OnGameLeave", "Left Creatures of Sonaria");
-                _tickTracker.Stop();
+                tickTracker.Stop();
             }, TaskScheduler.Default);
         }
 
@@ -114,7 +134,7 @@ namespace Bloxstrap.Sonaria
             }
 
             CancelPendingStop();
-            _tickTracker.Dispose();
+            _tickTracker?.Dispose();
 
             GC.SuppressFinalize(this);
         }

@@ -6,6 +6,7 @@
         LaunchSettings,
         LaunchRoblox,
         LaunchRobloxStudio,
-        LaunchCos
+        LaunchCos,
+        RejoinLastServer
     }
 }

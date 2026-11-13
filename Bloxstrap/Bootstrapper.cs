@@ -304,6 +304,9 @@ namespace Bloxstrap
                         Frontend.ShowBalloonTip(Strings.Bootstrapper_ModificationsFailed_Title, Strings.Bootstrapper_ModificationsFailed_Message, ToolTipIcon.Warning);
                 }
 
+                if (_launchMode == LaunchMode.Player)
+                    Sonaria.RobloxSettings.ApplyFramerateLimit();
+
                 StartRoblox();
             }
 

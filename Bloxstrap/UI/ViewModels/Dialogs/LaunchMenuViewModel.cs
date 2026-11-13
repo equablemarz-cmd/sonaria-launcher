@@ -16,6 +16,14 @@ namespace Bloxstrap.UI.ViewModels.Installer
 
         public ICommand LaunchCosCommand => new RelayCommand(LaunchCos);
 
+        public ICommand RejoinLastServerCommand => new RelayCommand(RejoinLastServer);
+
+        public ICommand ToggleThemeCommand => new RelayCommand(ToggleTheme);
+
+        public Visibility RejoinVisibility => Sonaria.LastServer.Load() is null ? Visibility.Collapsed : Visibility.Visible;
+
+        public event EventHandler? ThemeChanged;
+
         public ICommand LaunchRobloxStudioCommand => new RelayCommand(LaunchRobloxStudio);
 
         public ICommand LaunchAboutCommand => new RelayCommand(LaunchAbout);
@@ -27,6 +35,16 @@ namespace Bloxstrap.UI.ViewModels.Installer
         private void LaunchRoblox() => CloseWindowRequest?.Invoke(this, NextAction.LaunchRoblox);
 
         private void LaunchCos() => CloseWindowRequest?.Invoke(this, NextAction.LaunchCos);
+
+        private void RejoinLastServer() => CloseWindowRequest?.Invoke(this, NextAction.RejoinLastServer);
+
+        private void ToggleTheme()
+        {
+            App.Settings.Prop.Theme = App.Settings.Prop.Theme.GetFinal() == Theme.Dark ? Theme.Light : Theme.Dark;
+            App.Settings.Save();
+
+            ThemeChanged?.Invoke(this, EventArgs.Empty);
+        }
 
         private void LaunchRobloxStudio() => CloseWindowRequest?.Invoke(this, NextAction.LaunchRobloxStudio);
 

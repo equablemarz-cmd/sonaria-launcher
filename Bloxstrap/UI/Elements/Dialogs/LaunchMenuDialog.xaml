@@ -54,6 +54,7 @@
                 <StackPanel Grid.Row="1" HorizontalAlignment="Center">
                     <ui:Hyperlink Icon="QuestionCircle48" Content="{x:Static resources:Strings.About_Title}" Command="{Binding LaunchAboutCommand, Mode=OneTime}" HorizontalAlignment="Center" />
                     <ui:Hyperlink Icon="Book24" Content="{x:Static resources:Strings.LaunchMenu_BloxstrapWiki}" NavigateUri="https://bloxstraplabs.com/wiki/" HorizontalAlignment="Center" />
+                    <ui:Hyperlink Icon="PaintBrush24" Content="Switch dark / light" Command="{Binding ToggleThemeCommand, Mode=OneTime}" HorizontalAlignment="Center" />
                     <ui:Hyperlink Icon="Code24" Content="{x:Static resources:Strings.Menu_About_GithubRepository}" NavigateUri="https://github.com/equablemarz-cmd/sonaria-launcher" HorizontalAlignment="Center" />
                 </StackPanel>
             </Grid>
@@ -63,6 +64,13 @@
                     <StackPanel>
                         <TextBlock FontSize="14" FontWeight="Medium" Text="Launch Creatures of Sonaria" />
                         <TextBlock Margin="0,2,0,0" FontSize="12" Text="Joins CoS straight away. TickTracker starts with it." Padding="0,0,16,0" Foreground="{DynamicResource TextFillColorTertiaryBrush}" />
+                    </StackPanel>
+                </ui:CardAction>
+
+                <ui:CardAction Margin="0,8,0,0" Icon="ArrowCounterclockwise24" Command="{Binding RejoinLastServerCommand, Mode=OneTime}" Visibility="{Binding RejoinVisibility, Mode=OneTime}">
+                    <StackPanel>
+                        <TextBlock FontSize="14" Text="Rejoin last server" />
+                        <TextBlock Margin="0,2,0,0" FontSize="12" Text="Goes back to the CoS server you were last in, if it is still running." Padding="0,0,16,0" Foreground="{DynamicResource TextFillColorTertiaryBrush}" />
                     </StackPanel>
                 </ui:CardAction>
 

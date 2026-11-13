@@ -27,12 +27,42 @@ namespace Bloxstrap.UI.ViewModels.Settings
             set => App.Settings.Prop.UseFastFlagManager = value;
         }
 
+        public bool FpsBoost
+        {
+            get => Sonaria.FpsBoost.IsEnabled;
+            set
+            {
+                Sonaria.FpsBoost.Set(value);
+
+                OnPropertyChanged(nameof(SelectedMSAALevel));
+                OnPropertyChanged(nameof(SelectedTextureQuality));
+            }
+        }
+
+        public IReadOnlyList<string> FramerateLimits { get; } = Sonaria.RobloxSettings.FramerateLimits.Select(Sonaria.RobloxSettings.GetLabel).ToList();
+
+        public string SelectedFramerateLimit
+        {
+            get => Sonaria.RobloxSettings.GetLabel(App.Settings.Prop.FramerateLimit);
+            set
+            {
+                int index = FramerateLimits.ToList().IndexOf(value);
+
+                if (index >= 0)
+                    App.Settings.Prop.FramerateLimit = Sonaria.RobloxSettings.FramerateLimits[index];
+            }
+        }
+
         public IReadOnlyDictionary<MSAAMode, string?> MSAALevels => FastFlagManager.MSAAModes;
 
         public MSAAMode SelectedMSAALevel
         {
             get => MSAALevels.FirstOrDefault(x => x.Value == App.FastFlags.GetPreset("Rendering.MSAA")).Key;
-            set => App.FastFlags.SetPreset("Rendering.MSAA", MSAALevels[value]);
+            set
+            {
+                App.FastFlags.SetPreset("Rendering.MSAA", MSAALevels[value]);
+                OnPropertyChanged(nameof(FpsBoost));
+            }
         }
 
         public bool FixDisplayScaling
@@ -57,6 +87,8 @@ namespace Bloxstrap.UI.ViewModels.Settings
                     App.FastFlags.SetPreset("Rendering.TextureQuality.OverrideEnabled", "True");
                     App.FastFlags.SetPreset("Rendering.TextureQuality.Level", TextureQualities[value]);
                 }
+
+                OnPropertyChanged(nameof(FpsBoost));
             }
         }
         public bool ResetConfiguration

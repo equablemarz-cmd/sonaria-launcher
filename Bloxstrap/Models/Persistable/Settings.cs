@@ -9,7 +9,7 @@ namespace Bloxstrap.Models.Persistable
         public BootstrapperIcon BootstrapperIcon { get; set; } = BootstrapperIcon.IconBloxstrap;
         public string BootstrapperTitle { get; set; } = App.ProjectName;
         public string BootstrapperIconCustomLocation { get; set; } = "";
-        public Theme Theme { get; set; } = Theme.Default;
+        public Theme Theme { get; set; } = Theme.Dark;
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public bool DeveloperMode { get; set; } = false;
         public bool CheckForUpdates { get; set; } = true;
@@ -34,6 +34,11 @@ namespace Bloxstrap.Models.Persistable
         // sonaria tools
         public bool TickTrackerEnabled { get; set; } = true;
         public bool TickTrackerOnlyInCos { get; set; } = true;
+
+        /// <summary>
+        /// Roblox's own maximum frame rate, set before each launch. 0 leaves Roblox's setting alone.
+        /// </summary>
+        public int FramerateLimit { get; set; } = 240;
 
         // mod preset configuration
         public bool UseDisableAppPatch { get; set; } = false;

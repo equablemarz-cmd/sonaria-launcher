@@ -33,6 +33,8 @@ namespace Bloxstrap.UI.Elements.Dialogs
                 Close();
             };
 
+            viewModel.ThemeChanged += (_, _) => ApplyTheme();
+
             DataContext = viewModel;
 
             InitializeComponent();

@@ -58,7 +58,7 @@ namespace Bloxstrap
             if (App.Settings.Prop.EnableActivityTracking || tickTrackerNeedsActivity)
                 ActivityWatcher = new(_watcherData.LogFile);
 
-            if (App.Settings.Prop.TickTrackerEnabled)
+            if (ActivityWatcher is not null || App.Settings.Prop.TickTrackerEnabled)
                 CosIntegration = new(ActivityWatcher);
 
             if (ActivityWatcher is not null && App.Settings.Prop.EnableActivityTracking)
