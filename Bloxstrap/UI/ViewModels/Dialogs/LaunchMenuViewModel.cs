@@ -14,6 +14,8 @@ namespace Bloxstrap.UI.ViewModels.Installer
 
         public ICommand LaunchRobloxCommand => new RelayCommand(LaunchRoblox);
 
+        public ICommand LaunchCosCommand => new RelayCommand(LaunchCos);
+
         public ICommand LaunchRobloxStudioCommand => new RelayCommand(LaunchRobloxStudio);
 
         public ICommand LaunchAboutCommand => new RelayCommand(LaunchAbout);
@@ -23,6 +25,8 @@ namespace Bloxstrap.UI.ViewModels.Installer
         private void LaunchSettings() => CloseWindowRequest?.Invoke(this, NextAction.LaunchSettings);
 
         private void LaunchRoblox() => CloseWindowRequest?.Invoke(this, NextAction.LaunchRoblox);
+
+        private void LaunchCos() => CloseWindowRequest?.Invoke(this, NextAction.LaunchCos);
 
         private void LaunchRobloxStudio() => CloseWindowRequest?.Invoke(this, NextAction.LaunchRobloxStudio);
 

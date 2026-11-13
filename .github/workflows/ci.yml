@@ -1,0 +1,57 @@
+name: CI
+
+on:
+  push:
+    branches: ['**']
+    tags: ['v*']
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    permissions:
+      contents: write
+
+    steps:
+    - uses: actions/checkout@v6
+      with:
+        submodules: true
+
+    - uses: actions/setup-dotnet@v5
+      with:
+        dotnet-version: '6.0.x'
+
+    - name: Restore dependencies
+      run: dotnet restore
+
+    - name: Build
+      run: dotnet build -c Release --no-restore
+
+    - name: Publish
+      run: dotnet publish -p:PublishSingleFile=true -p:CommitHash=${{ github.sha }} -p:CommitRef=${{ github.ref_type }}/${{ github.ref_name }} -r win-x64 -c Release --self-contained false .\Bloxstrap\Bloxstrap.csproj
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v7
+      with:
+        name: SonariaSoftwareLauncher (${{ github.sha }})
+        path: .\Bloxstrap\bin\Release\net6.0-windows\win-x64\publish\*
+
+    # Tags starting with v publish a release. A tag with a dash in it (v3.0.0-test1) is published as a pre-release,
+    # which the launcher's own updater ignores.
+    - name: Prepare release files
+      if: startsWith(github.ref, 'refs/tags/v')
+      shell: pwsh
+      run: |
+        $exe = "SonariaSoftwareLauncher-${{ github.ref_name }}.exe"
+        Copy-Item .\Bloxstrap\bin\Release\net6.0-windows\win-x64\publish\Bloxstrap.exe $exe
+        $hash = (Get-FileHash $exe -Algorithm SHA256).Hash.ToLower()
+        "SHA-256 of ``$exe``: ``$hash``" | Out-File release-notes.md -Encoding utf8
+
+    - name: Create release
+      if: startsWith(github.ref, 'refs/tags/v')
+      uses: softprops/action-gh-release@v2
+      with:
+        files: SonariaSoftwareLauncher-${{ github.ref_name }}.exe
+        name: Sonaria Software Launcher ${{ github.ref_name }}
+        body_path: release-notes.md
+        prerelease: ${{ contains(github.ref_name, '-') }}

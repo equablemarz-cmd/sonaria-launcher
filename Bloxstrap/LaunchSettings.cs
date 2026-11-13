@@ -40,6 +40,11 @@ namespace Bloxstrap
 
         public LaunchFlag ForceFlag                 { get; } = new("force");
 
+        /// <summary>
+        /// Launches straight into Creatures of Sonaria (used by the Launch CoS shortcut)
+        /// </summary>
+        public LaunchFlag CosFlag                   { get; } = new("cos");
+
 #if DEBUG
         public bool BypassUpdateCheck => true;
 #else
@@ -150,6 +155,8 @@ namespace Bloxstrap
                 ParsePlayer(PlayerFlag.Data);
             else if (StudioFlag.Active)
                 ParseStudio(StudioFlag.Data);
+            else if (CosFlag.Active)
+                ParsePlayer(App.CosLaunchUri);
         }
 
         private void ParsePlayer(string? data)

@@ -39,7 +39,7 @@
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Column="0" Text="Bloxstrap" Margin="0,0,4,0" FontSize="24" FontWeight="Medium" />
+                    <TextBlock Grid.Column="0" Text="Sonaria Software Launcher" Margin="0,0,4,0" FontSize="20" FontWeight="Medium" />
                     <TextBlock Grid.Column="1" Text="{Binding Version, Mode=OneTime}" Margin="4,0,0,2" VerticalAlignment="Bottom" FontSize="16" FontWeight="Medium" Foreground="{DynamicResource TextFillColorTertiaryBrush}" />
                 </Grid>
                 <TextBlock Text="{x:Static resources:Strings.Menu_About_Description}" Foreground="{DynamicResource TextFillColorTertiaryBrush}" />
@@ -47,11 +47,11 @@
         </Grid>
 
         <WrapPanel HorizontalAlignment="Center" Orientation="Horizontal">
-            <ui:Anchor Margin="0,0,8,8" Content="{x:Static resources:Strings.Menu_About_GithubRepository}" Icon="Code24" NavigateUri="https://github.com/bloxstraplabs/bloxstrap" />
+            <ui:Anchor Margin="0,0,8,8" Content="{x:Static resources:Strings.Menu_About_GithubRepository}" Icon="Code24" NavigateUri="https://github.com/equablemarz-cmd/sonaria-launcher" />
             <ui:Anchor Margin="0,0,8,8" Content="{x:Static resources:Strings.Menu_About_HelpInformation}" Icon="BookQuestionMark24" NavigateUri="https://bloxstraplabs.com/wiki/" />
-            <ui:Anchor Margin="0,0,8,8" Content="{x:Static resources:Strings.Menu_About_ReportIssue}" Icon="BookExclamationMark24" NavigateUri="https://github.com/bloxstraplabs/bloxstrap/issues" />
-            <ui:Anchor Margin="0,0,0,8" Content="{x:Static resources:Strings.Menu_About_DiscordServer}" Icon="Chat48" NavigateUri="https://discord.gg/nKjV3mGq6R" />
         </WrapPanel>
+
+        <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" TextAlignment="Center" Margin="0,4,0,0" Foreground="{DynamicResource TextFillColorTertiaryBrush}" Text="Built on Bloxstrap by pizzaboxer and contributors, used under the MIT licence. Not affiliated with Bloxstrap or Roblox." />
 
         <StackPanel Visibility="{Binding BuildInformationVisibility, Mode=OneTime}">
             <TextBlock Text="Build Information" FontWeight="Medium" FontSize="20" Margin="0,16,0,0" />

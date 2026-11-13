@@ -84,6 +84,18 @@ namespace Bloxstrap.UI.ViewModels.Settings
             }
         }
 
+        public bool TickTrackerEnabled
+        {
+            get => App.Settings.Prop.TickTrackerEnabled;
+            set => App.Settings.Prop.TickTrackerEnabled = value;
+        }
+
+        public bool TickTrackerOnlyInCos
+        {
+            get => App.Settings.Prop.TickTrackerOnlyInCos;
+            set => App.Settings.Prop.TickTrackerOnlyInCos = value;
+        }
+
         public bool ShowServerDetailsEnabled
         {
             get => App.Settings.Prop.ShowServerDetails;

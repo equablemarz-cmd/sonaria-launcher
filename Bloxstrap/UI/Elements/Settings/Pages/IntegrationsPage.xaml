@@ -15,6 +15,22 @@
     <StackPanel Margin="0,0,14,14">
         <TextBlock Text="{x:Static resources:Strings.Menu_Integrations_Description}" FontSize="14" Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
 
+        <TextBlock Text="Sonaria tools" FontSize="20" FontWeight="Medium" Margin="0,16,0,0" />
+
+        <controls:OptionControl 
+            Header="TickTracker" 
+            Description="Shows the natural heal tick countdown badge. It is downloaded once, checked against a known fingerprint, then started for you."
+            x:Name="TickTrackerOption">
+            <ui:ToggleSwitch IsChecked="{Binding TickTrackerEnabled, Mode=TwoWay}" />
+        </controls:OptionControl>
+
+        <controls:OptionControl 
+            Header="Only show TickTracker in Creatures of Sonaria" 
+            Description="Starts it when you join CoS and closes it when you leave. Turn this off to keep it open whenever Roblox is running."
+            IsEnabled="{Binding InnerContent.IsChecked, ElementName=TickTrackerOption, Mode=OneWay}">
+            <ui:ToggleSwitch IsChecked="{Binding TickTrackerOnlyInCos, Mode=TwoWay}" />
+        </controls:OptionControl>
+
         <TextBlock Text="{x:Static resources:Strings.Menu_Integrations_ActivityTracking}" FontSize="20" FontWeight="Medium" Margin="0,16,0,0" />
 
         <controls:OptionControl 

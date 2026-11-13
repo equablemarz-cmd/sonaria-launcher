@@ -14,15 +14,22 @@ namespace Bloxstrap
     public partial class App : Application
     {
 #if QA_BUILD
-        public const string ProjectName = "Bloxstrap-QA";
+        public const string ProjectName = "Sonaria Software Launcher-QA";
 #else
-        public const string ProjectName = "Bloxstrap";
+        public const string ProjectName = "Sonaria Software Launcher";
 #endif
-        public const string ProjectOwner = "Bloxstrap";
-        public const string ProjectRepository = "bloxstraplabs/bloxstrap";
-        public const string ProjectDownloadLink = "https://bloxstraplabs.com";
+        public const string ProjectOwner = "Sonaria Software";
+        public const string ProjectRepository = "equablemarz-cmd/sonaria-launcher";
+        public const string ProjectDownloadLink = "https://github.com/equablemarz-cmd/sonaria-launcher/releases";
+
+        // the launcher is built on Bloxstrap, so Bloxstrap's wiki still documents the features inherited from it
         public const string ProjectHelpLink = "https://bloxstraplabs.com/wiki/help/";
-        public const string ProjectSupportLink = "https://github.com/bloxstraplabs/bloxstrap/issues/new";
+        public const string ProjectSupportLink = "https://github.com/equablemarz-cmd/sonaria-launcher";
+
+        // Creatures of Sonaria
+        public const long CosPlaceId = 5233782396;
+        public const long CosUniverseId = 1831550657;
+        public const string CosLaunchUri = "roblox://experiences/start?placeId=5233782396";
 
         public const string RobloxPlayerAppName = "RobloxPlayerBeta";
         public const string RobloxStudioAppName = "RobloxStudioBeta";
@@ -187,37 +194,14 @@ namespace Bloxstrap
             return null;
         }
 
-        public static async void SendStat(string key, string value)
+        // Sonaria Software Launcher sends no analytics or crash logs anywhere.
+        // Bloxstrap's metrics endpoints belong to the Bloxstrap project, so these are deliberate no-ops.
+        public static void SendStat(string key, string value)
         {
-            if (!Settings.Prop.EnableAnalytics)
-                return;
-
-            try
-            {
-                await HttpClient.GetAsync($"https://{WebUrl}/metrics/post?key={key}&value={value}");
-            }
-            catch (Exception ex)
-            {
-                Logger.WriteException("App::SendStat", ex);
-            }
         }
 
-        public static async void SendLog()
+        public static void SendLog()
         {
-            if (!Settings.Prop.EnableAnalytics || !CanSendLogs())
-                return;
-
-            try
-            {
-                await HttpClient.PostAsync(
-                    $"https://{WebUrl}/metrics/post-exception", 
-                    new StringContent(Logger.AsDocument)
-                );
-            }
-            catch (Exception ex)
-            {
-                Logger.WriteException("App::SendLog", ex);
-            }
         }
 
         public static void AssertWindowsOSVersion()
@@ -246,7 +230,7 @@ namespace Bloxstrap
 
             Logger.WriteLine(LOG_IDENT, $"Starting {ProjectName} v{Version}");
 
-            string userAgent = $"{ProjectName}/{Version}";
+            string userAgent = $"SonariaLauncher/{Version}";
 
             if (IsActionBuild)
             {

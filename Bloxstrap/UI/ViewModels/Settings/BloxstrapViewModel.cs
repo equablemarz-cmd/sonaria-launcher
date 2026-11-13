@@ -42,7 +42,7 @@ namespace Bloxstrap.UI.ViewModels.Settings
 
             var dialog = new SaveFileDialog 
             { 
-                FileName = $"Bloxstrap-export-{timestamp}.zip",
+                FileName = $"SonariaLauncher-export-{timestamp}.zip",
                 Filter = $"{Strings.FileTypes_ZipArchive}|*.zip" 
             };
 

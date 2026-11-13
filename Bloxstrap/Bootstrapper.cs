@@ -74,9 +74,9 @@ namespace Bloxstrap
         public bool IsStudioLaunch => _launchMode != LaunchMode.Player;
 
         public string MutexName => $"{MutexNamePrefix}-{_launchMode}";
-        public string BackgroundUpdaterMutexName => $"Bloxstrap-BackgroundUpdater-{_launchMode}";
+        public string BackgroundUpdaterMutexName => $"SonariaLauncher-BackgroundUpdater-{_launchMode}";
 
-        public string MutexNamePrefix { get; set; } = "Bloxstrap-Bootstrapper";
+        public string MutexNamePrefix { get; set; } = "SonariaLauncher-Bootstrapper";
         public bool QuitIfMutexExists { get; set; } = false;
         #endregion
 
@@ -673,7 +673,7 @@ namespace Bloxstrap
                     autoclosePids.Add(pid);
             }
 
-            if (App.Settings.Prop.EnableActivityTracking || App.LaunchSettings.TestModeFlag.Active || autoclosePids.Any())
+            if (App.Settings.Prop.EnableActivityTracking || App.Settings.Prop.TickTrackerEnabled || App.LaunchSettings.TestModeFlag.Active || autoclosePids.Any())
             {
                 using var ipl = new InterProcessLock("Watcher", TimeSpan.FromSeconds(5));
 
@@ -770,7 +770,7 @@ namespace Bloxstrap
             // i don't like this, but there isn't much better way of doing it /shrug
             if (Process.GetProcessesByName(App.ProjectName).Length > 1)
             {
-                App.Logger.WriteLine(LOG_IDENT, $"More than one Bloxstrap instance running, aborting update check");
+                App.Logger.WriteLine(LOG_IDENT, "More than one launcher instance running, aborting update check");
                 return false;
             }
 
@@ -810,7 +810,14 @@ namespace Bloxstrap
 
                 File.Copy(Paths.Process, downloadLocation, true);
 #else
-                var asset = releaseInfo.Assets![0];
+                // releases can carry other files too, so only ever take the launcher executable
+                var asset = releaseInfo.Assets!.FirstOrDefault(x => x.Name.EndsWith(".exe", StringComparison.OrdinalIgnoreCase));
+
+                if (asset is null)
+                {
+                    App.Logger.WriteLine(LOG_IDENT, "Latest release has no launcher executable, skipping update");
+                    return false;
+                }
 
                 string downloadLocation = Path.Combine(Paths.TempUpdates, asset.Name);
 

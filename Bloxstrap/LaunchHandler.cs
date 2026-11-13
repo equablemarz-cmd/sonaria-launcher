@@ -26,6 +26,13 @@ namespace Bloxstrap
                     LaunchRoblox(LaunchMode.Player);
                     break;
 
+                case NextAction.LaunchCos:
+                    App.Logger.WriteLine(LOG_IDENT, "Opening Creatures of Sonaria");
+                    App.LaunchSettings.RobloxLaunchMode = LaunchMode.Player;
+                    App.LaunchSettings.RobloxLaunchArgs = App.CosLaunchUri;
+                    LaunchRoblox(LaunchMode.Player);
+                    break;
+
                 case NextAction.LaunchRobloxStudio:
                     App.Logger.WriteLine(LOG_IDENT, "Opening Roblox Studio");
                     LaunchRoblox(LaunchMode.Studio);
@@ -319,7 +326,7 @@ namespace Bloxstrap
             App.Logger.WriteLine(LOG_IDENT, "Initializing bootstrapper");
             App.Bootstrapper = new Bootstrapper(launchMode)
             {
-                MutexNamePrefix = "Bloxstrap-BackgroundUpdater",
+                MutexNamePrefix = "SonariaLauncher-BackgroundUpdater",
                 QuitIfMutexExists = true
             };
 
@@ -328,7 +335,7 @@ namespace Bloxstrap
             Task.Run(() =>
             {
                 App.Logger.WriteLine(LOG_IDENT, "Started event waiter");
-                using (EventWaitHandle handle = new EventWaitHandle(false, EventResetMode.AutoReset, "Bloxstrap-BackgroundUpdaterKillEvent"))
+                using (EventWaitHandle handle = new EventWaitHandle(false, EventResetMode.AutoReset, "SonariaLauncher-BackgroundUpdaterKillEvent"))
                     handle.WaitOne();
 
                 App.Logger.WriteLine(LOG_IDENT, "Received close event, killing it all!");

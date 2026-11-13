@@ -16,6 +16,8 @@ namespace Bloxstrap
 
         public readonly DiscordRichPresence? RichPresence;
 
+        public readonly Sonaria.CosIntegration? CosIntegration;
+
         public Watcher()
         {
             const string LOG_IDENT = "Watcher";
@@ -50,10 +52,17 @@ namespace Bloxstrap
             if (_watcherData is null)
                 throw new Exception("Watcher data is invalid");
 
-            if (App.Settings.Prop.EnableActivityTracking)
-            {
+            // TickTracker needs to know when Creatures of Sonaria is joined or left, which comes from the activity watcher
+            bool tickTrackerNeedsActivity = App.Settings.Prop.TickTrackerEnabled && App.Settings.Prop.TickTrackerOnlyInCos;
+
+            if (App.Settings.Prop.EnableActivityTracking || tickTrackerNeedsActivity)
                 ActivityWatcher = new(_watcherData.LogFile);
 
+            if (App.Settings.Prop.TickTrackerEnabled)
+                CosIntegration = new(ActivityWatcher);
+
+            if (ActivityWatcher is not null && App.Settings.Prop.EnableActivityTracking)
+            {
                 if (App.Settings.Prop.UseDisableAppPatch)
                 {
                     ActivityWatcher.OnAppClose += delegate
@@ -125,6 +134,7 @@ namespace Bloxstrap
         {
             App.Logger.WriteLine("Watcher::Dispose", "Disposing Watcher");
 
+            CosIntegration?.Dispose();
             _notifyIcon?.Dispose();
             RichPresence?.Dispose();
 
