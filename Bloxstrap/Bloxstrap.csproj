@@ -9,8 +9,8 @@
     <UseWPF>true</UseWPF>
     <UseWindowsForms>True</UseWindowsForms>
     <ApplicationIcon>Bloxstrap.ico</ApplicationIcon>
-    <Version>3.1.2</Version>
-    <FileVersion>3.1.2</FileVersion>
+    <Version>3.1.3</Version>
+    <FileVersion>3.1.3</FileVersion>
     <Product>Sonaria Software Launcher</Product>
     <AssemblyTitle>Sonaria Software Launcher</AssemblyTitle>
     <Company>Sonaria Software</Company>
@@ -54,8 +54,8 @@
     <EmbeddedResource Include="Resources\Mods\Cursor\From2013\ArrowFarCursor.png" />
     <EmbeddedResource Include="Resources\Mods\Cursor\Sonaria\ArrowCursor.png" />
     <EmbeddedResource Include="Resources\Mods\Cursor\Sonaria\ArrowFarCursor.png" />
-    <EmbeddedResource Include="Resources\Mods\Fonts\SourceSans3Regular.ttf" />
-    <EmbeddedResource Include="Resources\Mods\Fonts\SourceSans3Bold.ttf" />
+    <EmbeddedResource Include="Resources\Mods\Fonts\SonariaUIRegular.ttf" />
+    <EmbeddedResource Include="Resources\Mods\Fonts\SonariaUIBold.ttf" />
     <EmbeddedResource Include="Resources\Mods\Sounds\OldGetUp.mp3" />
     <EmbeddedResource Include="Resources\Mods\Sounds\OldJump.mp3" />
     <EmbeddedResource Include="Resources\Mods\Sounds\OldWalk.mp3" />

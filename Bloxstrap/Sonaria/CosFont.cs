@@ -3,9 +3,16 @@ using System.Security.Cryptography;
 namespace Bloxstrap.Sonaria
 {
     /// <summary>
-    /// The font Creatures of Sonaria's own interface uses: Source Sans, in its regular and bold weights
-    /// (Source Sans 3 by Adobe, SIL Open Font Licence). Offered as a ready-made choice for the launcher's
-    /// custom font mod, so the rest of Roblox's text matches the game. It only changes how text looks.
+    /// The font Creatures of Sonaria's own interface uses: Source Sans, in its regular and bold weights.
+    /// Offered as a ready-made choice for the launcher's custom font mod, so that Roblox's own menus and
+    /// chat match the game. It only changes how text looks.
+    ///
+    /// The files are "Sonaria UI": Source Sans 3 by Adobe (SIL Open Font Licence) drawn 12% larger, because
+    /// Source Sans is a small-bodied font and would otherwise make menus and chat smaller than Roblox's
+    /// own fonts do. See Resources/Mods/Fonts/README.md.
+    ///
+    /// Unlike a font picked by hand, it only stands in for Roblox's own interface fonts. Fonts a game
+    /// chooses for its own look (its HUD, badges, titles) are left exactly as the game made them.
     /// </summary>
     public static class CosFont
     {
@@ -14,12 +21,42 @@ namespace Bloxstrap.Sonaria
         /// </summary>
         public const string Marker = "<Creatures of Sonaria font>";
 
-        private const string RegularResource = "Mods.Fonts.SourceSans3Regular.ttf";
+        private const string RegularResource = "Mods.Fonts.SonariaUIRegular.ttf";
 
-        private const string BoldResource = "Mods.Fonts.SourceSans3Bold.ttf";
+        private const string BoldResource = "Mods.Fonts.SonariaUIBold.ttf";
 
-        // the look-alike font that version 3.1.0 put in place
-        private const string OldDefaultSha256 = "7f88db0b870a2719c0798fda0a8f19d3013f9d71fc5072713a1e846706b6de29";
+        // SHA-256 of the files earlier versions put in place as the custom font
+        private static readonly string[] OldDefaultSha256 =
+        {
+            "7f88db0b870a2719c0798fda0a8f19d3013f9d71fc5072713a1e846706b6de29", // 3.1.0: Fredoka One
+            "4644c81b86ec9caaa76b634889968ed3c4f4f52f054855933acc7c2b21e53b0f"  // 3.1.1 and 3.1.2: Source Sans 3 Regular
+        };
+
+        // The fonts Roblox sets its own menus, chat and player list in, by the name of their
+        // manifest in content\fonts\families (and by the family name inside it)
+        private static readonly string[] RobloxInterfaceFamilies =
+        {
+            "BuilderSans", "GothamSSm", "Montserrat", "Arial", "LegacyArial", "Arimo", "LegacyArimo"
+        };
+
+        /// <summary>
+        /// Whether the custom font in place is this one rather than a font picked by hand.
+        /// Only this one comes with a separate file for bold text.
+        /// </summary>
+        public static bool IsInPlace => File.Exists(Paths.CustomFont) && File.Exists(Paths.CustomFontBold);
+
+        /// <summary>
+        /// Whether this font stands in for the given font family. It only does for Roblox's own interface fonts.
+        /// </summary>
+        public static bool StandsInFor(string manifestFileName, string? familyName)
+        {
+            string fileKey = Key(Path.GetFileNameWithoutExtension(manifestFileName));
+            string nameKey = Key(familyName ?? "");
+
+            return RobloxInterfaceFamilies.Any(x => Key(x) == fileKey || Key(x) == nameKey);
+        }
+
+        private static string Key(string text) => new string(text.Where(Char.IsLetterOrDigit).ToArray()).ToLowerInvariant();
 
         /// <summary>
         /// Puts the font in place as the custom font, replacing whatever custom font is there
@@ -54,8 +91,8 @@ namespace Bloxstrap.Sonaria
         }
 
         /// <summary>
-        /// Swaps the font that version 3.1.0 installed for the real one. A font the user picked themselves,
-        /// or no custom font at all, is left exactly as it is.
+        /// Swaps a font that an earlier version installed for the current one. A font the user picked
+        /// themselves, or no custom font at all, is left exactly as it is.
         /// </summary>
         public static void ReplaceOldDefault()
         {
@@ -72,12 +109,12 @@ namespace Bloxstrap.Sonaria
                 using (var sha256 = SHA256.Create())
                     hash = Convert.ToHexString(sha256.ComputeHash(stream));
 
-                if (!String.Equals(hash, OldDefaultSha256, StringComparison.OrdinalIgnoreCase))
+                if (!OldDefaultSha256.Any(x => String.Equals(hash, x, StringComparison.OrdinalIgnoreCase)))
                     return;
 
                 Install();
 
-                App.Logger.WriteLine(LOG_IDENT, "Replaced the 3.1.0 font with the Creatures of Sonaria font");
+                App.Logger.WriteLine(LOG_IDENT, "Replaced an earlier version's font with the current Creatures of Sonaria font");
             }
             catch (Exception ex)
             {

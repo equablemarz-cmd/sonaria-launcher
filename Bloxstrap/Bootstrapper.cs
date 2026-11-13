@@ -1384,6 +1384,10 @@ namespace Bloxstrap
                 // a second file for bold text is optional. without it, every weight uses the one font
                 string boldPath = File.Exists(Paths.CustomFontBold) ? "rbxasset://fonts/CustomFontBold.ttf" : path;
 
+                // a font picked by hand replaces every font. the Creatures of Sonaria font only stands in for
+                // Roblox's own interface fonts, so that a game's own choice of fonts is left as the game made it
+                bool interfaceFontsOnly = Sonaria.CosFont.IsInPlace;
+
                 // lets make sure the content/fonts/families path exists in the version directory
                 string contentFolder = Path.Combine(_latestVersionDirectory, "content");
                 Directory.CreateDirectory(contentFolder);
@@ -1414,6 +1418,20 @@ namespace Bloxstrap
 
                     if (fontFamilyData is null || fontFamilyData.Faces is null)
                         continue;
+
+                    if (interfaceFontsOnly && !Sonaria.CosFont.StandsInFor(jsonFilename, fontFamilyData.Name))
+                    {
+                        // a manifest an earlier version wrote for this font is removed, which puts Roblox's original back
+                        if (File.Exists(modFilepath))
+                        {
+                            App.Logger.WriteLine(LOG_IDENT, $"Leaving {jsonFilename} to the game");
+
+                            Filesystem.AssertReadOnly(modFilepath);
+                            File.Delete(modFilepath);
+                        }
+
+                        continue;
+                    }
 
                     // every face keeps its weight in the manifest, so this gives the same answer whether
                     // the manifest in the version folder is Roblox's original or one already changed by this mod
