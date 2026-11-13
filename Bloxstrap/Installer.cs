@@ -307,6 +307,7 @@ namespace Bloxstrap
                 () => Directory.Delete(Paths.Versions, true),
                 () => Directory.Delete(Paths.Downloads, true),
                 () => Directory.Delete(Sonaria.ModuleManager.ModulesDirectory, true),
+                () => File.Delete(Path.Combine(Paths.Base, "LastServer.json")),
 
                 () => File.Delete(App.State.FileLocation)
             };

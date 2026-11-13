@@ -57,7 +57,6 @@ namespace Bloxstrap.Sonaria
                 string moduleDir = GetModuleDirectory(module);
                 string installDir = GetInstallDirectory(module);
                 string zipPath = Path.Combine(moduleDir, $"{module.Version}.zip.part");
-                string stagingDir = Path.Combine(moduleDir, $"{module.Version}.staging");
 
                 Directory.CreateDirectory(moduleDir);
 
@@ -82,17 +81,14 @@ namespace Bloxstrap.Sonaria
 
                 App.Logger.WriteLine(LOG_IDENT, $"{module.Id} download verified, extracting...");
 
-                if (Directory.Exists(stagingDir))
-                    Directory.Delete(stagingDir, true);
-
-                // ExtractToDirectory refuses entries that would land outside the target folder
-                ZipFile.ExtractToDirectory(zipPath, stagingDir);
-                File.Delete(zipPath);
-
+                // extract straight into place. the folder only counts as installed once the marker is written,
+                // so an interrupted extraction is simply redone next time
                 if (Directory.Exists(installDir))
                     Directory.Delete(installDir, true);
 
-                Directory.Move(stagingDir, installDir);
+                // ExtractToDirectory refuses entries that would land outside the target folder
+                ZipFile.ExtractToDirectory(zipPath, installDir);
+                File.Delete(zipPath);
 
                 if (!File.Exists(GetEntryPath(module)))
                 {

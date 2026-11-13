@@ -93,6 +93,9 @@ namespace Bloxstrap.Sonaria
                     {
                         App.Logger.WriteLine(LOG_IDENT, $"Closing (PID {_process.Id})");
                         _process.Kill();
+
+                        // give it a moment to actually go, so starting it again straight away doesn't see the old copy
+                        _process.WaitForExit(2000);
                     }
                 }
                 catch (Exception ex)

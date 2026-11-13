@@ -794,6 +794,26 @@ namespace Bloxstrap
                 return false;
             }
 
+            // releases can carry other files too, so only ever take the launcher's own executable
+            var asset = releaseInfo.Assets!.FirstOrDefault(x =>
+                x.Name.StartsWith("SonariaSoftwareLauncher-", StringComparison.OrdinalIgnoreCase)
+                && x.Name.EndsWith(".exe", StringComparison.OrdinalIgnoreCase));
+
+            if (asset is null)
+            {
+                App.Logger.WriteLine(LOG_IDENT, "Latest release has no launcher executable yet, skipping update");
+                return false;
+            }
+
+            // every release publishes the executable's SHA-256 next to it. an update is only run if it matches
+            var hashAsset = releaseInfo.Assets!.FirstOrDefault(x => x.Name.Equals(asset.Name + ".sha256", StringComparison.OrdinalIgnoreCase));
+
+            if (hashAsset is null)
+            {
+                App.Logger.WriteLine(LOG_IDENT, "Latest release has no SHA-256 file for the launcher yet, skipping update");
+                return false;
+            }
+
             // updates are never installed without asking first
             if (App.LaunchSettings.QuietFlag.Active)
             {
@@ -815,10 +835,14 @@ namespace Bloxstrap
 
             if (answer != MessageBoxResult.Yes)
             {
-                App.Logger.WriteLine(LOG_IDENT, "Update was declined");
+                App.Logger.WriteLine(LOG_IDENT, "Update was not accepted");
 
-                App.Settings.Prop.DeclinedUpdateVersion = releaseInfo.TagName;
-                App.Settings.Save();
+                // only an explicit No is remembered. closing the box just means "not now"
+                if (answer == MessageBoxResult.No)
+                {
+                    App.Settings.Prop.DeclinedUpdateVersion = releaseInfo.TagName;
+                    App.Settings.Save();
+                }
 
                 return false;
             }
@@ -842,35 +866,18 @@ namespace Bloxstrap
 
                 File.Copy(Paths.Process, downloadLocation, true);
 #else
-                // releases can carry other files too, so only ever take the launcher executable
-                var asset = releaseInfo.Assets!.FirstOrDefault(x => x.Name.EndsWith(".exe", StringComparison.OrdinalIgnoreCase));
-
-                if (asset is null)
-                {
-                    App.Logger.WriteLine(LOG_IDENT, "Latest release has no launcher executable, skipping update");
-                    return false;
-                }
-
-                // every release publishes the executable's SHA-256 next to it. an update is only run if it matches
-                var hashAsset = releaseInfo.Assets!.FirstOrDefault(x => x.Name.Equals(asset.Name + ".sha256", StringComparison.OrdinalIgnoreCase));
-
-                if (hashAsset is null)
-                {
-                    App.Logger.WriteLine(LOG_IDENT, "Latest release has no SHA-256 file for the launcher, skipping update");
-                    return false;
-                }
-
                 string downloadLocation = Path.Combine(Paths.TempUpdates, asset.Name);
 
                 Directory.CreateDirectory(Paths.TempUpdates);
 
                 App.Logger.WriteLine(LOG_IDENT, $"Downloading {releaseInfo.TagName}...");
                 
-                if (!File.Exists(downloadLocation))
+                // always fetched fresh: a leftover file from an interrupted download would only fail verification
+                using (var response = await App.HttpClient.GetAsync(asset.BrowserDownloadUrl, HttpCompletionOption.ResponseHeadersRead))
                 {
-                    var response = await App.HttpClient.GetAsync(asset.BrowserDownloadUrl);
+                    response.EnsureSuccessStatusCode();
 
-                    await using var fileStream = new FileStream(downloadLocation, FileMode.OpenOrCreate, FileAccess.Write);
+                    await using var fileStream = new FileStream(downloadLocation, FileMode.Create, FileAccess.Write, FileShare.None);
                     await response.Content.CopyToAsync(fileStream);
                 }
 
@@ -907,7 +914,16 @@ namespace Bloxstrap
                     startInfo.ArgumentList.Add(arg);
 
                 if (_launchMode == LaunchMode.Player && !startInfo.ArgumentList.Contains("-player"))
+                {
                     startInfo.ArgumentList.Add("-player");
+
+                    // a target picked in the launch menu (Launch CoS, Rejoin last server) or given by -cos isn't in the
+                    // original arguments, so hand it over explicitly or the updated launcher would just open Roblox
+                    string target = App.LaunchSettings.RobloxLaunchArgs;
+
+                    if (target.StartsWith("roblox://", StringComparison.OrdinalIgnoreCase) && !App.LaunchSettings.Args.Contains(target))
+                        startInfo.ArgumentList.Add(target);
+                }
                 else if (_launchMode == LaunchMode.Studio && !startInfo.ArgumentList.Contains("-studio"))
                     startInfo.ArgumentList.Add("-studio");
 

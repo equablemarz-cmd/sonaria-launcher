@@ -70,8 +70,10 @@ namespace Bloxstrap.Sonaria
             {
                 App.Logger.WriteLine(LOG_IDENT, "Joined Creatures of Sonaria");
 
-                // remembered so the launcher can offer to rejoin it later
-                LastServer.Save(_activityWatcher.Data);
+                // remembered so the launcher can offer to rejoin it later.
+                // private and reserved servers can't be rejoined from a link, so those are left out
+                if (_activityWatcher.Data.ServerType == ServerType.Public)
+                    LastServer.Save(_activityWatcher.Data);
             }
             else
             {
@@ -111,8 +113,17 @@ namespace Bloxstrap.Sonaria
                 if (t.IsCanceled)
                     return;
 
-                App.Logger.WriteLine("CosIntegration::OnGameLeave", "Left Creatures of Sonaria");
-                tickTracker.Stop();
+                // a join can arrive just as the wait ends, so only stop if this is still the pending stop
+                lock (_lock)
+                {
+                    if (cts.IsCancellationRequested || !ReferenceEquals(_pendingStop, cts))
+                        return;
+
+                    _pendingStop = null;
+
+                    App.Logger.WriteLine("CosIntegration::OnGameLeave", "Left Creatures of Sonaria");
+                    tickTracker.Stop();
+                }
             }, TaskScheduler.Default);
         }
 

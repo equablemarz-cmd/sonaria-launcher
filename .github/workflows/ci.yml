@@ -43,6 +43,15 @@ jobs:
       shell: pwsh
       run: |
         $exe = "SonariaSoftwareLauncher-${{ github.ref_name }}.exe"
+
+        # the tag has to match the version built into the launcher, or installed copies would be offered
+        # the same update on every launch
+        $built = (Get-Item .\Bloxstrap\bin\Release\net6.0-windows\win-x64\publish\SonariaSoftwareLauncher.exe).VersionInfo.FileVersion
+        $tagVersion = "${{ github.ref_name }}".TrimStart("v").Split("-")[0]
+        if (-not $built.StartsWith($tagVersion + ".") -and $built -ne $tagVersion) {
+          throw "Tag ${{ github.ref_name }} does not match the launcher's built version $built"
+        }
+
         Copy-Item .\Bloxstrap\bin\Release\net6.0-windows\win-x64\publish\SonariaSoftwareLauncher.exe $exe
         $hash = (Get-FileHash $exe -Algorithm SHA256).Hash.ToLower()
         # the launcher's updater downloads this file and refuses an update that doesn't match it
@@ -59,4 +68,5 @@ jobs:
         name: Sonaria Software Launcher ${{ github.ref_name }}
         body_path: release-notes.md
         append_body: true
+        fail_on_unmatched_files: true
         prerelease: ${{ contains(github.ref_name, '-') }}

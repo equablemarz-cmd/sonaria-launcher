@@ -183,6 +183,15 @@ namespace Bloxstrap
                     return null;
                 }
 
+                // this repository also publishes module packages as releases. anything that isn't tagged like
+                // a launcher version (v1.2.3) is ignored, because a tag that can't be read as a version
+                // must never be able to stop the launcher from starting
+                if (releaseInfo.TagName is null || !Regex.IsMatch(releaseInfo.TagName, @"^v[0-9]+\.[0-9]+\.[0-9]+$"))
+                {
+                    Logger.WriteLine(LOG_IDENT, $"Latest release '{releaseInfo.TagName}' is not a launcher version, ignoring it");
+                    return null;
+                }
+
                 return releaseInfo;
             }
             catch (Exception ex)

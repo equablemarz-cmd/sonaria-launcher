@@ -61,7 +61,8 @@ namespace Bloxstrap.Sonaria
                 bool hasBom = bytes.Length >= 3 && bytes[0] == 0xEF && bytes[1] == 0xBB && bytes[2] == 0xBF;
                 int offset = hasBom ? 3 : 0;
 
-                string text = new UTF8Encoding(false).GetString(bytes, offset, bytes.Length - offset);
+                // if the file isn't valid UTF-8, leave it completely alone rather than risk damaging it
+                string text = new UTF8Encoding(false, true).GetString(bytes, offset, bytes.Length - offset);
 
                 Match match = FramerateCapPattern.Match(text);
 
@@ -78,7 +79,11 @@ namespace Bloxstrap.Sonaria
 
                 string updated = FramerateCapPattern.Replace(text, m => m.Groups[1].Value + value + m.Groups[3].Value, 1);
 
-                File.WriteAllText(FileLocation, updated, new UTF8Encoding(hasBom));
+                // write the new copy beside the original and swap it in, so the file is never left half-written
+                string tempLocation = FileLocation + ".sonaria-tmp";
+
+                File.WriteAllText(tempLocation, updated, new UTF8Encoding(hasBom));
+                File.Move(tempLocation, FileLocation, true);
 
                 App.Logger.WriteLine(LOG_IDENT, $"Set Roblox's maximum frame rate to {value} (was {match.Groups[2].Value})");
             }
