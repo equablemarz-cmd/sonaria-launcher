@@ -80,6 +80,13 @@
                     </StackPanel>
                 </ui:CardAction>
 
+                <ui:CardAction Margin="0,8,0,0" Icon="ClipboardLink24" Command="{Binding CopyServerLinkCommand, Mode=OneTime}" Visibility="{Binding CopyServerLinkVisibility, Mode=OneTime}">
+                    <StackPanel>
+                        <TextBlock FontSize="14" Text="{Binding CopyServerLinkTitle, Mode=OneWay}" />
+                        <TextBlock Margin="0,2,0,0" FontSize="12" Text="Copies a link to the CoS server you're in now. Paste it in #find-a-fight so people can join you." TextWrapping="Wrap" Padding="0,0,16,0" Foreground="{DynamicResource TextFillColorTertiaryBrush}" />
+                    </StackPanel>
+                </ui:CardAction>
+
                 <ui:CardAction Margin="0,8,0,0" Icon="ArrowRight12" TabIndex="0" Command="{Binding LaunchRobloxCommand, Mode=OneTime}">
                     <StackPanel>
                         <TextBlock FontSize="14" Text="{x:Static resources:Strings.LaunchMenu_LaunchRoblox}" />

@@ -41,6 +41,13 @@ namespace Bloxstrap
         public const string DiscordServerName = "Kosers of Sonaria";
         public const string DiscordServerInvite = "https://discord.gg/koser";
 
+        /// <summary>
+        /// A small page in this repository's GitHub Pages site. Discord won't make roblox:// links clickable and
+        /// Roblox's own https game links ignore the server ID, so a copied server link points here and the page
+        /// opens Roblox into that Creatures of Sonaria server. It only ever builds a CoS join link.
+        /// </summary>
+        public const string ServerLinkPage = "https://equablemarz-cmd.github.io/sonaria-launcher/join/";
+
         public const string RobloxPlayerAppName = "RobloxPlayerBeta";
         public const string RobloxStudioAppName = "RobloxStudioBeta";
 

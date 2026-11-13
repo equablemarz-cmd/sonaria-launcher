@@ -3,6 +3,7 @@
 A PvP-focused Roblox launcher for Creatures of Sonaria, by Sonaria Software.
 
 - **Launch Creatures of Sonaria** in one click, or rejoin the server you were last in.
+- **Copy current server link.** While you're in a public CoS server, open the launcher and copy a link to that server. Anyone who clicks it joins you, which makes it easy to ask for help in #find-a-fight.
 - **TickTracker built in.** The natural heal tick countdown starts when you join CoS and closes when you leave. Nothing extra to install.
 - **Combat alert.** If a fight starts while you are tabbed out, the TickTracker badge shows an alert icon with a pulsing glow until you click back into the game, and a connected controller buzzes.
 - **Frame rate limit.** Sets Roblox's maximum frame rate for you before it starts.

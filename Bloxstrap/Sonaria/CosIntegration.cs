@@ -98,6 +98,8 @@ namespace Bloxstrap.Sonaria
 
             _inCos = false;
 
+            LastServer.MarkLeft();
+
             if (_tickTracker is null || !App.Settings.Prop.TickTrackerOnlyInCos)
                 return;
 

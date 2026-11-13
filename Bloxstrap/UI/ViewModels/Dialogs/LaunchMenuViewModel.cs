@@ -22,6 +22,29 @@ namespace Bloxstrap.UI.ViewModels.Installer
 
         public Visibility RejoinVisibility => Sonaria.LastServer.Load() is null ? Visibility.Collapsed : Visibility.Visible;
 
+        private const string CopyServerLinkDefaultTitle = "Copy current server link";
+
+        // worked out once when the menu opens
+        private readonly string? _currentServerLink = Sonaria.LastServer.GetCurrentServerLink();
+
+        private string _copyServerLinkTitle = CopyServerLinkDefaultTitle;
+
+        private int _copyServerLinkResetVersion = 0;
+
+        public ICommand CopyServerLinkCommand => new RelayCommand(CopyServerLink);
+
+        public Visibility CopyServerLinkVisibility => _currentServerLink is null ? Visibility.Collapsed : Visibility.Visible;
+
+        public string CopyServerLinkTitle
+        {
+            get => _copyServerLinkTitle;
+            private set
+            {
+                _copyServerLinkTitle = value;
+                OnPropertyChanged(nameof(CopyServerLinkTitle));
+            }
+        }
+
         public event EventHandler? ThemeChanged;
 
         /// <summary>
@@ -43,6 +66,36 @@ namespace Bloxstrap.UI.ViewModels.Installer
                 OnPropertyChanged(nameof(NoticeText));
                 OnPropertyChanged(nameof(NoticeVisibility));
                 OnPropertyChanged(nameof(NoticeLinkVisibility));
+            });
+        }
+
+        private void CopyServerLink()
+        {
+            const string LOG_IDENT = "LaunchMenuViewModel::CopyServerLink";
+
+            if (_currentServerLink is null)
+                return;
+
+            try
+            {
+                // the clipboard can be briefly held by another app, so try a few times
+                Clipboard.SetDataObject(_currentServerLink, true, 5, 100);
+                CopyServerLinkTitle = "Copied! Paste it in #find-a-fight";
+            }
+            catch (Exception ex)
+            {
+                App.Logger.WriteLine(LOG_IDENT, "Could not copy the server link");
+                App.Logger.WriteException(LOG_IDENT, ex);
+                CopyServerLinkTitle = "Couldn't copy, try again";
+            }
+
+            int version = Interlocked.Increment(ref _copyServerLinkResetVersion);
+
+            Task.Delay(TimeSpan.FromSeconds(3)).ContinueWith(_ =>
+            {
+                // only the latest click puts the title back
+                if (version == _copyServerLinkResetVersion)
+                    CopyServerLinkTitle = CopyServerLinkDefaultTitle;
             });
         }
 
