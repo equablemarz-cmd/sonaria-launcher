@@ -76,18 +76,31 @@ namespace Bloxstrap.UI.ViewModels.Installer
             if (_currentServerLink is null)
                 return;
 
-            try
+            // the clipboard can be briefly held by another app, so try a few times
+            bool copied = false;
+
+            for (int attempt = 1; attempt <= 5 && !copied; attempt++)
             {
-                // the clipboard can be briefly held by another app, so try a few times
-                Clipboard.SetDataObject(_currentServerLink, true, 5, 100);
-                CopyServerLinkTitle = "Copied! Paste it in #find-a-fight";
+                try
+                {
+                    Clipboard.SetDataObject(_currentServerLink, true);
+                    copied = true;
+                }
+                catch (Exception ex)
+                {
+                    if (attempt == 5)
+                    {
+                        App.Logger.WriteLine(LOG_IDENT, "Could not copy the server link");
+                        App.Logger.WriteException(LOG_IDENT, ex);
+                    }
+                    else
+                    {
+                        Thread.Sleep(100);
+                    }
+                }
             }
-            catch (Exception ex)
-            {
-                App.Logger.WriteLine(LOG_IDENT, "Could not copy the server link");
-                App.Logger.WriteException(LOG_IDENT, ex);
-                CopyServerLinkTitle = "Couldn't copy, try again";
-            }
+
+            CopyServerLinkTitle = copied ? "Copied! Paste it in #find-a-fight" : "Couldn't copy, try again";
 
             int version = Interlocked.Increment(ref _copyServerLinkResetVersion);
 
