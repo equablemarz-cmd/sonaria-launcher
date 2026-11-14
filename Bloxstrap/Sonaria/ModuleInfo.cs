@@ -34,5 +34,10 @@ namespace Bloxstrap.Sonaria
         /// Used to avoid starting a second copy when the user already has it open.
         /// </summary>
         public string SingleInstanceMutex { get; init; } = "";
+
+        /// <summary>
+        /// Settings handed to the tool as environment values each time it is started, if it takes any
+        /// </summary>
+        public Func<IReadOnlyDictionary<string, string>>? Environment { get; init; }
     }
 }

@@ -9,11 +9,17 @@ namespace Bloxstrap.Sonaria
         {
             Id = "TickTracker",
             Name = "TickTracker",
-            Version = "4.1.3",
-            DownloadUrl = $"https://github.com/{App.ProjectRepository}/releases/download/ticktracker-4.1.3/TickTracker-4.1.3.zip",
-            Sha256 = "09f3233ef8b04a0b216f7519e09a3ff5c5bf94cd2c3f06a852654fa73635c372",
+            Version = "4.2.0",
+            DownloadUrl = $"https://github.com/{App.ProjectRepository}/releases/download/ticktracker-4.2.0/TickTracker-4.2.0.zip",
+            Sha256 = "8fff65b4f197ad3b21332befbdeedb5cfb479f67489ab41718bd04312d530d30",
             EntryPoint = @"TickTracker\TickTracker.exe",
-            SingleInstanceMutex = "TickTracker_single_instance"
+            SingleInstanceMutex = "TickTracker_single_instance",
+
+            // TickTracker.exe only starts the app when given no arguments, so its settings go in as environment values
+            Environment = () => new Dictionary<string, string>
+            {
+                ["TICKTRACKER_ALWAYS_SHOW"] = App.Settings.Prop.TickTrackerAutoHide ? "0" : "1"
+            }
         };
     }
 }
