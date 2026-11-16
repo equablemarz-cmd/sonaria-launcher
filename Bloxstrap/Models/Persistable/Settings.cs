@@ -40,7 +40,6 @@ namespace Bloxstrap.Models.Persistable
         // sonaria tools
         public bool TickTrackerEnabled { get; set; } = true;
         public bool TickTrackerOnlyInCos { get; set; } = true;
-        public bool TickTrackerAutoHide { get; set; } = true;
 
         /// <summary>
         /// Roblox's own maximum frame rate, set before each launch. 0 leaves Roblox's setting alone.

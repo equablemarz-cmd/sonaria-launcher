@@ -96,12 +96,6 @@ namespace Bloxstrap.UI.ViewModels.Settings
             set => App.Settings.Prop.TickTrackerOnlyInCos = value;
         }
 
-        public bool TickTrackerAutoHide
-        {
-            get => App.Settings.Prop.TickTrackerAutoHide;
-            set => App.Settings.Prop.TickTrackerAutoHide = value;
-        }
-
         public bool ShowServerDetailsEnabled
         {
             get => App.Settings.Prop.ShowServerDetails;

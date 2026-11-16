@@ -59,20 +59,12 @@ namespace Bloxstrap.Sonaria
 
                     _process?.Dispose();
 
-                    var startInfo = new ProcessStartInfo
+                    _process = Process.Start(new ProcessStartInfo
                     {
                         FileName = path,
                         WorkingDirectory = Path.GetDirectoryName(path)!,
                         UseShellExecute = false
-                    };
-
-                    if (_module.Environment is not null)
-                    {
-                        foreach (var pair in _module.Environment())
-                            startInfo.Environment[pair.Key] = pair.Value;
-                    }
-
-                    _process = Process.Start(startInfo);
+                    });
 
                     App.Logger.WriteLine(LOG_IDENT, $"Started (PID {_process?.Id})");
                 }

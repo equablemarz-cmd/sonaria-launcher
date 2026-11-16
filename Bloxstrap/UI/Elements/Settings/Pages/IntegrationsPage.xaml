@@ -19,7 +19,7 @@
 
         <controls:OptionControl 
             Header="TickTracker" 
-            Description="Shows the natural heal tick countdown badge, and can alert you on the badge if a fight starts while you are tabbed out. It is downloaded once, checked against a known fingerprint, then started for you. Right-click the badge for its own options."
+            Description="Shows the natural heal tick countdown badge, and alerts you on the badge if a fight starts while you are tabbed out. It is downloaded once, checked against a known fingerprint, then started for you. Right-click the badge for its own options."
             x:Name="TickTrackerOption">
             <ui:ToggleSwitch IsChecked="{Binding TickTrackerEnabled, Mode=TwoWay}" />
         </controls:OptionControl>
@@ -29,13 +29,6 @@
             Description="Starts it when you join CoS and closes it when you leave. Turn this off to keep it open whenever Roblox is running."
             IsEnabled="{Binding InnerContent.IsChecked, ElementName=TickTrackerOption, Mode=OneWay}">
             <ui:ToggleSwitch IsChecked="{Binding TickTrackerOnlyInCos, Mode=TwoWay}" />
-        </controls:OptionControl>
-
-        <controls:OptionControl 
-            Header="Hide TickTracker when you're not in Roblox" 
-            Description="The badge disappears whenever another window is in front (Discord, YouTube, your desktop) and comes back as soon as you click into the game. The countdown keeps running while it's hidden. The combat alert shows on the badge, so it only works with this turned off. Applies the next time TickTracker starts."
-            IsEnabled="{Binding InnerContent.IsChecked, ElementName=TickTrackerOption, Mode=OneWay}">
-            <ui:ToggleSwitch IsChecked="{Binding TickTrackerAutoHide, Mode=TwoWay}" />
         </controls:OptionControl>
 
         <TextBlock Text="{x:Static resources:Strings.Menu_Integrations_ActivityTracking}" FontSize="20" FontWeight="Medium" Margin="0,16,0,0" />
