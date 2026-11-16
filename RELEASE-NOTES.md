@@ -1,5 +1,5 @@
-TickTracker 4.1.3, packaged as a module for Sonaria Software Launcher. The launcher downloads this file itself and checks it against a SHA-256 built into the launcher, so there is nothing to install by hand.
+TickTracker 4.2.0, packaged as a module for Sonaria Software Launcher. The launcher downloads this file itself and checks it against a SHA-256 built into the launcher, so there is nothing to install by hand.
 
-Fixed since 4.1.2: heal ticks were missed whenever the game showed the health number on the bar (for example "3036 (61%)"). The number covers the middle of the bar, so TickTracker either lost the bar or read it as stuck at about 41%. It now reads the bar from the rows the number does not cover. It also no longer lets a wrongly sized "bar" it once found distort the next reading.
+New since 4.1.3: the badge hides whenever Roblox isn't the window you're using (Discord, YouTube, the desktop and so on) and comes straight back when you click into the game, without taking focus off Roblox. The countdown keeps running while it's hidden. The launcher's "Hide TickTracker when you're not in Roblox" setting (on by default) controls it; turned off, the badge stays on screen and the combat alert works as before. While the badge hides, the combat alert is off, since it has nowhere to show.
 
-SHA-256 of `TickTracker-4.1.3.zip`: `09f3233ef8b04a0b216f7519e09a3ff5c5bf94cd2c3f06a852654fa73635c372`
+SHA-256 of `TickTracker-4.2.0.zip`: `a2ada02d80defbfeb05543b5d62441e4471938fc44d5b6c3ba352d5d8f313384`
