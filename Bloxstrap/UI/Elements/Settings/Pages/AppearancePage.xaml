@@ -7,6 +7,7 @@
       xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
       xmlns:controls="clr-namespace:Bloxstrap.UI.Elements.Controls"
       xmlns:resources="clr-namespace:Bloxstrap.Resources"
+      xmlns:vms="clr-namespace:Bloxstrap.UI.ViewModels.Settings"
       mc:Ignorable="d"
       d:DesignHeight="900" d:DesignWidth="800"
       Title="AppearancePage"
@@ -24,6 +25,28 @@
                 </ComboBox.ItemTemplate>
             </ComboBox>
         </controls:OptionControl>
+
+        <StackPanel>
+            <StackPanel.DataContext>
+                <vms:SonariaViewModel />
+            </StackPanel.DataContext>
+
+            <controls:OptionControl
+                Header="Launch menu background"
+                Description="A picture or GIF of your own, shown dimmed behind the launch menu. Nothing is shown until you pick one.">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Margin="0,0,12,0" MaxWidth="200" VerticalAlignment="Center" Text="{Binding BackgroundName, Mode=OneWay}" TextTrimming="CharacterEllipsis" Visibility="{Binding BackgroundChosenVisibility, Mode=OneWay}" />
+                    <ui:Button Icon="Image24" Content="Choose" Command="{Binding ChooseBackgroundCommand, Mode=OneTime}" />
+                    <ui:Button Margin="8,0,0,0" Icon="Delete16" Content="Remove" Appearance="Danger" Command="{Binding RemoveBackgroundCommand, Mode=OneTime}" Visibility="{Binding BackgroundChosenVisibility, Mode=OneWay}" />
+                </StackPanel>
+            </controls:OptionControl>
+
+            <controls:OptionControl
+                Header="Music controls on the launch menu"
+                Description="Shows the song playing in Spotify, your browser or any other app, with play, pause and skip. It only appears while something is playing. The launcher doesn't play music itself.">
+                <ui:ToggleSwitch IsChecked="{Binding MusicControlsEnabled, Mode=TwoWay}" />
+            </controls:OptionControl>
+        </StackPanel>
 
         <controls:OptionControl
             Header="{x:Static resources:Strings.Menu_Appearance_Language_Title}"
@@ -180,5 +203,37 @@
                 <TextBlock Grid.Row="3" Grid.Column="1" Margin="0,4,0,0" FontSize="12" Text="{x:Static resources:Strings.Menu_Appearance_CustomisationIcon_Description}" TextWrapping="Wrap" Foreground="{DynamicResource TextFillColorTertiaryBrush}" />
             </Grid>
         </ui:CardExpander>
+
+        <TextBlock Text="Roblox extras" FontSize="20" FontWeight="Medium" Margin="0,16,0,0" />
+
+        <StackPanel>
+            <StackPanel.DataContext>
+                <vms:ModsViewModel />
+            </StackPanel.DataContext>
+
+            <controls:OptionControl 
+                Header="{x:Static resources:Strings.Menu_Mods_Presets_OldAvatarEditor_Title}" 
+                Description="{x:Static resources:Strings.Menu_Mods_Presets_OldAvatarEditor_Description}">
+                <ui:ToggleSwitch IsChecked="{Binding OldAvatarBackgroundTask.NewState, Mode=TwoWay}" />
+            </controls:OptionControl>
+
+            <controls:OptionControl 
+                Header="{x:Static resources:Strings.Menu_Mods_Presets_OldCharacterSounds_Title}" 
+                Description="{x:Static resources:Strings.Menu_Mods_Presets_OldCharacterSounds_Description}">
+                <ui:ToggleSwitch IsChecked="{Binding OldCharacterSoundsTask.NewState, Mode=TwoWay}" />
+            </controls:OptionControl>
+
+            <controls:OptionControl 
+                Header="{x:Static resources:Strings.Menu_Mods_Presets_EmojiType_Title}" 
+                Description="{x:Static resources:Strings.Menu_Mods_Presets_EmojiType_Description}">
+                <ComboBox Margin="5,0,0,0" Padding="10,5,10,5" Width="220" ItemsSource="{Binding EmojiFontTask.Selections, Mode=OneTime}" Text="{Binding EmojiFontTask.NewState, Mode=TwoWay}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Path=., Converter={StaticResource EnumNameConverter}}" />
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </controls:OptionControl>
+        </StackPanel>
     </StackPanel>
 </ui:UiPage>

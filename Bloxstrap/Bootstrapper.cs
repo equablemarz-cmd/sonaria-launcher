@@ -561,11 +561,54 @@ namespace Bloxstrap
             }
         }
 
+        /// <summary>
+        /// Starts the VPN app the user picked in settings, ahead of Roblox so it has a head start on connecting.
+        /// The launcher only opens the app: connecting is up to the app's own "connect when opened" setting.
+        /// </summary>
+        /// <returns>The app's process ID, or 0 if nothing was started</returns>
+        private int StartVpnApp()
+        {
+            const string LOG_IDENT = "Bootstrapper::StartVpnApp";
+
+            string location = App.Settings.Prop.VpnAppLocation;
+
+            if (String.IsNullOrEmpty(location) || _launchMode != LaunchMode.Player)
+                return 0;
+
+            try
+            {
+                if (!File.Exists(location))
+                {
+                    App.Logger.WriteLine(LOG_IDENT, "The chosen VPN app is no longer where it was, so it wasn't started");
+                    return 0;
+                }
+
+                var process = Process.Start(new ProcessStartInfo
+                {
+                    FileName = location,
+                    WorkingDirectory = Path.GetDirectoryName(location),
+                    UseShellExecute = true
+                });
+
+                App.Logger.WriteLine(LOG_IDENT, $"Started the VPN app (PID {process?.Id})");
+
+                return process?.Id ?? 0;
+            }
+            catch (Exception ex)
+            {
+                App.Logger.WriteLine(LOG_IDENT, "Could not start the VPN app");
+                App.Logger.WriteException(LOG_IDENT, ex);
+                return 0;
+            }
+        }
+
         private void StartRoblox()
         {
             const string LOG_IDENT = "Bootstrapper::StartRoblox";
 
             SetStatus(Strings.Bootstrapper_Status_Starting);
+
+            int vpnPid = StartVpnApp();
 
             var startInfo = new ProcessStartInfo()
             {
@@ -650,6 +693,9 @@ namespace Bloxstrap
                 return;
 
             var autoclosePids = new List<int>();
+
+            if (vpnPid != 0 && App.Settings.Prop.VpnAutoClose)
+                autoclosePids.Add(vpnPid);
 
             // launch custom integrations now
             foreach (var integration in App.Settings.Prop.CustomIntegrations)

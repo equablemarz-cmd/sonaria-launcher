@@ -7,6 +7,7 @@
       xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
       xmlns:resources="clr-namespace:Bloxstrap.Resources"
       xmlns:controls="clr-namespace:Bloxstrap.UI.Elements.Controls"
+      xmlns:vms="clr-namespace:Bloxstrap.UI.ViewModels.Settings"
       mc:Ignorable="d"
       d:DesignHeight="1500" d:DesignWidth="800"
       Title="FastFlagsPage"
@@ -21,7 +22,7 @@
             <ui:ToggleSwitch IsChecked="{Binding UseFastFlagManager, Mode=TwoWay}" />
         </controls:OptionControl>
 
-        <TextBlock Text="Performance" FontSize="20" FontWeight="Medium" Margin="0,16,0,0" />
+        <TextBlock Text="Frame rate" FontSize="20" FontWeight="Medium" Margin="0,16,0,0" />
 
         <controls:OptionControl 
             Header="FPS boost" 
@@ -34,6 +35,20 @@
             Description="Sets Roblox's maximum frame rate every time it starts. Roblox supports up to 240. Higher works, but Roblox says the game can become unstable.">
             <ComboBox Margin="5,0,0,0" Padding="10,5,10,5" Width="240" ItemsSource="{Binding FramerateLimits, Mode=OneTime}" SelectedItem="{Binding SelectedFramerateLimit, Mode=TwoWay}" />
         </controls:OptionControl>
+
+        <TextBlock Text="Roblox updates" FontSize="20" FontWeight="Medium" Margin="0,16,0,0" />
+
+        <StackPanel>
+            <StackPanel.DataContext>
+                <vms:BehaviourViewModel />
+            </StackPanel.DataContext>
+
+            <controls:OptionControl 
+                Header="{x:Static resources:Strings.Menu_Behaviour_BackgroundUpdates_Title}"
+                Description="{x:Static resources:Strings.Menu_Behaviour_BackgroundUpdates_Description}">
+                <ui:ToggleSwitch IsChecked="{Binding BackgroundUpdates, Mode=TwoWay}" />
+            </controls:OptionControl>
+        </StackPanel>
 
         <TextBlock Text="{x:Static resources:Strings.Common_Presets}" FontSize="20" FontWeight="Medium" Margin="0,16,0,0" />
 

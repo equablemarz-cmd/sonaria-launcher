@@ -46,6 +46,22 @@ namespace Bloxstrap.Models.Persistable
         /// </summary>
         public int FramerateLimit { get; set; } = 320;
 
+        /// <summary>
+        /// A picture or GIF the user chose to show behind the launch menu. Empty for none.
+        /// </summary>
+        public string LaunchMenuBackground { get; set; } = "";
+
+        /// <summary>
+        /// Shows what is playing on the PC, with play, pause and skip, on the launch menu
+        /// </summary>
+        public bool ShowMusicControls { get; set; } = true;
+
+        /// <summary>
+        /// The user's own VPN app, started just before Roblox. Empty for none.
+        /// </summary>
+        public string VpnAppLocation { get; set; } = "";
+        public bool VpnAutoClose { get; set; } = true;
+
         // mod preset configuration
         public bool UseDisableAppPatch { get; set; } = false;
     }

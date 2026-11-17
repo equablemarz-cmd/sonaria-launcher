@@ -38,6 +38,59 @@ namespace Bloxstrap.UI.Elements.Dialogs
             DataContext = viewModel;
 
             InitializeComponent();
+
+            Closed += (_, _) => viewModel.StopMusic();
+
+            LoadBackground();
+        }
+
+        /// <summary>
+        /// Shows the picture or GIF the user chose in settings, dimmed, behind the menu. Nothing is shown if none was chosen.
+        /// </summary>
+        private void LoadBackground()
+        {
+            const string LOG_IDENT = "LaunchMenuDialog::LoadBackground";
+
+            string location = App.Settings.Prop.LaunchMenuBackground;
+
+            if (String.IsNullOrEmpty(location))
+                return;
+
+            try
+            {
+                if (!System.IO.File.Exists(location))
+                {
+                    App.Logger.WriteLine(LOG_IDENT, "The chosen background is no longer where it was, so none is shown");
+                    return;
+                }
+
+                var uri = new Uri(location, UriKind.Absolute);
+
+                if (location.EndsWith(".gif", StringComparison.OrdinalIgnoreCase))
+                {
+                    XamlAnimatedGif.AnimationBehavior.SetRepeatBehavior(BackgroundImage, System.Windows.Media.Animation.RepeatBehavior.Forever);
+                    XamlAnimatedGif.AnimationBehavior.SetSourceUri(BackgroundImage, uri);
+                }
+                else
+                {
+                    // read fully now, so the file isn't held open while the menu is up
+                    var bitmap = new BitmapImage();
+                    bitmap.BeginInit();
+                    bitmap.CacheOption = BitmapCacheOption.OnLoad;
+                    bitmap.UriSource = uri;
+                    bitmap.EndInit();
+                    bitmap.Freeze();
+
+                    BackgroundImage.Source = bitmap;
+                }
+
+                BackgroundCanvas.Visibility = Visibility.Visible;
+            }
+            catch (Exception ex)
+            {
+                App.Logger.WriteLine(LOG_IDENT, "Could not show the chosen background");
+                App.Logger.WriteException(LOG_IDENT, ex);
+            }
         }
     }
 }

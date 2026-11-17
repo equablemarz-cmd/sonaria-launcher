@@ -38,9 +38,9 @@ When a new version is released the launcher asks before installing it. If you sa
 
 **Roblox will not download or install.** Check your internet connection, then check that your antivirus or firewall is not blocking the launcher. Try again after a restart. If it still fails, uninstall the launcher, reinstall it and launch again.
 
-**Roblox fails to launch or closes straight away.** Turn FPS boost off and set the frame rate limit to 240 or lower under Settings > Engine settings, then try again. Roblox does not officially support frame rates above 240. If that does not help, remove any mods under Settings > Mods and try again.
+**Roblox fails to launch or closes straight away.** Turn FPS boost off and set the frame rate limit to 240 or lower under Settings > Performance, then try again. Roblox does not officially support frame rates above 240. If that does not help, remove any mods (Settings > Launcher > Advanced > open the mods folder) and try again.
 
-**TickTracker does not appear.** It is downloaded the first time you join Creatures of Sonaria, which needs an internet connection and can take a moment. Check that it is switched on under Settings > Integrations. If its badge shows a heart instead of a number while your health bar is on screen, right-click the badge and choose Save debug report.
+**TickTracker does not appear.** It is downloaded the first time you join Creatures of Sonaria, which needs an internet connection and can take a moment. Check that it is switched on under Settings > Creatures of Sonaria. If its badge shows a heart instead of a number while your health bar is on screen, right-click the badge and choose Save debug report.
 
 **Discord is not showing what you are playing.** Rich Presence needs activity tracking switched on, and the Discord desktop app installed and running. In Discord, check that sharing your activity is enabled in its privacy settings.
 
@@ -72,6 +72,12 @@ The mods folder mirrors Roblox's own folder layout. Any file you put there repla
 Roblox's pointer is the Sonaria cursor by default; set "Mouse cursor" under Settings > Mods to Default to get Roblox's own back. A game that sets its own pointer still shows its own.
 
 Roblox's own menus and chat use the Creatures of Sonaria font by default: Source Sans, the font the game's own interface uses, with its regular and bold weights, drawn a little larger so chat is easier to read. Fonts a game picked for itself, such as its HUD, titles and notification badges, are left exactly as the game made them. TickTracker's badge uses the same font. A font you choose yourself with "Choose font" still replaces the font everywhere. "Remove custom font" under Settings > Mods puts Roblox's own fonts back, and "Use the Creatures of Sonaria font" brings it back.
+
+### Launch menu background, music controls and VPN
+
+- **Background** (Settings > Look): a picture or GIF of your own, shown dimmed behind the launch menu. Nothing is shown until you pick one.
+- **Music controls** (Settings > Look): the launch menu shows the song Windows says is playing in Spotify, your browser or any other app, with play, pause and skip. The launcher plays nothing itself and sends nothing anywhere. Needs Windows 10 version 1809 or newer.
+- **VPN** (Settings > Launcher): pick the VPN app you already use and the launcher opens it just before Roblox. No VPN is built in, and connecting is up to the app's own settings.
 
 ### Notices and off switches
 

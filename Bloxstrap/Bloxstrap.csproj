@@ -4,13 +4,15 @@
     <OutputType>WinExe</OutputType>
     <AssemblyName>SonariaSoftwareLauncher</AssemblyName>
     <RootNamespace>Bloxstrap</RootNamespace>
-    <TargetFramework>net6.0-windows</TargetFramework>
+    <!-- The Windows 10 target is what lets the launch menu ask Windows what is playing (Sonaria/NowPlaying.cs) -->
+    <TargetFramework>net6.0-windows10.0.19041.0</TargetFramework>
+    <SupportedOSPlatformVersion>10.0.17763.0</SupportedOSPlatformVersion>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
     <UseWindowsForms>True</UseWindowsForms>
     <ApplicationIcon>Bloxstrap.ico</ApplicationIcon>
-    <Version>3.1.9</Version>
-    <FileVersion>3.1.9</FileVersion>
+    <Version>3.2.0</Version>
+    <FileVersion>3.2.0</FileVersion>
     <Product>Sonaria Software Launcher</Product>
     <AssemblyTitle>Sonaria Software Launcher</AssemblyTitle>
     <Company>Sonaria Software</Company>

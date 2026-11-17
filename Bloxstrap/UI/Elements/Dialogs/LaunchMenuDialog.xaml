@@ -24,6 +24,11 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
+        <!-- The user's own picture or GIF, dimmed. A Canvas takes up no room of its own, so a big picture can't stretch the window. -->
+        <Canvas x:Name="BackgroundCanvas" Grid.Row="0" Grid.RowSpan="2" ClipToBounds="True" IsHitTestVisible="False" Visibility="Collapsed">
+            <Image x:Name="BackgroundImage" Width="{Binding ActualWidth, ElementName=BackgroundCanvas}" Height="{Binding ActualHeight, ElementName=BackgroundCanvas}" Stretch="UniformToFill" Opacity="0.3" RenderOptions.BitmapScalingMode="LowQuality" />
+        </Canvas>
+
         <ui:TitleBar Grid.Row="0" Grid.ColumnSpan="2" Padding="8" ShowMinimize="False" ShowMaximize="False" Title="Sonaria Software Launcher" Icon="pack://application:,,,/Bloxstrap.ico" CanMaximize="False" KeyboardNavigation.TabNavigation="None" />
 
         <Grid Grid.Row="1">
@@ -36,6 +41,7 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 
                 <Grid Grid.Row="0" HorizontalAlignment="Center" Margin="0,0,0,32">
@@ -56,6 +62,19 @@
                     <ui:Hyperlink Icon="PaintBrush24" Content="Switch dark / light" Command="{Binding ToggleThemeCommand, Mode=OneTime}" HorizontalAlignment="Center" />
                     <ui:Hyperlink Icon="Code24" Content="{x:Static resources:Strings.Menu_About_GithubRepository}" NavigateUri="https://github.com/equablemarz-cmd/sonaria-launcher" HorizontalAlignment="Center" />
                 </StackPanel>
+
+                <!-- What is playing on the PC. Hidden unless something is, or if it is switched off in settings. -->
+                <Border Grid.Row="2" Margin="24,24,24,0" Padding="12,10,12,6" CornerRadius="4" Background="{DynamicResource ControlFillColorDefaultBrush}" BorderBrush="{DynamicResource ControlElevationBorderBrush}" BorderThickness="1" Visibility="{Binding MusicVisibility, Mode=OneWay}">
+                    <StackPanel>
+                        <TextBlock FontSize="13" FontWeight="Medium" Text="{Binding MusicTitle, Mode=OneWay}" TextTrimming="CharacterEllipsis" TextAlignment="Center" />
+                        <TextBlock Margin="0,2,0,0" FontSize="12" Text="{Binding MusicArtist, Mode=OneWay}" TextTrimming="CharacterEllipsis" TextAlignment="Center" Foreground="{DynamicResource TextFillColorTertiaryBrush}" Visibility="{Binding MusicArtistVisibility, Mode=OneWay}" />
+                        <StackPanel Margin="0,6,0,0" Orientation="Horizontal" HorizontalAlignment="Center">
+                            <ui:Button Icon="Previous24" Appearance="Transparent" BorderThickness="0" Padding="10,6" ToolTip="Previous" Command="{Binding MusicPreviousCommand, Mode=OneTime}" />
+                            <ui:Button Icon="{Binding MusicPlayPauseIcon, Mode=OneWay}" Appearance="Transparent" BorderThickness="0" Padding="10,6" ToolTip="Play or pause" Command="{Binding MusicPlayPauseCommand, Mode=OneTime}" />
+                            <ui:Button Icon="Next24" Appearance="Transparent" BorderThickness="0" Padding="10,6" ToolTip="Next" Command="{Binding MusicNextCommand, Mode=OneTime}" />
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
             </Grid>
 
             <StackPanel Grid.Column="1" Margin="16">

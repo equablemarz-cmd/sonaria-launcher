@@ -9,6 +9,14 @@ namespace Bloxstrap.UI.ViewModels.Settings
 {
     public class IntegrationsViewModel : NotifyPropertyChangedViewModel
     {
+        private static IntegrationsViewModel? _shared;
+
+        /// <summary>
+        /// These options are spread over more than one settings page, so the pages share one copy.
+        /// That way switching game detection off on one page greys out what depends on it on another.
+        /// </summary>
+        public static IntegrationsViewModel Shared => _shared ??= new IntegrationsViewModel();
+
         public ICommand AddIntegrationCommand => new RelayCommand(AddIntegration);
 
         public ICommand DeleteIntegrationCommand => new RelayCommand(DeleteIntegration);
@@ -81,6 +89,8 @@ namespace Bloxstrap.UI.ViewModels.Settings
                     OnPropertyChanged(nameof(DiscordActivityEnabled));
                     OnPropertyChanged(nameof(DiscordActivityJoinEnabled));
                 }
+
+                OnPropertyChanged(nameof(ActivityTrackingEnabled));
             }
         }
 
@@ -116,6 +126,8 @@ namespace Bloxstrap.UI.ViewModels.Settings
                     OnPropertyChanged(nameof(DiscordActivityJoinEnabled));
                     OnPropertyChanged(nameof(DiscordAccountOnProfile));
                 }
+
+                OnPropertyChanged(nameof(DiscordActivityEnabled));
             }
         }
 
