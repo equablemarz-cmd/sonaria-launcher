@@ -8,8 +8,7 @@ using CommunityToolkit.Mvvm.Input;
 namespace Bloxstrap.UI.ViewModels.Settings
 {
     /// <summary>
-    /// Settings Sonaria Software Launcher adds itself: the launch menu's background and music controls,
-    /// and starting the user's own VPN app with Roblox
+    /// Settings Sonaria Software Launcher adds itself: the launch menu's background
     /// </summary>
     public class SonariaViewModel : NotifyPropertyChangedViewModel
     {
@@ -20,33 +19,11 @@ namespace Bloxstrap.UI.ViewModels.Settings
 
         public ICommand RemoveBackgroundCommand => new RelayCommand(RemoveBackground);
 
-        public ICommand ChooseVpnAppCommand => new RelayCommand(ChooseVpnApp);
-
-        public ICommand RemoveVpnAppCommand => new RelayCommand(RemoveVpnApp);
-
         public bool HasBackground => !String.IsNullOrEmpty(App.Settings.Prop.LaunchMenuBackground);
 
         public string BackgroundName => HasBackground ? Path.GetFileName(App.Settings.Prop.LaunchMenuBackground) : "";
 
         public Visibility BackgroundChosenVisibility => HasBackground ? Visibility.Visible : Visibility.Collapsed;
-
-        public bool MusicControlsEnabled
-        {
-            get => App.Settings.Prop.ShowMusicControls;
-            set => App.Settings.Prop.ShowMusicControls = value;
-        }
-
-        public bool HasVpnApp => !String.IsNullOrEmpty(App.Settings.Prop.VpnAppLocation);
-
-        public string VpnAppName => HasVpnApp ? Path.GetFileName(App.Settings.Prop.VpnAppLocation) : "";
-
-        public Visibility VpnAppChosenVisibility => HasVpnApp ? Visibility.Visible : Visibility.Collapsed;
-
-        public bool VpnAutoClose
-        {
-            get => App.Settings.Prop.VpnAutoClose;
-            set => App.Settings.Prop.VpnAutoClose = value;
-        }
 
         private void ChooseBackground()
         {
@@ -87,33 +64,6 @@ namespace Bloxstrap.UI.ViewModels.Settings
             OnPropertyChanged(nameof(HasBackground));
             OnPropertyChanged(nameof(BackgroundName));
             OnPropertyChanged(nameof(BackgroundChosenVisibility));
-        }
-
-        private void ChooseVpnApp()
-        {
-            var dialog = new OpenFileDialog
-            {
-                Filter = "Apps|*.exe"
-            };
-
-            if (dialog.ShowDialog() != true)
-                return;
-
-            App.Settings.Prop.VpnAppLocation = dialog.FileName;
-            VpnAppChanged();
-        }
-
-        private void RemoveVpnApp()
-        {
-            App.Settings.Prop.VpnAppLocation = "";
-            VpnAppChanged();
-        }
-
-        private void VpnAppChanged()
-        {
-            OnPropertyChanged(nameof(HasVpnApp));
-            OnPropertyChanged(nameof(VpnAppName));
-            OnPropertyChanged(nameof(VpnAppChosenVisibility));
         }
     }
 }

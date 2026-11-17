@@ -13,7 +13,7 @@
       Title="BloxstrapPage"
       Scrollable="True">
     <StackPanel Margin="0,0,14,14">
-        <TextBlock Text="Updates, repairing Roblox, your VPN, shortcuts and the rarely needed options." FontSize="14" TextWrapping="Wrap" Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
+        <TextBlock Text="Updates, repairing Roblox, shortcuts and the rarely needed options." FontSize="14" TextWrapping="Wrap" Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
 
         <TextBlock Text="Updates" FontSize="20" FontWeight="Medium" Margin="0,16,0,0" />
 
@@ -49,31 +49,6 @@
                     </Style>
                 </controls:OptionControl.Style>
                 <ui:ToggleSwitch IsChecked="{Binding ForceRobloxReinstallation, Mode=TwoWay}" />
-            </controls:OptionControl>
-        </StackPanel>
-
-        <StackPanel>
-            <StackPanel.DataContext>
-                <vms:SonariaViewModel />
-            </StackPanel.DataContext>
-
-            <TextBlock Text="VPN" FontSize="20" FontWeight="Medium" Margin="0,16,0,0" />
-
-            <controls:OptionControl 
-                Header="Start your VPN with Roblox" 
-                Description="Pick the VPN app you already use and the launcher opens it just before Roblox starts. It only opens the app, so set the app itself to connect when it opens. No VPN is built into the launcher.">
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Margin="0,0,12,0" MaxWidth="200" VerticalAlignment="Center" Text="{Binding VpnAppName, Mode=OneWay}" TextTrimming="CharacterEllipsis" Visibility="{Binding VpnAppChosenVisibility, Mode=OneWay}" />
-                    <ui:Button Icon="Folder24" Content="Choose app" Command="{Binding ChooseVpnAppCommand, Mode=OneTime}" />
-                    <ui:Button Margin="8,0,0,0" Icon="Delete16" Content="Remove" Appearance="Danger" Command="{Binding RemoveVpnAppCommand, Mode=OneTime}" Visibility="{Binding VpnAppChosenVisibility, Mode=OneWay}" />
-                </StackPanel>
-            </controls:OptionControl>
-
-            <controls:OptionControl 
-                Header="Close the VPN app when Roblox closes" 
-                Description="Asks the app to close, the same as pressing its X. Many VPN apps stay connected in the tray when closed that way."
-                IsEnabled="{Binding HasVpnApp, Mode=OneWay}">
-                <ui:ToggleSwitch IsChecked="{Binding VpnAutoClose, Mode=TwoWay}" />
             </controls:OptionControl>
         </StackPanel>
 

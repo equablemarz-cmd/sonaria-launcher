@@ -39,8 +39,6 @@ namespace Bloxstrap.UI.Elements.Dialogs
 
             InitializeComponent();
 
-            Closed += (_, _) => viewModel.StopMusic();
-
             LoadBackground();
         }
 

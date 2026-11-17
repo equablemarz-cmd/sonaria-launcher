@@ -73,11 +73,9 @@ Roblox's pointer is the Sonaria cursor by default; set "Mouse cursor" under Sett
 
 Roblox's own menus and chat use the Creatures of Sonaria font by default: Source Sans, the font the game's own interface uses, with its regular and bold weights, drawn a little larger so chat is easier to read. Fonts a game picked for itself, such as its HUD, titles and notification badges, are left exactly as the game made them. TickTracker's badge uses the same font. A font you choose yourself with "Choose font" still replaces the font everywhere. "Remove custom font" under Settings > Mods puts Roblox's own fonts back, and "Use the Creatures of Sonaria font" brings it back.
 
-### Launch menu background, music controls and VPN
+### Launch menu background
 
-- **Background** (Settings > Look): a picture or GIF of your own, shown dimmed behind the launch menu. Nothing is shown until you pick one.
-- **Music controls** (Settings > Look): the launch menu shows the song Windows says is playing in Spotify, your browser or any other app, with play, pause and skip. The launcher plays nothing itself and sends nothing anywhere. Needs Windows 10 version 1809 or newer.
-- **VPN** (Settings > Launcher): pick the VPN app you already use and the launcher opens it just before Roblox. No VPN is built in, and connecting is up to the app's own settings.
+Under Settings > Look you can pick a picture or GIF of your own. It is shown dimmed behind the launch menu, and nothing is shown until you pick one.
 
 ### Notices and off switches
 

@@ -1,6 +1,5 @@
 ﻿using System.Windows;
 using System.Windows.Input;
-using System.Windows.Threading;
 using CommunityToolkit.Mvvm.Input;
 
 using Bloxstrap.UI.Elements.About;
@@ -59,40 +58,8 @@ namespace Bloxstrap.UI.ViewModels.Installer
 
         public ICommand OpenNoticeLinkCommand => new RelayCommand(OpenNoticeLink);
 
-        // music controls: what Windows says is playing, shown only while there is something to show
-        private readonly DispatcherTimer? _musicTimer;
-
-        private Sonaria.NowPlaying.Track? _track;
-
-        private bool _musicRefreshing = false;
-
-        public Visibility MusicVisibility => _track is null ? Visibility.Collapsed : Visibility.Visible;
-
-        public string MusicTitle => _track?.Title ?? "";
-
-        public string MusicArtist => _track?.Artist ?? "";
-
-        public Visibility MusicArtistVisibility => String.IsNullOrEmpty(_track?.Artist) ? Visibility.Collapsed : Visibility.Visible;
-
-        public Wpf.Ui.Common.SymbolRegular MusicPlayPauseIcon => _track?.IsPlaying == true ? Wpf.Ui.Common.SymbolRegular.Pause24 : Wpf.Ui.Common.SymbolRegular.Play24;
-
-        public ICommand MusicPreviousCommand => new RelayCommand(() => SendMusic(Sonaria.NowPlaying.Previous));
-
-        public ICommand MusicPlayPauseCommand => new RelayCommand(() => SendMusic(Sonaria.NowPlaying.TogglePlayPause));
-
-        public ICommand MusicNextCommand => new RelayCommand(() => SendMusic(Sonaria.NowPlaying.Next));
-
         public LaunchMenuViewModel()
         {
-            if (App.Settings.Prop.ShowMusicControls)
-            {
-                _musicTimer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(2) };
-                _musicTimer.Tick += (_, _) => RefreshMusic();
-                _musicTimer.Start();
-
-                RefreshMusic();
-            }
-
             // shows the saved notice straight away, then swaps in the current one if it has changed
             Sonaria.RemoteConfig.Refresh().ContinueWith(_ =>
             {
@@ -143,59 +110,6 @@ namespace Bloxstrap.UI.ViewModels.Installer
                 if (version == _copyServerLinkResetVersion)
                     CopyServerLinkTitle = CopyServerLinkDefaultTitle;
             });
-        }
-
-        /// <summary>
-        /// Called when the launch menu closes, so nothing keeps asking Windows what is playing
-        /// </summary>
-        public void StopMusic() => _musicTimer?.Stop();
-
-        private async void RefreshMusic()
-        {
-            if (_musicRefreshing)
-                return;
-
-            _musicRefreshing = true;
-
-            try
-            {
-                var track = await Sonaria.NowPlaying.GetCurrent();
-
-                if (track != _track)
-                {
-                    _track = track;
-
-                    OnPropertyChanged(nameof(MusicVisibility));
-                    OnPropertyChanged(nameof(MusicTitle));
-                    OnPropertyChanged(nameof(MusicArtist));
-                    OnPropertyChanged(nameof(MusicArtistVisibility));
-                    OnPropertyChanged(nameof(MusicPlayPauseIcon));
-                }
-            }
-            catch (Exception)
-            {
-                // GetCurrent already reports its own failures; the controls just stay as they were
-            }
-            finally
-            {
-                _musicRefreshing = false;
-            }
-        }
-
-        private async void SendMusic(Func<Task> action)
-        {
-            try
-            {
-                await action();
-
-                // give the music app a moment to act before asking what it's doing now
-                await Task.Delay(300);
-            }
-            catch (Exception)
-            {
-            }
-
-            RefreshMusic();
         }
 
         private void OpenNoticeLink()

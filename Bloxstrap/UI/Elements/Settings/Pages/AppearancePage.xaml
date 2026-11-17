@@ -40,12 +40,6 @@
                     <ui:Button Margin="8,0,0,0" Icon="Delete16" Content="Remove" Appearance="Danger" Command="{Binding RemoveBackgroundCommand, Mode=OneTime}" Visibility="{Binding BackgroundChosenVisibility, Mode=OneWay}" />
                 </StackPanel>
             </controls:OptionControl>
-
-            <controls:OptionControl
-                Header="Music controls on the launch menu"
-                Description="Shows the song playing in Spotify, your browser or any other app, with play, pause and skip. It only appears while something is playing. The launcher doesn't play music itself.">
-                <ui:ToggleSwitch IsChecked="{Binding MusicControlsEnabled, Mode=TwoWay}" />
-            </controls:OptionControl>
         </StackPanel>
 
         <controls:OptionControl

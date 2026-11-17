@@ -34,7 +34,7 @@ jobs:
       uses: actions/upload-artifact@v7
       with:
         name: SonariaSoftwareLauncher (${{ github.sha }})
-        path: .\Bloxstrap\bin\Release\net6.0-windows10.0.19041.0\win-x64\publish\*
+        path: .\Bloxstrap\bin\Release\net6.0-windows\win-x64\publish\*
 
     # Tags starting with v publish a release. A tag with a dash in it (v3.0.0-test1) is published as a pre-release,
     # which the launcher's own updater ignores.
@@ -46,13 +46,13 @@ jobs:
 
         # the tag has to match the version built into the launcher, or installed copies would be offered
         # the same update on every launch
-        $built = (Get-Item .\Bloxstrap\bin\Release\net6.0-windows10.0.19041.0\win-x64\publish\SonariaSoftwareLauncher.exe).VersionInfo.FileVersion
+        $built = (Get-Item .\Bloxstrap\bin\Release\net6.0-windows\win-x64\publish\SonariaSoftwareLauncher.exe).VersionInfo.FileVersion
         $tagVersion = "${{ github.ref_name }}".TrimStart("v").Split("-")[0]
         if (-not $built.StartsWith($tagVersion + ".") -and $built -ne $tagVersion) {
           throw "Tag ${{ github.ref_name }} does not match the launcher's built version $built"
         }
 
-        Copy-Item .\Bloxstrap\bin\Release\net6.0-windows10.0.19041.0\win-x64\publish\SonariaSoftwareLauncher.exe $exe
+        Copy-Item .\Bloxstrap\bin\Release\net6.0-windows\win-x64\publish\SonariaSoftwareLauncher.exe $exe
         $hash = (Get-FileHash $exe -Algorithm SHA256).Hash.ToLower()
         # the launcher's updater downloads this file and refuses an update that doesn't match it
         "$hash  $exe" | Out-File "$exe.sha256" -Encoding ascii
