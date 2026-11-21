@@ -74,7 +74,7 @@
                 <ui:CardAction Icon="Play28" TabIndex="0" Command="{Binding LaunchCosCommand, Mode=OneTime}">
                     <StackPanel>
                         <TextBlock FontSize="14" FontWeight="Medium" Text="Launch Creatures of Sonaria" />
-                        <TextBlock Margin="0,2,0,0" FontSize="12" Text="Joins CoS straight away. TickTracker starts with it." Padding="0,0,16,0" Foreground="{DynamicResource TextFillColorTertiaryBrush}" />
+                        <TextBlock Margin="0,2,0,0" FontSize="12" Text="Joins CoS straight away. TickTracker and the Damage Counter start with it." Padding="0,0,16,0" Foreground="{DynamicResource TextFillColorTertiaryBrush}" />
                     </StackPanel>
                 </ui:CardAction>
 

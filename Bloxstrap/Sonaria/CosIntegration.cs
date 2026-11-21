@@ -17,6 +17,9 @@ namespace Bloxstrap.Sonaria
 
         private readonly ModuleRunner? _tickTracker;
 
+        // the Damage Counter is only ever open inside Creatures of Sonaria
+        private readonly ModuleRunner? _damageCounter;
+
         private readonly object _lock = new();
 
         private CancellationTokenSource? _pendingStop;
@@ -33,6 +36,17 @@ namespace Bloxstrap.Sonaria
                 _tickTracker = new(ModuleCatalog.TickTracker);
             else if (App.Settings.Prop.TickTrackerEnabled)
                 App.Logger.WriteLine(LOG_IDENT, "TickTracker is switched off by Sonaria Software for now");
+
+            if (App.Settings.Prop.DamageCounterEnabled && RemoteConfig.DamageCounterAllowed && _activityWatcher is not null)
+            {
+                _damageCounter = new(ModuleCatalog.DamageCounter);
+                App.Logger.WriteLine(LOG_IDENT, "Damage Counter will start when Creatures of Sonaria is joined");
+                _damageCounter.Prepare();
+            }
+            else if (App.Settings.Prop.DamageCounterEnabled && !RemoteConfig.DamageCounterAllowed)
+            {
+                App.Logger.WriteLine(LOG_IDENT, "Damage Counter is switched off by Sonaria Software for now");
+            }
 
             if (_activityWatcher is not null)
             {
@@ -82,6 +96,14 @@ namespace Bloxstrap.Sonaria
                 App.Logger.WriteLine(LOG_IDENT, "Joined a different experience");
             }
 
+            if (_damageCounter is not null)
+            {
+                if (_inCos)
+                    _damageCounter.Start();
+                else
+                    _damageCounter.Stop();
+            }
+
             if (_tickTracker is null || !App.Settings.Prop.TickTrackerOnlyInCos)
                 return;
 
@@ -100,10 +122,18 @@ namespace Bloxstrap.Sonaria
 
             LastServer.MarkLeft();
 
-            if (_tickTracker is null || !App.Settings.Prop.TickTrackerOnlyInCos)
+            // the tools that close when you leave CoS
+            var leaving = new List<ModuleRunner>();
+
+            if (_tickTracker is not null && App.Settings.Prop.TickTrackerOnlyInCos)
+                leaving.Add(_tickTracker);
+
+            if (_damageCounter is not null)
+                leaving.Add(_damageCounter);
+
+            if (leaving.Count == 0)
                 return;
 
-            ModuleRunner tickTracker = _tickTracker;
             CancellationTokenSource cts = new();
 
             lock (_lock)
@@ -126,7 +156,9 @@ namespace Bloxstrap.Sonaria
                     _pendingStop = null;
 
                     App.Logger.WriteLine("CosIntegration::OnGameLeave", "Left Creatures of Sonaria");
-                    tickTracker.Stop();
+
+                    foreach (var runner in leaving)
+                        runner.Stop();
                 }
             }, TaskScheduler.Default);
         }
@@ -150,6 +182,7 @@ namespace Bloxstrap.Sonaria
 
             CancelPendingStop();
             _tickTracker?.Dispose();
+            _damageCounter?.Dispose();
 
             GC.SuppressFinalize(this);
         }

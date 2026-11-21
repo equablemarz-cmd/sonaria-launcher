@@ -106,6 +106,12 @@ namespace Bloxstrap.UI.ViewModels.Settings
             set => App.Settings.Prop.TickTrackerOnlyInCos = value;
         }
 
+        public bool DamageCounterEnabled
+        {
+            get => App.Settings.Prop.DamageCounterEnabled;
+            set => App.Settings.Prop.DamageCounterEnabled = value;
+        }
+
         public bool ShowServerDetailsEnabled
         {
             get => App.Settings.Prop.ShowServerDetails;

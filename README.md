@@ -5,6 +5,7 @@ A PvP-focused Roblox launcher for Creatures of Sonaria, by Sonaria Software.
 - **Launch Creatures of Sonaria** in one click, or rejoin the server you were last in.
 - **Copy current server link.** While you're in a public CoS server, open the launcher and copy a link to that server. Anyone who clicks it joins you, which makes it easy to ask for help in #find-a-fight.
 - **TickTracker built in.** The natural heal tick countdown starts when you join CoS and closes when you leave. Nothing extra to install.
+- **Damage Counter.** A panel drawn like the game's own currency panels that adds up the damage you deal in the current fight. It only counts while the combat timer is up and goes back to 0 when the fight ends. It starts when you join CoS and closes when you leave.
 - **Combat alert.** If a fight starts while you are tabbed out, the TickTracker badge shows an alert icon with a pulsing glow until you click back into the game, and a connected controller buzzes.
 - **Frame rate limit.** Sets Roblox's maximum frame rate for you before it starts.
 - **FPS boost.** One switch for the speed-ups Roblox still allows launchers to set.
@@ -27,6 +28,7 @@ Each release lists the SHA-256 of its executable, and includes it as a `.sha256`
 The launcher only starts Roblox and works with Roblox's own local files: its settings, its logs and its mod folder. It never reads, writes or injects into the Roblox game process.
 
 - **TickTracker** only looks. It reads your health bar off the screen, like you do. For the combat alert, while you are tabbed out it asks Windows for a picture of the Roblox window, the same way OBS window capture and Discord screen share do, and looks for the game's combat timer in it. It never reads the game's memory, never presses keys or clicks for you, and the pictures stay on your PC.
+- **The Damage Counter** only looks too. While you are in Creatures of Sonaria it asks Windows for a picture of the Roblox window, the same way OBS window capture does, finds the red damage numbers you deal and reads them. It never reads the game's memory, never presses keys or clicks for you, and the pictures stay on your PC.
 - **Engine settings** can only be the ones on Roblox's official allowlist. Roblox ignores everything else.
 - **Nothing about you is collected.** There is no analytics or crash reporting. The only things that use the internet are downloading Roblox, checking this repository for updates, tools and notices, Discord status (it goes only to the Discord app on your own PC and can be switched off), and server details if you turn that on.
 
@@ -79,7 +81,7 @@ Under Settings > Look you can pick a picture or GIF of your own. It is shown dim
 
 ### Notices and off switches
 
-Each time it opens, the launcher reads one small file from the [`config` branch](https://github.com/equablemarz-cmd/sonaria-launcher/tree/config) of this repository. Sonaria Software can use it to show a notice on the launch menu, or to switch off TickTracker, frame rates above 240, engine settings, or the font and cursor mods for everyone, for example if a game update breaks one of them. It cannot turn anything on, and the launch menu always names what has been switched off.
+Each time it opens, the launcher reads one small file from the [`config` branch](https://github.com/equablemarz-cmd/sonaria-launcher/tree/config) of this repository. Sonaria Software can use it to show a notice on the launch menu, or to switch off TickTracker, the Damage Counter, frame rates above 240, engine settings, or the font and cursor mods for everyone, for example if a game update breaks one of them. It cannot turn anything on, and the launch menu always names what has been switched off.
 
 ## Building
 

@@ -18,6 +18,12 @@ namespace Bloxstrap.Sonaria
         public bool TickTracker { get; set; }
 
         /// <summary>
+        /// Stops the Damage Counter from being downloaded or started
+        /// </summary>
+        [JsonPropertyName("damageCounter")]
+        public bool DamageCounter { get; set; }
+
+        /// <summary>
         /// Holds the frame rate limit at the highest value Roblox itself supports
         /// </summary>
         [JsonPropertyName("fpsAbove240")]
@@ -102,6 +108,8 @@ namespace Bloxstrap.Sonaria
 
         public static bool TickTrackerAllowed => !_switches.TickTracker;
 
+        public static bool DamageCounterAllowed => !_switches.DamageCounter;
+
         /// <summary>
         /// A plain line naming whatever has been switched off, so it is never done silently. Empty when nothing is.
         /// </summary>
@@ -113,6 +121,9 @@ namespace Bloxstrap.Sonaria
 
                 if (_switches.TickTracker)
                     names.Add("TickTracker");
+
+                if (_switches.DamageCounter)
+                    names.Add("the Damage Counter");
 
                 if (_switches.FpsAbove240)
                     names.Add($"frame rates above {RobloxSettings.HighestSupported}");

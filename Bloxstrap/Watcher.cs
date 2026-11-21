@@ -55,8 +55,10 @@ namespace Bloxstrap
             // TickTracker needs to know when Creatures of Sonaria is joined or left, which comes from the activity watcher
             bool tickTrackerOn = App.Settings.Prop.TickTrackerEnabled && Sonaria.RemoteConfig.TickTrackerAllowed;
             bool tickTrackerNeedsActivity = tickTrackerOn && App.Settings.Prop.TickTrackerOnlyInCos;
+            // the Damage Counter only ever runs inside Creatures of Sonaria, so it always needs to know where you are
+            bool damageCounterOn = App.Settings.Prop.DamageCounterEnabled && Sonaria.RemoteConfig.DamageCounterAllowed;
 
-            if (App.Settings.Prop.EnableActivityTracking || tickTrackerNeedsActivity)
+            if (App.Settings.Prop.EnableActivityTracking || tickTrackerNeedsActivity || damageCounterOn)
                 ActivityWatcher = new(_watcherData.LogFile);
 
             if (ActivityWatcher is not null || tickTrackerOn)
