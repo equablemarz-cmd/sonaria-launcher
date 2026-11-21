@@ -20,9 +20,9 @@ namespace Bloxstrap.Sonaria
         {
             Id = "DamageCounter",
             Name = "Damage Counter",
-            Version = "1.0.2",
-            DownloadUrl = $"https://github.com/{App.ProjectRepository}/releases/download/damagecounter-1.0.2/DamageCounter-1.0.2.zip",
-            Sha256 = "fcaf905242437dfe7ed9af209c461f10a3a73c5f256e5d8b22258c742ab00c78",
+            Version = "1.0.3",
+            DownloadUrl = $"https://github.com/{App.ProjectRepository}/releases/download/damagecounter-1.0.3/DamageCounter-1.0.3.zip",
+            Sha256 = "7fc820781fb29524a9b20d382f022795862afd7cd00326216fbfec006d637c9d",
             EntryPoint = @"DamageCounter\DamageCounter.exe",
             SingleInstanceMutex = "DamageCounter_single_instance"
         };
