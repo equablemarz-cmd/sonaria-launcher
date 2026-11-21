@@ -1,7 +1,11 @@
-Damage Counter 1.0.0, packaged as a module for Sonaria Software Launcher. The launcher downloads this file itself and checks it against a SHA-256 built into the launcher, so there is nothing to install by hand.
+Damage Counter 1.0.1, packaged as a module for Sonaria Software Launcher. The launcher downloads this file itself and checks it against a SHA-256 built into the launcher, so there is nothing to install by hand.
 
-A panel drawn like Creatures of Sonaria's own currency panels that adds up the damage you deal in the current fight. It only counts while the combat timer is up and goes back to 0 when the fight ends. It only looks: it takes a picture of the Roblox window the way OBS window capture does and reads your upright red damage numbers. It never reads or changes the game's memory and never sends keys or clicks.
+New since 1.0.0: the total moves sooner after a hit.
+- It looks at the game 20 times a second instead of 10, and drops back to 10 by itself if the PC is taking too long over each look, so it never weighs on a slower computer.
+- A hit counts as soon as it has been seen clearly a couple of times (about 0.15 seconds), instead of three times at 10 a second.
+- The total rolls up to its new value faster.
+- A number cut off by something in front of it (a "21" out of a "210") is no longer counted as a hit of its own.
 
-First version: trained on recorded fights, so expect some misses (overlapping fast hits, hits over red creatures).
+Checked against every fight in the top 5 fliers video: it now catches about a quarter more hits than 1.0.0, mostly fast repeated hits it used to merge.
 
-SHA-256 of `DamageCounter-1.0.0.zip`: `a18eaaa239e51d9d912e35925f6141eba610fc45acbfca7a5087c3ac0713f6ba`
+SHA-256 of `DamageCounter-1.0.1.zip`: `d7ea5bc961576fdb91858435125afbce6f05b73d67c2e0ad33d6a20e454f243f`
