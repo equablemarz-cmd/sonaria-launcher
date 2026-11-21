@@ -1,5 +1,7 @@
-TickTracker 4.1.5, packaged as a module for Sonaria Software Launcher. The launcher downloads this file itself and checks it against a SHA-256 built into the launcher, so there is nothing to install by hand.
+Damage Counter 1.0.0, packaged as a module for Sonaria Software Launcher. The launcher downloads this file itself and checks it against a SHA-256 built into the launcher, so there is nothing to install by hand.
 
-New since 4.1.4: the countdown stays in step. TickTracker learns the gap between natural ticks, and heals that weren't natural ticks (or a green menu button taken for a health bar) could teach it a gap the game never uses, such as 14.2 seconds. It then kept that gap, even after a restart, so the countdown ran out most of a second early on every tick and drifted further for every tick it couldn't see. Now the gap can only be one the game can produce (15 seconds, a little longer on a busy server), a wrong saved one is thrown away, the gap is measured across every tick seen instead of one at a time, and a countdown that stops matching the ticks corrects itself within a tick or two. Reading a different bar than before (the creature menu's Play button looks like a health bar) is a fresh start. Each heal it sees, and what it made of it, is written to its log. This is 4.1.4 plus that fix; it does not include 4.2.0's badge hiding.
+A panel drawn like Creatures of Sonaria's own currency panels that adds up the damage you deal in the current fight. It only counts while the combat timer is up and goes back to 0 when the fight ends. It only looks: it takes a picture of the Roblox window the way OBS window capture does and reads your upright red damage numbers. It never reads or changes the game's memory and never sends keys or clicks.
 
-SHA-256 of `TickTracker-4.1.5.zip`: `47ec0b092060b9823928f2dceb9d7a8102b99c5866840fefc33ca05a24ee5722`
+First version: trained on recorded fights, so expect some misses (overlapping fast hits, hits over red creatures).
+
+SHA-256 of `DamageCounter-1.0.0.zip`: `a18eaaa239e51d9d912e35925f6141eba610fc45acbfca7a5087c3ac0713f6ba`

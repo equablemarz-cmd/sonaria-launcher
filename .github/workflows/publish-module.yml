@@ -1,10 +1,11 @@
 name: Publish module
 
-# A release is created by hand on GitHub with a tag like ticktracker-4.0.1 pointing at this branch.
-# This then checks the package and attaches it to that release.
+# Pushing a tag like ticktracker-4.0.1 or damagecounter-1.0.0 that points at this branch
+# checks the package against its recorded SHA-256 and attaches it to that tag's release
+# (creating the release if it isn't there yet).
 on:
   push:
-    tags: ['ticktracker-*']
+    tags: ['ticktracker-*', 'damagecounter-*']
 
 jobs:
   publish:
@@ -17,7 +18,14 @@ jobs:
     - uses: actions/checkout@v6
 
     - name: Work out the package name from the tag
-      run: echo "PACKAGE=TickTracker-${GITHUB_REF_NAME#ticktracker-}.zip" >> "$GITHUB_ENV"
+      run: |
+        case "$GITHUB_REF_NAME" in
+          ticktracker-*)   echo "PACKAGE=TickTracker-${GITHUB_REF_NAME#ticktracker-}.zip" >> "$GITHUB_ENV"
+                           echo "TITLE=TickTracker ${GITHUB_REF_NAME#ticktracker-} (module package)" >> "$GITHUB_ENV" ;;
+          damagecounter-*) echo "PACKAGE=DamageCounter-${GITHUB_REF_NAME#damagecounter-}.zip" >> "$GITHUB_ENV"
+                           echo "TITLE=Damage Counter ${GITHUB_REF_NAME#damagecounter-} (module package)" >> "$GITHUB_ENV" ;;
+          *) echo "Unknown module tag $GITHUB_REF_NAME"; exit 1 ;;
+        esac
 
     - name: Check the package against its recorded SHA-256
       run: |
@@ -29,5 +37,7 @@ jobs:
       uses: softprops/action-gh-release@v2
       with:
         files: ${{ env.PACKAGE }}
+        name: ${{ env.TITLE }}
+        body_path: RELEASE-NOTES.md
         prerelease: true
         fail_on_unmatched_files: true
