@@ -17,4 +17,5 @@ Every package is pinned in the launcher by its SHA-256 (see `Bloxstrap/Sonaria/M
 | `TickTracker-4.1.5.zip` | 4.1.5 | `47ec0b092060b9823928f2dceb9d7a8102b99c5866840fefc33ca05a24ee5722` |
 | `DamageCounter-1.0.0.zip` (in this branch's history) | 1.0.0 | `a18eaaa239e51d9d912e35925f6141eba610fc45acbfca7a5087c3ac0713f6ba` |
 | `DamageCounter-1.0.1.zip` (in this branch's history, withdrawn: made the game flash white on some PCs) | 1.0.1 | `d7ea5bc961576fdb91858435125afbce6f05b73d67c2e0ad33d6a20e454f243f` |
-| `DamageCounter-1.0.2.zip` | 1.0.2 | `fcaf905242437dfe7ed9af209c461f10a3a73c5f256e5d8b22258c742ab00c78` |
+| `DamageCounter-1.0.2.zip` (in this branch's history) | 1.0.2 | `fcaf905242437dfe7ed9af209c461f10a3a73c5f256e5d8b22258c742ab00c78` |
+| `DamageCounter-1.0.3.zip` | 1.0.3 | `7fc820781fb29524a9b20d382f022795862afd7cd00326216fbfec006d637c9d` |
