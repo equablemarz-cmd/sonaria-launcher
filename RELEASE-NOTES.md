@@ -1,5 +1,10 @@
-TickTracker 4.1.6, packaged as a module for Sonaria Software Launcher. The launcher downloads this file itself and checks it against a SHA-256 built into the launcher, so there is nothing to install by hand.
+TickTracker 4.1.7, packaged as a module for Sonaria Software Launcher. The launcher downloads this file itself and checks it against a SHA-256 built into the launcher, so there is nothing to install by hand.
 
-Fixes flashing. TickTracker reads your health bar off the screen 60 times a second. Up to 4.1.5 each of those screen copies also asked Windows to redraw every see-through window (TickTracker's own badge, the Damage Counter, game overlays), which made the game and its menus flicker on some PCs. 4.1.6 takes a plain copy of the screen's pixels instead, so Windows has nothing extra to redraw. Reading speed, the countdown and the combat alert are unchanged.
+Fixes the flashing that was left after 4.1.6. The combat alert looks at Roblox whenever another window is in front, even when Roblox is still in plain view (for example after clicking into Discord on another monitor, or onto the Damage Counter). It did that by asking Roblox to draw itself again (PrintWindow), which can make the game flash white. Now:
+- if Roblox's top-right corner is in view, it reads the screen there with a plain copy, like the health bar
+- only if Roblox is completely hidden behind other windows does it ask Roblox for a picture, where a flash can't be seen
+- if Roblox is partly covered and the corner is hidden, it skips that look
 
-SHA-256 of `TickTracker-4.1.6.zip`: `d8685857be1ed2f23cd6480cc989736df8a364b62adff60d820c8e6b4eeaa9a9`
+With Windows HDR on, the alert may miss a fight while Roblox's corner is in view, since the screen copy comes back brighter. The combat timer is visible on screen in that case.
+
+SHA-256 of `TickTracker-4.1.7.zip`: `44bdba122c1514bcdc8b29ff82309388872d9b4f4b958f89fe86b4664e0c75fa`
