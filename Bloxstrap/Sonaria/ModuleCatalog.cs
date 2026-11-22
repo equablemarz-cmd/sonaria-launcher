@@ -9,9 +9,9 @@ namespace Bloxstrap.Sonaria
         {
             Id = "TickTracker",
             Name = "TickTracker",
-            Version = "4.1.5",
-            DownloadUrl = $"https://github.com/{App.ProjectRepository}/releases/download/ticktracker-4.1.5/TickTracker-4.1.5.zip",
-            Sha256 = "47ec0b092060b9823928f2dceb9d7a8102b99c5866840fefc33ca05a24ee5722",
+            Version = "4.1.6",
+            DownloadUrl = $"https://github.com/{App.ProjectRepository}/releases/download/ticktracker-4.1.6/TickTracker-4.1.6.zip",
+            Sha256 = "d8685857be1ed2f23cd6480cc989736df8a364b62adff60d820c8e6b4eeaa9a9",
             EntryPoint = @"TickTracker\TickTracker.exe",
             SingleInstanceMutex = "TickTracker_single_instance"
         };
