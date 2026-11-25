@@ -109,7 +109,10 @@ namespace Bloxstrap.Sonaria
             if (!match.Success || !IsRobloxRunningSince(entry.Joined))
                 return null;
 
-            return $"{App.ServerLinkPage}?s={match.Groups[1].Value.ToLowerInvariant()}";
+            // Creatures of Sonaria has several places (the main world, Land of Monsters, the Aquatic and Hardcore
+            // realms, the Trade Realm...). A server ID only works together with the place it belongs to,
+            // so the link has to say which place you're in, not just the main one
+            return $"{App.ServerLinkPage}?s={match.Groups[1].Value.ToLowerInvariant()}&p={entry.PlaceId}";
         }
 
         /// <summary>

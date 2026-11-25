@@ -9,8 +9,8 @@
     <UseWPF>true</UseWPF>
     <UseWindowsForms>True</UseWindowsForms>
     <ApplicationIcon>Bloxstrap.ico</ApplicationIcon>
-    <Version>3.3.6</Version>
-    <FileVersion>3.3.6</FileVersion>
+    <Version>3.3.7</Version>
+    <FileVersion>3.3.7</FileVersion>
     <Product>Sonaria Software Launcher</Product>
     <AssemblyTitle>Sonaria Software Launcher</AssemblyTitle>
     <Company>Sonaria Software</Company>
