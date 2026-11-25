@@ -56,17 +56,33 @@
 </main>
 <script>
 (function () {
-  // This page only ever opens Creatures of Sonaria. The link carries just the server ID.
+  // This page only ever opens Creatures of Sonaria. The link carries the server ID (s) and, from launcher
+  // 3.3.7 on, the CoS place that server belongs to (p). A server ID only works with its own place, so a
+  // server in Land of Monsters or a realm can't be joined through the main place.
   var COS_PLACE_ID = "5233782396";
-  var id = new URLSearchParams(window.location.search).get("s") || "";
+  // every place in the Creatures of Sonaria experience (universe 1831550657)
+  var COS_PLACES = [
+    "5233782396",      // main game (menu + Sonaria)
+    "5301474388",      // Legacy Trade Realm
+    "14119723130",     // Trade Realm
+    "14848219783",     // Legacy
+    "81193077714290",  // Land of Monsters
+    "98662098944855",  // Beta Realm
+    "125036322376647", // Aquatic Realm
+    "136015760267602"  // Hardcore Realm
+  ];
+
+  var params = new URLSearchParams(window.location.search);
+  var id = params.get("s") || "";
+  var place = params.get("p") || COS_PLACE_ID; // older links had no place: they were always the main game
   var isServerId = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(id);
 
-  if (!isServerId) {
+  if (!isServerId || COS_PLACES.indexOf(place) === -1) {
     document.getElementById("invalid").hidden = false;
     return;
   }
 
-  var link = "roblox://experiences/start?placeId=" + COS_PLACE_ID + "&gameInstanceId=" + id.toLowerCase();
+  var link = "roblox://experiences/start?placeId=" + place + "&gameInstanceId=" + id.toLowerCase();
 
   document.getElementById("join-button").href = link;
   document.getElementById("valid").hidden = false;
