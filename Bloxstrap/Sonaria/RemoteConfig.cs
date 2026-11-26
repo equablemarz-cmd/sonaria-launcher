@@ -46,6 +46,12 @@ namespace Bloxstrap.Sonaria
         /// </summary>
         [JsonPropertyName("discordServerButton")]
         public bool DiscordServerButton { get; set; }
+
+        /// <summary>
+        /// Stops kills from being counted and sent to the kill leaderboard
+        /// </summary>
+        [JsonPropertyName("killLeaderboard")]
+        public bool KillLeaderboard { get; set; }
     }
 
     public class RemoteConfigData
@@ -110,6 +116,8 @@ namespace Bloxstrap.Sonaria
 
         public static bool DamageCounterAllowed => !_switches.DamageCounter;
 
+        public static bool KillLeaderboardAllowed => !_switches.KillLeaderboard;
+
         /// <summary>
         /// A plain line naming whatever has been switched off, so it is never done silently. Empty when nothing is.
         /// </summary>
@@ -136,6 +144,9 @@ namespace Bloxstrap.Sonaria
 
                 if (_switches.DiscordServerButton)
                     names.Add("the Discord server button");
+
+                if (_switches.KillLeaderboard)
+                    names.Add("the kill leaderboard");
 
                 if (names.Count == 0)
                     return "";

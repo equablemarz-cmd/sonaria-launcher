@@ -20,6 +20,9 @@ namespace Bloxstrap.Sonaria
         // the Damage Counter is only ever open inside Creatures of Sonaria
         private readonly ModuleRunner? _damageCounter;
 
+        // counts kills for the kill leaderboard while you're in Creatures of Sonaria
+        private KillTracker? _killTracker;
+
         private readonly object _lock = new();
 
         private CancellationTokenSource? _pendingStop;
@@ -104,6 +107,8 @@ namespace Bloxstrap.Sonaria
                     _damageCounter.Stop();
             }
 
+            UpdateKillTracker();
+
             if (_tickTracker is null || !App.Settings.Prop.TickTrackerOnlyInCos)
                 return;
 
@@ -121,6 +126,9 @@ namespace Bloxstrap.Sonaria
             _inCos = false;
 
             LastServer.MarkLeft();
+
+            // the kill counting stops straight away: there are no kills to see outside CoS
+            UpdateKillTracker();
 
             // the tools that close when you leave CoS
             var leaving = new List<ModuleRunner>();
@@ -163,6 +171,47 @@ namespace Bloxstrap.Sonaria
             }, TaskScheduler.Default);
         }
 
+        /// <summary>
+        /// Starts counting kills when you're in CoS (as whichever Roblox account joined) and stops otherwise
+        /// </summary>
+        private void UpdateKillTracker()
+        {
+            const string LOG_IDENT = "CosIntegration::UpdateKillTracker";
+
+            lock (_lock)
+            {
+                long userId = _activityWatcher?.Data.UserId ?? 0;
+                long placeId = _activityWatcher?.Data.PlaceId ?? 0;
+
+                bool wanted = _inCos && userId > 0 && RemoteConfig.KillLeaderboardAllowed;
+
+                if (!wanted)
+                {
+                    if (_killTracker is not null)
+                    {
+                        App.Logger.WriteLine(LOG_IDENT, "Stopped counting kills");
+                        _killTracker.Dispose();
+                        _killTracker = null;
+                    }
+
+                    if (_inCos && userId <= 0)
+                        App.Logger.WriteLine(LOG_IDENT, "Not counting kills: the Roblox account isn't known yet");
+
+                    return;
+                }
+
+                // already counting for this account (a teleport between CoS servers, for example)
+                if (_killTracker is not null && _killTrackerUserId == userId)
+                    return;
+
+                _killTracker?.Dispose();
+                _killTracker = new KillTracker(userId, placeId);
+                _killTrackerUserId = userId;
+            }
+        }
+
+        private long _killTrackerUserId;
+
         private void CancelPendingStop()
         {
             lock (_lock)
@@ -181,6 +230,13 @@ namespace Bloxstrap.Sonaria
             }
 
             CancelPendingStop();
+
+            lock (_lock)
+            {
+                _killTracker?.Dispose();
+                _killTracker = null;
+            }
+
             _tickTracker?.Dispose();
             _damageCounter?.Dispose();
 

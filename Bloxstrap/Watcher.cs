@@ -58,7 +58,10 @@ namespace Bloxstrap
             // the Damage Counter only ever runs inside Creatures of Sonaria, so it always needs to know where you are
             bool damageCounterOn = App.Settings.Prop.DamageCounterEnabled && Sonaria.RemoteConfig.DamageCounterAllowed;
 
-            if (App.Settings.Prop.EnableActivityTracking || tickTrackerNeedsActivity || damageCounterOn)
+            // the kill leaderboard needs to know you're in Creatures of Sonaria and which Roblox account is playing
+            bool killLeaderboardOn = Sonaria.RemoteConfig.KillLeaderboardAllowed;
+
+            if (App.Settings.Prop.EnableActivityTracking || tickTrackerNeedsActivity || damageCounterOn || killLeaderboardOn)
                 ActivityWatcher = new(_watcherData.LogFile);
 
             if (ActivityWatcher is not null || tickTrackerOn)

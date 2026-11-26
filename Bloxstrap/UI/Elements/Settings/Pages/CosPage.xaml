@@ -37,6 +37,10 @@
                 Description="A panel like the game&apos;s own that adds up the damage you deal in the current fight. It only counts while the combat timer is up and goes back to 0 when the fight ends. It starts when you join CoS and closes when you leave. Drag it to move it, mouse wheel to resize, right-click for its own options.">
                 <ui:ToggleSwitch IsChecked="{Binding DamageCounterEnabled, Mode=TwoWay}" />
             </controls:OptionControl>
+
+            <controls:OptionControl 
+                Header="Kill leaderboard" 
+                Description="Every KILL CONFIRMED you get in CoS counts towards the kill leaderboard in the Kosers of Sonaria Discord (#kill-leaderboard, weekly and all-time top 10, shown by Roblox username). It looks for the banner at the top of the game while Roblox is the window in front, and sends only your Roblox user ID and the time of the kill. This is on for everyone using the launcher." />
         </StackPanel>
 
         <StackPanel>
