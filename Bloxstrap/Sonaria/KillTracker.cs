@@ -17,7 +17,7 @@ namespace Bloxstrap.Sonaria
         /// <summary>
         /// The Sonaria Software kill service (a Cloudflare Worker)
         /// </summary>
-        public const string ServiceUrl = "https://sonaria-kills.sonaria-software.workers.dev";
+        public const string ServiceUrl = "https://sonaria-kills.equablemarz.workers.dev";
 
         private const int LooksPerSecond = 4;
 
