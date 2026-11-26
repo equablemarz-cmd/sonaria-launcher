@@ -15,6 +15,9 @@ globalThis.fetch = async (url, init = {}) => {
     const id = url.split('/').pop();
     return new Response(JSON.stringify({ id: +id, name: id === '1' ? 'saberlish' : id === '2' ? 'Zeta3078' : `user_${id}` }));
   }
+  if (url.startsWith('https://discord.com/api/webhooks/') && !init.method) {
+    return new Response('{}', { status: 200 });   // the board message still exists
+  }
   if (url.startsWith('https://discord.com/api/webhooks/')) {
     discord.push({ url, method: init.method, body: JSON.parse(init.body) });
     if (init.method === 'PATCH' && msgDeleted) { msgDeleted = false; return new Response('', { status: 404 }); }
@@ -63,6 +66,19 @@ msgDeleted = true; await post({ userId: 3, at: now - 1000 }); await Promise.all(
 await worker.scheduled({}, env, { waitUntil: p => p }); await new Promise(r => setTimeout(r, 50));
 console.log('after delete', discord.slice(-2).map(d => d.method));
 assert.equal(discord.at(-1).method, 'POST');
+// 6b. board deleted while nothing changes -> reposted at the next existence check
+msgDeleted = false;
+await raw.prepare(`DELETE FROM meta WHERE key = 'checked_at'`).run();
+const beforeCheck = discord.length;
+let gets = 0; const realFetch = globalThis.fetch;
+globalThis.fetch = async (url, init = {}) => { if (String(url).includes('/messages/') && !init.method) { gets++; return new Response('', { status: 404 }); } return realFetch(url, init); };
+await worker.scheduled({}, env, { waitUntil: p => p }); await new Promise(r => setTimeout(r, 50));
+console.log('existence check GETs', gets, 'then', discord.slice(beforeCheck).map(d => d.method));
+assert.equal(gets, 1); assert.equal(discord.at(-1).method, 'POST');
+// and the next run within 3 minutes doesn't check again
+await worker.scheduled({}, env, { waitUntil: p => p }); await new Promise(r => setTimeout(r, 50));
+assert.equal(gets, 1);
+globalThis.fetch = realFetch;
 // 7. week start is Monday 00:00 UK
 const ws = new Date(weekStart(Date.UTC(2026, 10, 26, 0, 10)));
 console.log('week start for Thu 26 Nov 00:10 UTC:', ws.toISOString());

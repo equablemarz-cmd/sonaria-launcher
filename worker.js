@@ -20,6 +20,7 @@ const MIN_GAP_MS = 2000;            // two kills from one player can't be closer
 const MAX_CLOCK_SKEW_MS = 10 * 60 * 1000;
 const MAX_AGE_MS = 7 * 24 * 3600 * 1000;   // kills saved offline are still accepted for a week
 const NAME_TTL_MS = 24 * 3600 * 1000;
+const EXISTS_CHECK_MS = 3 * 60 * 1000;     // how often to check the board message still exists
 
 const SCHEMA = [
   `CREATE TABLE IF NOT EXISTS kills (id INTEGER PRIMARY KEY AUTOINCREMENT, user_id INTEGER NOT NULL, at INTEGER NOT NULL, received INTEGER NOT NULL, place_id INTEGER, version TEXT)`,
@@ -169,7 +170,18 @@ export async function updateDiscord(env) {
   const last = await db.prepare(`SELECT value FROM meta WHERE key = 'last_body'`).first();
   const msg = await db.prepare(`SELECT value FROM meta WHERE key = 'message_id'`).first();
 
-  if (msg && last?.value === body) return 'unchanged';
+  if (msg && last?.value === body) {
+    // nothing changed, but check now and then that the board message is still there (someone may
+    // have deleted it) and post it again if not
+    const checked = await db.prepare(`SELECT value FROM meta WHERE key = 'checked_at'`).first();
+    if (checked && Date.now() - Number(checked.value) < EXISTS_CHECK_MS) return 'unchanged';
+    await db.prepare(`INSERT INTO meta (key, value) VALUES ('checked_at', ?) ON CONFLICT(key) DO UPDATE SET value = excluded.value`).bind(String(Date.now())).run();
+    const hook = env.DISCORD_WEBHOOK.replace(/\/$/, '');
+    const r = await fetch(`${hook}/messages/${msg.value}`);
+    if (r.status !== 404) return 'unchanged';
+    await db.prepare(`DELETE FROM meta WHERE key = 'message_id'`).run();
+    return updateDiscord(env);
+  }
 
   const hook = env.DISCORD_WEBHOOK.replace(/\/$/, '');
   let r;
