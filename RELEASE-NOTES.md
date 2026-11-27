@@ -1,10 +1,13 @@
-TickTracker 4.1.7, packaged as a module for Sonaria Software Launcher. The launcher downloads this file itself and checks it against a SHA-256 built into the launcher, so there is nothing to install by hand.
+TickTracker 4.3.0, packaged as a module for Sonaria Software Launcher. The launcher downloads this file itself and checks it against a SHA-256 built into the launcher, so there is nothing to install by hand.
 
-Fixes the flashing that was left after 4.1.6. The combat alert looks at Roblox whenever another window is in front, even when Roblox is still in plain view (for example after clicking into Discord on another monitor, or onto the Damage Counter). It did that by asking Roblox to draw itself again (PrintWindow), which can make the game flash white. Now:
-- if Roblox's top-right corner is in view, it reads the screen there with a plain copy, like the health bar
-- only if Roblox is completely hidden behind other windows does it ask Roblox for a picture, where a flash can't be seen
-- if Roblox is partly covered and the corner is hidden, it skips that look
+A new tick clock. Natural regen is a fixed 15-second clock that never moves, but TickTracker used to count from whichever heal it last accepted, so one stray heal near the countdown (Healing Pulse, mud, food, a healer) pulled the whole countdown over to itself. Now it weighs up every rhythm the heals could belong to and shows the one with the most ticks behind it:
+- a stray heal near the countdown no longer drags it
+- a rhythm three ticks have landed on is only dropped for one that is clearly better backed up
+- bleed, full health or a hit at the same moment: the countdown carries on through them
+- if the first heal it counted from wasn't a tick, it switches once that heal's own tick fails to show
+- coming back from a menu on the same creature carries the countdown on
+- something passing over the health bar for a moment is no longer taken for a hit and a heal
 
-With Windows HDR on, the alert may miss a fight while Roblox's corner is in view, since the screen copy comes back brighter. The combat timer is visible on screen in that case.
+Tested in simulation only (made-up ticks, stray heals and hits), not against recorded gameplay.
 
-SHA-256 of `TickTracker-4.1.7.zip`: `44bdba122c1514bcdc8b29ff82309388872d9b4f4b958f89fe86b4664e0c75fa`
+SHA-256 of `TickTracker-4.3.0.zip`: `672cdb32a07663fc6e4fa04ad182f07d825e81876426212af8348a693db13d70`
